@@ -1,0 +1,27 @@
+{
+  "name": "want2buy",
+  "version": "1.0.0",
+  "description": "## Деплой проекта.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zdimon/want2buy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zdimon/want2buy/issues"
+  },
+  "homepage": "https://github.com/zdimon/want2buy#readme",
+  "dependencies": {
+    "jquery": "^1.9.1",
+    "popper.js": "^1.12.6",
+    "bootstrap": "^4.0.0-beta.2"
+  }
+}
