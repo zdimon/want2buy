@@ -1,0 +1,122 @@
+@startuml
+
+package "Account" #DDDDDD {
+  User <|-- Profile
+  class Profile {
+    String first_name
+    String last_name
+    String patronymic
+    String phone
+    Image foto
+    URL site
+    String address
+    Integer rating
+    Double account
+  }
+  note left of Profile : account.models.Profile
+  class Testimonials {
+    ForeignKey user_id
+    Text content
+    ForeignKey author_id
+  }
+  
+  Testimonials --> "1" Profile
+  Transaction --> "1" Profile
+  
+  class Transaction {
+    ForeignKey user_id
+    Double ammount
+    Datetime created_at
+  }
+  
+  
+    
+  
+}
+
+package Catalog {
+
+  class Catalog {
+    String name
+  }
+  
+  class Announcement {   
+     ForeignKey user_id
+     String title
+     ForeignKey category_id
+     String new_category
+     SelectBox new_bu
+     SelectBox opt_roznica
+     Double price
+     Integer ammount
+     ForeignKey city_id
+     Text info
+     Image photo
+     SelectBox status
+     DateTime created_at
+  
+  }
+
+  Announcement --> "1" Profile
+  
+  Catalog --> "1" Announcement
+  
+  class City {
+    String name
+  }
+  
+  Announcement --> "1" City
+  
+  
+}
+
+
+package Archive {
+
+
+    note top of NewAnnouncement : Новые заявки на модерации
+    
+    class NewAnnouncement {
+         ForeignKey user_id
+         String title
+         ForeignKey category_id
+         String new_category
+         SelectBox new_bu
+         SelectBox opt_roznica
+         Double price
+         Integer ammount
+         ForeignKey city_id
+         Text info
+         Image photo        
+         DateTime created_at
+    }
+    
+    
+    class Offer {
+      ForeignKey user_id
+      ForeignKey announcement_id
+      DateTime created_at
+      SelectBox status
+    }
+    
+    note top of Offer : архив заявок от продавцов
+    
+  Offer --> "1" Profile
+  Offer --> "1" Announcement
+  
+  
+  class Message {
+    ForeignKey offer_id
+    Text Content
+    Image photo
+    Double price
+  }
+  
+  Message --> "1" Offer
+  
+
+  
+      
+
+}
+@enduml
