@@ -1,0 +1,5 @@
+node_modules
+python_ve
+server-app/server/local.py
+*.pyc
+db.sqlite3
