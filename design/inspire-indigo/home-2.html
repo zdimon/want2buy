@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home Two</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link href="js/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="js/owl.carousel/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="js/lightcase/css/lightcase.css" rel="stylesheet">
+    <link href="js/slicknav/slicknav.min.css" rel="stylesheet">
+    <link href="js/chosen/chosen.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/indigo.css" rel="stylesheet">
+</head>
+<body>
+
+
+<!-- Header -->
+<header id="header" class="header">
+    <div class="container">
+        <div class="site-branding-wrap col-md-4">
+            <div class="site-branding">
+                <div class="wrap">
+                    <h1 class="site-title"><a href="index.html" rel="home"><img class="img-responsive" src="images/logo.png" alt="Indigo"></a></h1>
+                </div>
+            </div>
+        </div>
+        <div class="header-navigation-wrap col-md-8">
+            <div id="extended-bg">
+                <nav id="header-navigation" class="header-navigation clearfix">
+                    <ul class="header-menu clearfix">
+                        <li class="menu-item-has-children">
+                            <a href="index.html">Home</a>
+                            <ul class="sub-menu">
+                                <li><a href="index.html">Home 1</a></li>
+                                <li class="current-menu-item"><a href="home-2.html">Home 2</a></li>
+                                <li><a href="home-3.html">Home 3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="category.html">Category</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li>
+                            <a href="#">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="labour.html">Labour View</a></li>
+                                <li><a href="job-listing.html">Job Listing</a></li>
+                                <li><a href="single.html">Blog Single</a></li>
+                                <li><a href="profile.html">Profile</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-links-wrap clearfix">
+                <span class="call-us">Questions? Call us at 800-475-4123</span>
+                <div class="header-links">
+                    <a href="profile.html">Add Listing</a>
+                    <a href="#sign-in-up" data-toggle="modal">Signin</a>
+                    <a href="#sign-in-up" data-toggle="modal">Signup</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Google Map -->
+<div id="home-google-map" class="home-google-map">
+    <div id="map"></div>
+</div>
+<script>
+    function initMap() {
+        var locations = [
+            ['Bondi Beach', 53.492225,  -2.3936245, 4],
+            ['Coogee Beach', 53.472225,  -2.1936245, 5],
+            ['Cronulla Beach', 53.492225,  -2.1936245, 3],
+            ['Manly Beach', 53.482225, -2.2936245, 2],
+            ['Maroubra Beach', 53.465225, -2.3596249, 6],
+            ['Near Beach', 53.469225, -2.3956249, 7],
+            ['Feri Beach', 53.488225, -2.2156249, 8]
+        ];
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: new google.maps.LatLng(53.472225, -2.2936245),
+            scrollwheel: false,
+            zoom: 12,
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL
+            },
+            panControl: false,
+            streetViewControl: false,
+            mapTypeControl: false,
+            styles:[{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#4a4a4a"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"color":"#e7eaec"}]},{"featureType":"landscape.man_made","elementType":"labels.text.fill","stylers":[{"color":"#4a4a4a"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"color":"#e7eaeb"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.government","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"visibility":"off"},{"color":"#c9d5ca"}]},{"featureType":"poi.place_of_worship","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.school","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.sports_complex","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#d1d5da"},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"color":"#4a4a4a"}]},{"featureType":"road.highway","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#d7dbdc"}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#d7dbdc"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#d1d5da"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#4a4a4a"}]}]
+        });
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmdxL1EkkCdG-RYSPpCAT2F8Fb-79SQA&callback=initMap"></script>
+
+<!-- Search Form -->
+<div id="home-search-form" class="home-search-form search-form-section">
+    <div class="container">
+        <div class="col-xs-12">
+            <form id="search-form" class="search-form" action="#" method="get">
+                <div class="row">
+                    <div class="form-group col-sm-4 col-md-5">
+                        <input type="text" name="s" class="required" placeholder="Filter By Keywords">
+                    </div>
+                    <div class="form-group col-sm-4 col-md-5">
+                        <input type="text" name="location" placeholder="Locations">
+                    </div>
+                    <div class="form-group col-sm-4 col-md-2">
+                        <input type="submit" value="Search">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Featured -->
+<section id="home-featured" class="home-featured">
+    <div class="container">
+        <div class="col-xs-12">
+            <header class="section-head">
+                <div class="section-head-inner">
+                    <h4 class="section-sub-title">Our Sponserd</h4>
+                    <h3 class="section-title">Featured Labour</h3>
+                </div>
+            </header>
+        </div>
+        <div class="clearfix">
+    <div class="featured-item-wrap col-xs-6 col-md-4">
+        <figure class="featured-item">
+            <a href="#"><img src="images/features/1.jpg" alt="Category"></a>
+            <figcaption>
+                <div class="icon-container"><img src="images/features/icon-1.png" alt="Icon"></div>
+                <h3 class="title"><a href="#">Bill A. Douglas</a></h3>
+                <p class="timings">12:00 AM - 06:00 PM</p>
+            </figcaption>
+        </figure>
+    </div>
+    <div class="featured-item-wrap col-xs-6 col-md-4">
+        <figure class="featured-item">
+            <a href="#"><img src="images/features/2.jpg" alt="Category"></a>
+            <figcaption>
+                <div class="icon-container"><img src="images/features/icon-2.png" alt="Icon"></div>
+                <h3 class="title"><a href="#">Jess N. Schoch</a></h3>
+                <p class="timings">12:00 AM - 06:00 PM</p>
+            </figcaption>
+        </figure>
+    </div>
+    <div class="featured-item-wrap col-xs-6 col-md-4">
+        <figure class="featured-item">
+            <a href="#"><img src="images/features/3.jpg" alt="Category"></a>
+            <figcaption>
+                <div class="icon-container"><img src="images/features/icon-3.png" alt="Icon"></div>
+                <h3 class="title"><a href="#">Joe Webster</a></h3>
+                <p class="timings">12:00 AM - 06:00 PM</p>
+            </figcaption>
+        </figure>
+    </div>
+    <div class="featured-item-wrap col-xs-6 col-md-4">
+        <figure class="featured-item">
+            <a href="#"><img src="images/features/4.jpg" alt="Category"></a>
+            <figcaption>
+                <div class="icon-container"><img src="images/features/icon-4.png" alt="Icon"></div>
+                <h3 class="title"><a href="#">Harrison Foster</a></h3>
+                <p class="timings">12:00 AM - 06:00 PM</p>
+            </figcaption>
+        </figure>
+    </div>
+    <div class="featured-item-wrap col-xs-6 col-md-4">
+        <figure class="featured-item">
+            <a href="#"><img src="images/features/5.jpg" alt="Category"></a>
+            <figcaption>
+                <div class="icon-container"><img src="images/features/icon-5.png" alt="Icon"></div>
+                <h3 class="title"><a href="#">Jessica Hawk</a></h3>
+                <p class="timings">12:00 AM - 06:00 PM</p>
+            </figcaption>
+        </figure>
+    </div>
+    <div class="featured-item-wrap col-xs-6 col-md-4">
+        <figure class="featured-item">
+            <a href="#"><img src="images/features/6.jpg" alt="Category"></a>
+            <figcaption>
+                <div class="icon-container"><img src="images/features/icon-6.png" alt="Icon"></div>
+                <h3 class="title"><a href="#">Ryan Kennedy</a></h3>
+                <p class="timings">12:00 AM - 06:00 PM</p>
+            </figcaption>
+        </figure>
+    </div>
+</div>
+    </div>
+</section>
+
+<!-- Account -->
+<section id="home-account" class="home-account">
+    <div class="container-fluid">
+        <span class="or">OR</span>
+        <div class="row">
+            <div class="col-xs-6 hire-a-labour">
+                <h2 class="title">Hire a Labour</h2>
+                <p>
+                    Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie,
+                    musica, sport etc, litot vocabular.
+                </p>
+                <a href="#" class="btn btn-default btn-lg">Register</a>
+            </div>
+            <div class="col-xs-6 create-a-job">
+                <h2 class="title">Create a Job</h2>
+                <p>
+                    Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie,
+                    musica, sport etc, litot vocabular.
+                </p>
+                <a href="#" class="btn btn-default btn-lg">Register</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Jobs -->
+<section id="home-jobs" class="home-jobs">
+    <div class="container">
+        <div class="col-xs-12">
+            <header class="section-head">
+                <div class="section-head-inner">
+                    <h4 class="section-sub-title">Our Latest Labour</h4>
+                    <h3 class="section-title">Latest Jobs</h3>
+                </div>
+            </header>
+        </div>
+        <div class="job-item-container clearfix">
+    <div class="job-item-wrap col-xs-6">
+        <article class="job-item clearfix">
+            <figure class="job-figure">
+                <a href="#"><img class="img-responsive" src="images/jobs/1.jpg" alt="Job"></a>
+            </figure>
+            <header class="job-header">
+                <h4 class="job-title"><a href="#">ABC PVT LTD</a></h4>
+                <address class="job-address">3301 Woodland Drive Sioux City,<br> IA 51101</address>
+                <p class="job-time"><span>Available Time:</span> 12:00 AM - 06:00 PM</p>
+            </header>
+            <div class="job-meta">
+                <span class="job-price">$220/Cost</span>
+                <p class="job-skills">
+                    <span>Skills:</span>
+                    <a href="#">Electrician</a>
+                    <a href="#">House Wiring</a>
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <div class="job-item-wrap col-xs-6">
+        <article class="job-item clearfix">
+            <figure class="job-figure">
+                <a href="#"><img class="img-responsive" src="images/jobs/5.jpg" alt="Job"></a>
+            </figure>
+            <header class="job-header">
+                <h4 class="job-title"><a href="#">ABC PVT LTD</a></h4>
+                <address class="job-address">3301 Woodland Drive Sioux City,<br> IA 51101</address>
+                <p class="job-time"><span>Available Time:</span> 12:00 AM - 06:00 PM</p>
+            </header>
+            <div class="job-meta">
+                <span class="job-price">$220/Cost</span>
+                <p class="job-skills">
+                    <span>Skills:</span>
+                    <a href="#">Electrician</a>
+                    <a href="#">House Wiring</a>
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <div class="job-item-wrap col-xs-6">
+        <article class="job-item clearfix">
+            <figure class="job-figure">
+                <a href="#"><img class="img-responsive" src="images/jobs/2.jpg" alt="Job"></a>
+            </figure>
+            <header class="job-header">
+                <h4 class="job-title"><a href="#">ABC PVT LTD</a></h4>
+                <address class="job-address">3301 Woodland Drive Sioux City,<br> IA 51101</address>
+                <p class="job-time"><span>Available Time:</span> 12:00 AM - 06:00 PM</p>
+            </header>
+            <div class="job-meta">
+                <span class="job-price">$220/Cost</span>
+                <p class="job-skills">
+                    <span>Skills:</span>
+                    <a href="#">Electrician</a>
+                    <a href="#">House Wiring</a>
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <div class="job-item-wrap col-xs-6">
+        <article class="job-item clearfix">
+            <figure class="job-figure">
+                <a href="#"><img class="img-responsive" src="images/jobs/6.jpg" alt="Job"></a>
+            </figure>
+            <header class="job-header">
+                <h4 class="job-title"><a href="#">ABC PVT LTD</a></h4>
+                <address class="job-address">3301 Woodland Drive Sioux City,<br> IA 51101</address>
+                <p class="job-time"><span>Available Time:</span> 12:00 AM - 06:00 PM</p>
+            </header>
+            <div class="job-meta">
+                <span class="job-price">$220/Cost</span>
+                <p class="job-skills">
+                    <span>Skills:</span>
+                    <a href="#">Electrician</a>
+                    <a href="#">House Wiring</a>
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <div class="job-item-wrap col-xs-6">
+        <article class="job-item clearfix">
+            <figure class="job-figure">
+                <a href="#"><img class="img-responsive" src="images/jobs/3.jpg" alt="Job"></a>
+            </figure>
+            <header class="job-header">
+                <h4 class="job-title"><a href="#">ABC PVT LTD</a></h4>
+                <address class="job-address">3301 Woodland Drive Sioux City,<br> IA 51101</address>
+                <p class="job-time"><span>Available Time:</span> 12:00 AM - 06:00 PM</p>
+            </header>
+            <div class="job-meta">
+                <span class="job-price">$220/Cost</span>
+                <p class="job-skills">
+                    <span>Skills:</span>
+                    <a href="#">Electrician</a>
+                    <a href="#">House Wiring</a>
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <div class="job-item-wrap col-xs-6">
+        <article class="job-item clearfix">
+            <figure class="job-figure">
+                <a href="#"><img class="img-responsive" src="images/jobs/7.jpg" alt="Job"></a>
+            </figure>
+            <header class="job-header">
+                <h4 class="job-title"><a href="#">ABC PVT LTD</a></h4>
+                <address class="job-address">3301 Woodland Drive Sioux City,<br> IA 51101</address>
+                <p class="job-time"><span>Available Time:</span> 12:00 AM - 06:00 PM</p>
+            </header>
+            <div class="job-meta">
+                <span class="job-price">$220/Cost</span>
+                <p class="job-skills">
+                    <span>Skills:</span>
+                    <a href="#">Electrician</a>
+                    <a href="#">House Wiring</a>
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <div class="job-item-wrap col-xs-6">
+        <article class="job-item clearfix">
+            <figure class="job-figure">
+                <a href="#"><img class="img-responsive" src="images/jobs/4.jpg" alt="Job"></a>
+            </figure>
+            <header class="job-header">
+                <h4 class="job-title"><a href="#">ABC PVT LTD</a></h4>
+                <address class="job-address">3301 Woodland Drive Sioux City,<br> IA 51101</address>
+                <p class="job-time"><span>Available Time:</span> 12:00 AM - 06:00 PM</p>
+            </header>
+            <div class="job-meta">
+                <span class="job-price">$220/Cost</span>
+                <p class="job-skills">
+                    <span>Skills:</span>
+                    <a href="#">Electrician</a>
+                    <a href="#">House Wiring</a>
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <div class="job-item-wrap col-xs-6">
+        <article class="job-item clearfix">
+            <figure class="job-figure">
+                <a href="#"><img class="img-responsive" src="images/jobs/8.jpg" alt="Job"></a>
+            </figure>
+            <header class="job-header">
+                <h4 class="job-title"><a href="#">ABC PVT LTD</a></h4>
+                <address class="job-address">3301 Woodland Drive Sioux City,<br> IA 51101</address>
+                <p class="job-time"><span>Available Time:</span> 12:00 AM - 06:00 PM</p>
+            </header>
+            <div class="job-meta">
+                <span class="job-price">$220/Cost</span>
+                <p class="job-skills">
+                    <span>Skills:</span>
+                    <a href="#">Electrician</a>
+                    <a href="#">House Wiring</a>
+                </p>
+            </div>
+        </article>
+    </div>
+</div>
+    </div>
+</section>
+
+<!-- Facts -->
+<section id="facts" class="facts">
+    <div class="container">
+        <div class="clearfix">
+            <div class="col-xs-6 col-sm-3">                
+                <h3 class="fact-figure"><span data-from="0" data-to="1000" data-speed="750">1000</span>+</h3>
+                <h4 class="fact-title">Register Labour</h4>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <h3 class="fact-figure"><span data-from="0" data-to="200" data-speed="750">200</span></h3>
+                <h4 class="fact-title">Featured Labour</h4>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <h3 class="fact-figure"><span data-from="0" data-to="5000" data-speed="750">5000</span></h3>
+                <h4 class="fact-title">Created Jobs</h4>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <h3 class="fact-figure"><span data-from="0" data-to="500" data-speed="750">500</span>+</h3>
+                <h5 class="fact-title">Active Jobs</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="pricing">
+    <div class="container">
+        <div class="col-xs-12">
+            <header class="section-head">
+                <div class="section-head-inner">
+                    <h4 class="section-sub-title">Our Pricing</h4>
+                    <h3 class="section-title">Package Pricing</h3>
+                </div>
+            </header>
+        </div>
+        <div class="clearfix">
+            <div class="pricing-item-wrap col-xs-6 col-sm-4">
+                <div class="pricing-item">
+                    <h2 class="pricing-item-title">Basic</h2>
+                    <h4 class="pricing-item-price">$79<span>/mo</span></h4>
+                    <ul class="pricing-item-features-list list-unstyled">
+                        <li>Stationary Design</li>
+                        <li>Envelope Design</li>
+                        <li>Presentation Design</li>
+                        <li>Unlimited Revision</li>
+                        <li>50% Discount Off</li>
+                        <li>CMYK 300 DPI</li>
+                    </ul>
+                    <a href="#" class="pricing-item-order">Order Now</a>
+                </div>
+            </div>
+            <div class="pricing-item-wrap col-xs-6 col-sm-4">
+                <div class="pricing-item recommended">
+                    <h2 class="pricing-item-title">Premium</h2>
+                    <h4 class="pricing-item-price">$89<span>/mo</span></h4>
+                    <ul class="pricing-item-features-list list-unstyled">
+                        <li>Stationary Design</li>
+                        <li>Envelope Design</li>
+                        <li>Presentation Design</li>
+                        <li>Unlimited Revision</li>
+                        <li>50% Discount Off</li>
+                        <li>CMYK 300 DPI</li>
+                    </ul>
+                    <a href="#" class="pricing-item-order">Order Now</a>
+                </div>
+            </div>
+            <div class="pricing-item-wrap col-xs-6 col-sm-4">
+                <div class="pricing-item">
+                    <h2 class="pricing-item-title">Business</h2>
+                    <h4 class="pricing-item-price">$99<span>/mo</span></h4>
+                    <ul class="pricing-item-features-list list-unstyled">
+                        <li>Stationary Design</li>
+                        <li>Envelope Design</li>
+                        <li>Presentation Design</li>
+                        <li>Unlimited Revision</li>
+                        <li>50% Discount Off</li>
+                        <li>CMYK 300 DPI</li>
+                    </ul>
+                    <a href="#" class="pricing-item-order">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients -->
+<section id="clients" class="clients">
+    <div class="container">
+        <div class="clearfix">
+            <div class="clients-items-carousel owl-carousel">
+                <div class="carousel-item">
+                    <a href="#"><img src="images/clients/1.png" alt="Client"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img src="images/clients/2.png" alt="Client"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img src="images/clients/3.png" alt="Client"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img src="images/clients/4.png" alt="Client"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img src="images/clients/1.png" alt="Client"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img src="images/clients/2.png" alt="Client"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img src="images/clients/4.png" alt="Client"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog -->
+<section id="home-blog" class="home-blog">
+    <div class="container">
+        <div class="col-xs-12">
+            <header class="section-head">
+                <div class="section-head-inner">
+                    <h4 class="section-sub-title">Our Blog</h4>
+                    <h3 class="section-title">Latest Blog</h3>
+                </div>
+            </header>
+        </div>
+        <div class="clearfix">
+    <div class="blog-item-wrap col-xs-6 col-sm-4">
+        <article class="blog-item">
+            <header class="blog-item-header">
+                <h3 class="blog-item-title"><a href="single.html">Post With Static Image</a></h3>
+                <p><span class="time">Februray 27, 2017</span> | <a href="#" class="comments">6 comments</a></p>
+            </header>
+            <figure>
+                <a href="single.html"><img src="images/blog/1.jpg" alt="Image"></a>
+            </figure>
+            <div class="blog-item-content">
+                <p>
+                    Proin metus diam, euismod a enim ac, gravida sodales mi. Donec varius ex nec pharetra sagittis. Ut vehicula, enim eget posuere semper.
+                </p>
+            </div>
+            <a href="single.html" class="read-more">Read More</a>
+        </article>
+    </div>
+    <div class="blog-item-wrap col-xs-6 col-sm-4">
+        <article class="blog-item">
+            <header class="blog-item-header">
+                <h3 class="blog-item-title"><a href="single.html">Post With A Slider Gallery</a></h3>
+                <p><span class="time">March 21, 2016</span> | <a href="#" class="comments">2 comments</a></p>
+            </header>
+            <figure>
+                <a href="single.html"><img src="images/blog/2.jpg" alt="Image"></a>
+            </figure>
+            <div class="blog-item-content">
+                <p>
+                    Proin metus diam, euismod a enim ac, gravida sodales mi. Donec varius ex nec pharetra sagittis. Ut vehicula, enim eget posuere semper.
+                </p>
+            </div>
+            <a href="single.html" class="read-more">Read More</a>
+        </article>
+    </div>
+    <div class="blog-item-wrap col-xs-6 col-sm-4">
+        <article class="blog-item">
+            <header class="blog-item-header">
+                <h3 class="blog-item-title"><a href="single.html">Post With A Youtube Video</a></h3>
+                <p><span class="time">April 8, 2016</span> | <a href="#" class="comments">3 comments</a></p>
+            </header>
+            <figure>
+                <a href="single.html"><img src="images/blog/3.jpg" alt="Image"></a>
+            </figure>
+            <div class="blog-item-content">
+                <p>
+                    Proin metus diam, euismod a enim ac, gravida sodales mi. Donec varius ex nec pharetra sagittis. Ut vehicula, enim eget posuere semper.
+                </p>
+            </div>
+            <a href="single.html" class="read-more">Read More</a>
+        </article>
+    </div>
+</div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer" class="footer">
+    <div class="container">
+        <a id="scroll-to-top" href="#header" class="scroll-to-top"></a>
+
+        <nav id="footer-navigation" class="footer-navigation">
+            <ul class="footer-menu clearfix">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="category.html">Category</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="find-us">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+            <a href="#"><i class="fa fa-vimeo"></i></a>
+        </div>
+
+        <p class="copyright">© Indigo 2017 Designed by <a href="#">mine-tech</a></p>
+    </div>
+</footer>
+
+
+
+<!-- Modal -->
+<div id="sign-in-up" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content indigo-modal-content">
+            <div id="indigo-modal" class="indigo-modal">
+                <div class="indigo-tabs-container">
+                    <ul class="indigo-tabs list-unstyled clearfix">
+                        <li class="active">Sign In</li>
+                        <li>Sign Up</li>
+                    </ul>
+                    <div class="indigo-tabs-content">
+                        <div class="indigo-tab-content active">
+                            <form id="sign-in" class="indigo-forms" action="#" method="post">
+                                <input type="text" name="email" class="required" placeholder="Email Address">
+                                <input type="password" name="password" class="required" placeholder="Password">
+                                <div class="remember-me">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="checkboxes">
+                                                <input type="checkbox" id="remember" value="remember">
+                                                <label for="remember">Remember Me</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 text-right">
+                                            <span class="forget-password">Forgot Password</span><i class="fa fa-question-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Login Now" class="btn btn-primary">
+                            </form>
+                        </div>
+                        <div class="indigo-tab-content">
+                            <form id="sign-up" class="indigo-forms" action="#" method="post">
+                                <input type="text" name="email" class="required" placeholder="Email Address">
+                                <input type="text" name="fname" id="fname" class="required" placeholder="First Name">
+                                <input type="text" name="lname" id="lname" class="required" placeholder="Last Name">
+                                <input type="text" name="phone" class="required" placeholder="Phone Number">
+                                <input type="email" name="email" class="required" placeholder="Email">
+                                <input type="text" name="zip" class="required" placeholder="ZIP Code">
+                                <div class="remember-me">
+                                    <div class="checkboxes">
+                                        <input type="checkbox" name="chk2" id="chk2">
+                                        <label for="chk2">Consectetur adipisicing elited do eiusmod idunt.</label>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Signup Now" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .modal -->
+
+
+<!-- Scripts -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquery-migrate.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/owl.carousel/owl.carousel.min.js"></script>
+<script src="js/lightcase/vendor/jQuery/jquery.events.touch.js"></script>
+<script src="js/lightcase/js/lightcase.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery-countTo/jquery.countTo.js"></script>
+<script src="js/slicknav/jquery.slicknav.min.js"></script>
+<script src="js/chosen/chosen.jquery.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/jquery.form.min.js"></script>
+<script src="js/indigo.js"></script>
+</body>
+</html>

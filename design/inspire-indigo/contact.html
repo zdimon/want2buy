@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Us</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link href="js/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="js/owl.carousel/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="js/lightcase/css/lightcase.css" rel="stylesheet">
+    <link href="js/slicknav/slicknav.min.css" rel="stylesheet">
+    <link href="js/chosen/chosen.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/indigo.css" rel="stylesheet">
+</head>
+<body>
+
+
+<!-- Header -->
+<header id="header" class="header">
+    <div class="container">
+        <div class="site-branding-wrap col-md-4">
+            <div class="site-branding">
+                <div class="wrap">
+                    <h1 class="site-title"><a href="index.html" rel="home"><img class="img-responsive" src="images/logo.png" alt="Indigo"></a></h1>
+                </div>
+            </div>
+        </div>
+        <div class="header-navigation-wrap col-md-8">
+            <div id="extended-bg">
+                <nav id="header-navigation" class="header-navigation clearfix">
+                    <ul class="header-menu clearfix">
+                        <li class="menu-item-has-children">
+                            <a href="index.html">Home</a>
+                            <ul class="sub-menu">
+                                <li><a href="index.html">Home 1</a></li>
+                                <li><a href="home-2.html">Home 2</a></li>
+                                <li><a href="home-3.html">Home 3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="category.html">Category</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li>
+                            <a href="#">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="labour.html">Labour View</a></li>
+                                <li><a href="job-listing.html">Job Listing</a></li>
+                                <li><a href="single.html">Blog Single</a></li>
+                                <li><a href="profile.html">Profile</a></li>
+                            </ul>
+                        </li>
+                        <li class="current-menu-item"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-links-wrap clearfix">
+                <span class="call-us">Questions? Call us at 800-475-4123</span>
+                <div class="header-links">
+                    <a href="profile.html">Add Listing</a>
+                    <a href="#sign-in-up" data-toggle="modal">Signin</a>
+                    <a href="#sign-in-up" data-toggle="modal">Signup</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Banner -->
+<section id="banner" class="banner">
+    <div class="container">
+        <h2 class="page-title">Contact</h2>
+        <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">contact</li>
+        </ol>
+    </div>
+</section>
+
+<!-- Google Map -->
+<div id="google-for-contact"></div>
+
+<div class="container main-container contact-page">
+   <ul class="contact-methods list-unstyled clearfix">
+        <li>
+            <div class="icon-container">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+            </div>
+            <div class="content">
+                <h4 class="title">Email</h4>
+                <p><a href="mailto:indigo@.co.uk">indigo@.co.uk</a></p>
+                <p><a href="mailto:domain@.co.uk">domain@.co.uk</a></p>
+            </div>
+        </li>
+        <li>
+            <div class="icon-container">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+            </div>
+            <div class="content">
+                <h4 class="title">Address</h4>
+                <address>
+                    Andrew Cross 50 Front Street <br>
+                    KNOTTY GREEN HP9 2WB
+                </address>
+            </div>
+        </li>
+        <li>
+            <div class="icon-container">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+            </div>
+            <div class="content">
+                <h4 class="title">Phone</h4>
+                <p>+44 078-5099-1689</p>
+                <p>+44 078-5099-1859</p>
+            </div>
+        </li>
+    </ul>
+
+    <!-- Contact Form -->
+    <form id="contact-form" class="contact-form" method="post" action="php/contact.php">
+        <div class="clearfix">
+            <div class="col-md-4">
+                <p><input type="text" name="name" placeholder="John Doe" class="required" title="*Please provide your name"></p>
+            </div>
+            <div class="col-md-4">
+                <p><input type="email" name="email" placeholder="John@Company.com" class="required email" title="*Please provide your Email Address"></p>
+            </div>
+            <div class="col-md-4">
+                <p><input type="text" name="number" placeholder="Number"></p>
+            </div>
+            <div class="col-md-10">
+                <p><textarea name="message" placeholder="Tell us about your opinion about this story..."></textarea></p>
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="submit-button" value="Send">
+                <img id="loader" src="images/ajax-loader.gif" alt="Sending...">
+            </div>
+            <div class="col-md-12">
+                <div class="errors-container"></div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="footer">
+    <div class="container">
+        <a id="scroll-to-top" href="#header" class="scroll-to-top"></a>
+
+        <nav id="footer-navigation" class="footer-navigation">
+            <ul class="footer-menu clearfix">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="category.html">Category</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="find-us">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+            <a href="#"><i class="fa fa-vimeo"></i></a>
+        </div>
+
+        <p class="copyright">© Indigo 2017 Designed by <a href="#">mine-tech</a></p>
+    </div>
+</footer>
+
+<script>
+    function initMap() {
+        var position = {lat: 53.472225, lng: -2.2936245};
+        var map = new google.maps.Map(document.getElementById('google-for-contact'), {
+            center: position,
+            scrollwheel: false,
+            zoom: 12,
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL
+            },
+            panControl: false,
+            streetViewControl: false,
+            mapTypeControl: false,
+            styles:[{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#4a4a4a"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"color":"#e7eaec"}]},{"featureType":"landscape.man_made","elementType":"labels.text.fill","stylers":[{"color":"#4a4a4a"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"color":"#e7eaeb"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.government","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"visibility":"off"},{"color":"#c9d5ca"}]},{"featureType":"poi.place_of_worship","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.school","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.sports_complex","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#d1d5da"},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"color":"#4a4a4a"}]},{"featureType":"road.highway","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#d7dbdc"}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#d7dbdc"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#d1d5da"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#4a4a4a"}]}]
+        });
+
+        var marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            icon: 'images/map-marker.png',
+            animation:google.maps.Animation.BOUNCE
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmdxL1EkkCdG-RYSPpCAT2F8Fb-79SQA&callback=initMap"></script>
+
+
+
+<!-- Modal -->
+<div id="sign-in-up" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content indigo-modal-content">
+            <div id="indigo-modal" class="indigo-modal">
+                <div class="indigo-tabs-container">
+                    <ul class="indigo-tabs list-unstyled clearfix">
+                        <li class="active">Sign In</li>
+                        <li>Sign Up</li>
+                    </ul>
+                    <div class="indigo-tabs-content">
+                        <div class="indigo-tab-content active">
+                            <form id="sign-in" class="indigo-forms" action="#" method="post">
+                                <input type="text" name="email" class="required" placeholder="Email Address">
+                                <input type="password" name="password" class="required" placeholder="Password">
+                                <div class="remember-me">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="checkboxes">
+                                                <input type="checkbox" id="remember" value="remember">
+                                                <label for="remember">Remember Me</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 text-right">
+                                            <span class="forget-password">Forgot Password</span><i class="fa fa-question-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Login Now" class="btn btn-primary">
+                            </form>
+                        </div>
+                        <div class="indigo-tab-content">
+                            <form id="sign-up" class="indigo-forms" action="#" method="post">
+                                <input type="text" name="email" class="required" placeholder="Email Address">
+                                <input type="text" name="fname" id="fname" class="required" placeholder="First Name">
+                                <input type="text" name="lname" id="lname" class="required" placeholder="Last Name">
+                                <input type="text" name="phone" class="required" placeholder="Phone Number">
+                                <input type="email" name="email" class="required" placeholder="Email">
+                                <input type="text" name="zip" class="required" placeholder="ZIP Code">
+                                <div class="remember-me">
+                                    <div class="checkboxes">
+                                        <input type="checkbox" name="chk2" id="chk2">
+                                        <label for="chk2">Consectetur adipisicing elited do eiusmod idunt.</label>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Signup Now" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .modal -->
+
+
+<!-- Scripts -->
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquery-migrate.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/owl.carousel/owl.carousel.min.js"></script>
+<script src="js/lightcase/vendor/jQuery/jquery.events.touch.js"></script>
+<script src="js/lightcase/js/lightcase.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery-countTo/jquery.countTo.js"></script>
+<script src="js/slicknav/jquery.slicknav.min.js"></script>
+<script src="js/chosen/chosen.jquery.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/jquery.form.min.js"></script>
+<script src="js/indigo.js"></script>
+</body>
+</html>
