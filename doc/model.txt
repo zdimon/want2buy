@@ -13,6 +13,7 @@ package "Account" #DDDDDD {
     Integer rating
     Double account
   }
+  
   note left of Profile : account.models.Profile
   class Testimonials {
     ForeignKey user_id

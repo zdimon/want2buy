@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block meta_title %} {{ page_in_template.meta_title }} {% endblock %}
+
+
+{% block content %}
+
+
+
+
+<section id="home-categories" class="home-categories section-parallax"> 
+        <div class="container">
+                <div class="section-head-inner">
+                        <h4 class="section-sub-title"></h4>
+                        <h3 class="section-title">{{ page_in_template.title }}</h3>
+                    </div>
+            
+             {{ page_in_template.content }}
+        </div>
+</section>
+
+
+{% endblock %}

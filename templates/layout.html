@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block meta_title %} Home One {% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link href="/static/js/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/static/js/owl.carousel/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="/static/js/lightcase/css/lightcase.css" rel="stylesheet">
+    <link href="/static/js/slicknav/slicknav.min.css" rel="stylesheet">
+    <link href="/static/js/chosen/chosen.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/indigo.css" rel="stylesheet">
+</head>
+<body>
+
+
+<!-- Header -->
+<header id="header" class="header">
+    <div class="container">
+        <div class="site-branding-wrap col-md-4">
+            <div class="site-branding">
+                <div class="wrap">
+                    <h1 class="site-title"><a href="index.html" rel="home"><img class="img-responsive" src="/static/images/logo.png" alt="Indigo"></a></h1>
+                </div>
+            </div>
+        </div>
+        <div class="header-navigation-wrap col-md-8">
+            <div id="extended-bg">
+                <nav id="header-navigation" class="header-navigation clearfix">
+                    <ul class="header-menu clearfix">
+                        <li class="current-menu-item menu-item-has-children">
+                            <a href="index.html">Home</a>
+                            <ul class="sub-menu">
+                                <li><a href="index.html">Home 1</a></li>
+                                <li><a href="home-2.html">Home 2</a></li>
+                                <li><a href="home-3.html">Home 3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="category.html">Category</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li>
+                            <a href="#">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="labour.html">Labour View</a></li>
+                                <li><a href="job-listing.html">Job Listing</a></li>
+                                <li><a href="single.html">Blog Single</a></li>
+                                <li><a href="profile.html">Profile</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-links-wrap clearfix">
+                <span class="call-us">Questions? Call us at 800-475-4123</span>
+                <div class="header-links">
+                    <a href="profile.html">Add Listing</a>
+                    <a href="#sign-in-up" data-toggle="modal">Signin</a>
+                    <a href="#sign-in-up" data-toggle="modal">Signup</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+{% block content %} {% endblock %}
+
+<!-- Footer -->
+<footer id="footer" class="footer">
+    <div class="container">
+        <a id="scroll-to-top" href="#header" class="scroll-to-top"></a>
+
+        <nav id="footer-navigation" class="footer-navigation">
+            <ul class="footer-menu clearfix">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="category.html">Category</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="find-us">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+            <a href="#"><i class="fa fa-vimeo"></i></a>
+        </div>
+
+        <p class="copyright">© Indigo 2017 Designed by <a href="#">mine-tech</a></p>
+    </div>
+</footer>
+
+
+
+<!-- Modal -->
+<div id="sign-in-up" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content indigo-modal-content">
+            <div id="indigo-modal" class="indigo-modal">
+                <div class="indigo-tabs-container">
+                    <ul class="indigo-tabs list-unstyled clearfix">
+                        <li class="active">Sign In</li>
+                        <li>Sign Up</li>
+                    </ul>
+                    <div class="indigo-tabs-content">
+                        <div class="indigo-tab-content active">
+                            <form id="sign-in" class="indigo-forms" action="#" method="post">
+                                <input type="text" name="email" class="required" placeholder="Email Address">
+                                <input type="password" name="password" class="required" placeholder="Password">
+                                <div class="remember-me">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="checkboxes">
+                                                <input type="checkbox" id="remember" value="remember">
+                                                <label for="remember">Remember Me</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 text-right">
+                                            <span class="forget-password">Forgot Password</span><i class="fa fa-question-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Login Now" class="btn btn-primary">
+                            </form>
+                        </div>
+                        <div class="indigo-tab-content">
+                            <form id="sign-up" class="indigo-forms" action="#" method="post">
+                                <input type="text" name="email" class="required" placeholder="Email Address">
+                                <input type="text" name="fname" id="fname" class="required" placeholder="First Name">
+                                <input type="text" name="lname" id="lname" class="required" placeholder="Last Name">
+                                <input type="text" name="phone" class="required" placeholder="Phone Number">
+                                <input type="email" name="email" class="required" placeholder="Email">
+                                <input type="text" name="zip" class="required" placeholder="ZIP Code">
+                                <div class="remember-me">
+                                    <div class="checkboxes">
+                                        <input type="checkbox" name="chk2" id="chk2">
+                                        <label for="chk2">Consectetur adipisicing elited do eiusmod idunt.</label>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Signup Now" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .modal -->
+
+
+<!-- Scripts -->
+<script src="/static/js/jquery-3.1.1.min.js"></script>
+<script src="/static/js/jquery-migrate.min.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+<script src="/static/js/owl.carousel/owl.carousel.min.js"></script>
+<script src="/static/js/lightcase/vendor/jQuery/jquery.events.touch.js"></script>
+<script src="/static/js/lightcase/js/lightcase.js"></script>
+<script src="/static/js/jquery.waypoints.min.js"></script>
+<script src="/static/js/jquery-countTo/jquery.countTo.js"></script>
+<script src="/static/js/slicknav/jquery.slicknav.min.js"></script>
+<script src="/static/js/chosen/chosen.jquery.min.js"></script>
+<script src="/static/js/jquery.validate.min.js"></script>
+<script src="/static/js/jquery.form.min.js"></script>
+<script src="/static/js/indigo.js"></script>
+</body>
+</html>
