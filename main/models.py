@@ -13,13 +13,3 @@ class Page(models.Model):
     meta_title = models.CharField(max_length=150)
     meta_keywords = models.CharField(max_length=250)
     meta_description = models.CharField(max_length=250)
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=150)
-
-
-class SubCategory(models.Model):
-    name = models.CharField(max_length=150)
-    parent_category = models.ForeignKey(Category)
-    url = models.URLField()
