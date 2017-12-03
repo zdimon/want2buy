@@ -1,0 +1,44 @@
+Account.
+    Model.
+    
+    Profile.
+        Autorization.
+        Registration.
+        Email notification.
+        Deleting old profiles.
+        Load test profiles.
+        Editing profile.
+        Admin interface of profile.
+        Profile page.
+        
+    Testimonials.
+        Load test testimonials.
+        Admin interface of testimonials.
+            with approving of new    
+        Add testimonials in the profile page. 
+        
+    Vouting for profile.
+    Profile rating.
+    Test page for replanish account.
+    Archive replanishes page. 
+    Admin interface.
+    
+Catalog.
+
+    Categories.
+        + Model.
+        + Load test data.
+        + Admin interface.
+        Add images to categories.
+        
+    Cities.
+        + Model.
+        Load test data.
+        
+    Announcements.    
+        
+Archive.          
+        
+        
+    
+	
