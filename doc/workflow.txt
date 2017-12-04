@@ -36,9 +36,27 @@ Catalog.
         Load test data.
         
     Announcements.    
+        Model.
+        Load test data.
+        Create form.
+        Admin interface.
+        Page of users anouncements.
+        
         
 Archive.          
         
+    Offers.
+        Model.
+        Adding form.
+        Offers list. 
+
+    New Announcements.    
+        Model.
+        Load test data.
+        Create form.
+        Admin interface.       
         
+        
+               
     
 	

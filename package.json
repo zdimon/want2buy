@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/zdimon/want2buy#readme",
   "dependencies": {
-    "bootstrap": "^4.0.0-beta.2",
+    "bootstrap": "^3.3.7",
     "jquery": "^1.9.1",
     "popper.js": "^1.12.6",
     "systemjs": "^0.20.19"

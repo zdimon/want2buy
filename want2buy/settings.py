@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'main',
     'catalog',
     'archive',
-    'account'    
+    'account',
+    'registration'    
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
+#SESSION_COOKIE_AGE = 120
+ACCOUNT_ACTIVATION_DAYS = 7
