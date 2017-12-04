@@ -141,19 +141,10 @@
                         </div>
                         <div class="indigo-tab-content">
                             <form id="sign-up" class="indigo-forms" action="#" method="post">
-                                <input type="text" name="email" class="required" placeholder="Email Address">
-                                <input type="text" name="fname" id="fname" class="required" placeholder="First Name">
-                                <input type="text" name="lname" id="lname" class="required" placeholder="Last Name">
-                                <input type="text" name="phone" class="required" placeholder="Phone Number">
-                                <input type="email" name="email" class="required" placeholder="Email">
-                                <input type="text" name="zip" class="required" placeholder="ZIP Code">
-                                <div class="remember-me">
-                                    <div class="checkboxes">
-                                        <input type="checkbox" name="chk2" id="chk2">
-                                        <label for="chk2">Consectetur adipisicing elited do eiusmod idunt.</label>
-                                    </div>
-                                </div>
-                                <input type="submit" value="Signup Now" class="btn btn-primary">
+                                <input type="text" name="email" class="required" placeholder="email">
+                                <input type="text" name="password" id="password" class="required" placeholder="{% trans 'пароль' %}">
+                               
+                                <input type="submit" value="{% trans 'Зарегистрироваться' %}" class="btn btn-primary">
                             </form>
                         </div>
                     </div>
