@@ -130,3 +130,6 @@ LOGOUT_REDIRECT_URL = '/'
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
 #SESSION_COOKIE_AGE = 120
 ACCOUNT_ACTIVATION_DAYS = 7
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'tmp')
