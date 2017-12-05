@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block meta_title %} {{ page_in_template.meta_title }} {% endblock %}
+
+
+{% block content %}
+    <div class="container main-container contact-page">
+       <ul class="contact-methods list-unstyled clearfix">
+            <li>
+                <div class="icon-container">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <h4 class="title">Email</h4>
+                    <p><a href="mailto:indigo@.co.uk">indigo@.co.uk</a></p>
+                    <p><a href="mailto:domain@.co.uk">domain@.co.uk</a></p>
+                </div>
+            </li>
+            <li>
+                <div class="icon-container">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <h4 class="title">Address</h4>
+                    <address>
+                        Andrew Cross 50 Front Street <br>
+                        KNOTTY GREEN HP9 2WB
+                    </address>
+                </div>
+            </li>
+            <li>
+                <div class="icon-container">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <h4 class="title">Phone</h4>
+                    <p>+44 078-5099-1689</p>
+                    <p>+44 078-5099-1859</p>
+                </div>
+            </li>
+        </ul>
+
+    <form id="contact-form" class="contact-form" action="/feedback/" method="post">{% csrf_token %}
+        <div class="clearfix">
+            {{ form.non_field_errors }}
+            <div class="col-md-4">
+              <label for="id_subject">Тема:</label>
+              {{ form.subject.errors }}
+              {{ form.subject }}
+            </div>
+            <div class="col-md-4">
+              <label for="id_sender">E-mail:</label>
+              {{ form.sender.errors }}
+              {{ form.sender }}
+            </div>
+            <div class="col-md-10">
+              <label for="id_message">Сообщение:</label>
+              {{ form.message.errors }}
+              {{ form.message }}
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="submit-button" value="Отправить"/>
+            </div>
+        </div>
+    </form>
+    </div>
+{% endblock %}

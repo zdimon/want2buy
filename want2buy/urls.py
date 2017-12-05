@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from main.views import home
+from main.views import *
 from django.contrib.auth import views as auth_views
 from account.views import *
+from feedback.views import *
 
 urlpatterns = [
     url(r'^$', home, name='home'),
@@ -36,6 +37,8 @@ urlpatterns = [
         name='registration_register',
     ),    
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'about/', about, name='about'),
+    url(r'feedback/', feedback),
 
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),
     #url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
