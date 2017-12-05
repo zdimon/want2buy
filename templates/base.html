@@ -28,7 +28,7 @@
         <div class="site-branding-wrap col-md-4">
             <div class="site-branding">
                 <div class="wrap">
-                    <h1 class="site-title"><a href="index.html" rel="home"><img class="img-responsive" src="/static/images/logo.png" alt="Indigo"></a></h1>
+                    <h1 class="site-title"><a href="/" rel="home"><img class="img-responsive" src="/static/images/logo.png" alt="Indigo"></a></h1>
                 </div>
             </div>
         </div>
@@ -140,10 +140,12 @@
                             </form>
                         </div>
                         <div class="indigo-tab-content">
-                            <form id="sign-up" class="indigo-forms" action="#" method="post">
+                            <form id="sign-up" class="indigo-forms" action="accounts/register/" method="post">
+                                {% csrf_token %}
                                 <input type="text" name="email" class="required" placeholder="email">
-                                <input type="text" name="password" id="password" class="required" placeholder="{% trans 'пароль' %}">
-                               
+                                <input type="text" name="password1" id="password1" class="required" placeholder="{% trans 'пароль' %}">
+                                <input type="text" name="password2" id="password2" class="required" placeholder="{% trans 'повтор пароля' %}">
+                                
                                 <input type="submit" value="{% trans 'Зарегистрироваться' %}" class="btn btn-primary">
                             </form>
                         </div>

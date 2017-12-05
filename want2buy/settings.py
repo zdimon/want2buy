@@ -133,3 +133,4 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'tmp')
+AUTH_PROFILE_MODULE = "account.Profile"

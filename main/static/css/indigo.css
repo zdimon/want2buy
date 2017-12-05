@@ -3930,7 +3930,7 @@ textarea {
   max-width: 100%; }
 
 input[type="text"].error, input[type="email"].error, input[type="password"].error, input[type="url"].error, textarea.error {
-  border-color: rgba(255, 0, 0, 0.9);
+  border-color: rgba(255, 0, 0, 0.9) !important;
   background-color: rgba(255, 0, 0, 0.15); }
 
 label.error {

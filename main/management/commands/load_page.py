@@ -7,9 +7,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print 'Start'
         Page.objects.all().delete()
-        Category.objects.all().delete()
-        SubCategory.objects.all().delete()
-        categories = self.parse()
         for i in range(1, 10):
             p = Page()
             p.title = 'First page %s' % i

@@ -3,12 +3,18 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+
+
 # Create your models here.
 
-from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager, User
 
-class Profile(AbstractBaseUser):
-    email = models.EmailField(_('email address'), unique=True)
+
+
+class Profile(models.Model):
+    user=models.OneToOneField(User, primary_key=True)
     first_name = models.CharField(_('first name'), max_length=50, blank=True)
     last_name = models.CharField(_('last name'), max_length=50, blank=True)
     middle_name = models.CharField(_('middle name'), max_length=50, blank=True)
@@ -19,8 +25,14 @@ class Profile(AbstractBaseUser):
     address = models.CharField(_('address'), max_length=150, blank=True)
     rating = models.IntegerField(default=0)
     account = models.DecimalField(default=0, max_digits=5, decimal_places=2)
-    USERNAME_FIELD = 'email'
+    #USERNAME_FIELD = 'email'
+    #objects = MyUserManager()
 
+def create_user_profile(sender, instance, created, **kwargs):  
+    if created:  
+       profile, created = Profile.objects.get_or_create(user=instance)  
+
+post_save.connect(create_user_profile, sender=User)     
 
 class Testimonial(models.Model):
     author = models.ForeignKey(Profile)
