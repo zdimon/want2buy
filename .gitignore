@@ -4,3 +4,4 @@ server-app/server/local.py
 *.pyc
 db.sqlite3
 tmp
+want2buy/local.py
