@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-
-
-# Create your models here.
-
 from django.contrib.auth.models import AbstractUser, BaseUserManager, User
+from django.contrib.auth import authenticate, login
+from django.dispatch import receiver
+from registration.signals import user_activated
 
-
+@receiver(user_activated)
+def login_on_activation(sender, user, request, **kwargs):
+    print 'dddddddddddddddddddddddddddd %s' % user
+    """Logs in the user after activation"""
+    user.backend = 'django.contrib.auth.backends.ModelBackend'
+    login(request, user)
 
 class Profile(models.Model):
     user=models.OneToOneField(User, primary_key=True)

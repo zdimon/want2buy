@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+
+
+        <div class="form-wrapper">
+            <form id="sign-in" class="profile-forms basic-information"  method="post">
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h4 class="title">{% trans 'Редактирование профайла' %}</h4>
+                        <div class="line"></div> 
+                    </div>
+                </div>
+
+             
+                
+                <div class="row">
+                    <div class="col-md-2  col-md-offset-5">
+                        
+                        <input type="submit" value="{% trans 'Сохранить' %}" class="btn btn-primary">
+                    </div>
+                </div>                
+                
+
+            </form>
+        </div>
+{% endblock %}

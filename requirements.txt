@@ -8,3 +8,4 @@ sorl-thumbnail==12.3
 django-image-cropping==1.1.0
 django-celery==3.2.1
 python_slugify==1.2.4
+psycopg2

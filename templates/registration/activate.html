@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div class="form-wrapper">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h4 class="title">{% trans 'Вы успешно активировали свой аккаунт!' %}</h4>
+                <div class="line"></div> 
+                
+            </div>
+        </div> 
+
+
+        <div class="row">
+                <div class="col-md-2  col-md-offset-5">
+                    
+                    <a href="{% url 'profile_edit' %}" class="btn btn-primary"> {% trans 'Редактировать профиль' %}" </a>
+                    
+                </div>
+            </div>        
+       
+</div>
+{% endblock %}
+{% block sidebar %}  {% endblock %}
