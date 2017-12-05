@@ -63,10 +63,10 @@
             <div class="header-links-wrap clearfix">
                 <span class="call-us">Questions? Call us at 800-475-4123</span>
                 <div class="header-links">
-                    <a href="profile.html">Add Listing</a>
                     {% if not user.is_authenticated %}
                         <a href="#sign-in-up" data-toggle="modal">Signin</a>
                     {% else %}
+                        <a href="/user/profile/edit" data-toggle="modal">{{ user.username }}</a>
                         <a href="/logout" data-toggle="modal">Log out</a>
                     {% endif %}
                 </div>
@@ -140,11 +140,11 @@
                             </form>
                         </div>
                         <div class="indigo-tab-content">
-                            <form id="sign-up" class="indigo-forms" action="accounts/register/" method="post">
+                            <form id="sign-up" class="indigo-forms" action="/user/register/" method="post">
                                 {% csrf_token %}
                                 <input type="text" name="email" class="required" placeholder="email">
-                                <input type="text" name="password1" id="password1" class="required" placeholder="{% trans 'пароль' %}">
-                                <input type="text" name="password2" id="password2" class="required" placeholder="{% trans 'повтор пароля' %}">
+                                <input type="password" name="password1" id="password1" class="required" placeholder="{% trans 'пароль' %}">
+                                <input type="password" name="password2" id="password2" class="required" placeholder="{% trans 'повтор пароля' %}">
                                 
                                 <input type="submit" value="{% trans 'Зарегистрироваться' %}" class="btn btn-primary">
                             </form>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+
+
+        <div class="form-wrapper">
+                
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h4 class="title">{% trans 'Вы успешно зарегистрировались!' %}</h4>
+                        <div class="line"></div> 
+                        <div class="alert alert-danger" role="alert">
+
+                                <div class="title" align="center">{% trans 'На Ваш email было отослано письмо с активационной ссылкой.' %}</div>
+
+                        </div>
+                    </div>
+                </div> 
+               
+        </div>
+{% endblock %}
