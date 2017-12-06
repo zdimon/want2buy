@@ -7,4 +7,5 @@ cp want2buy/_local.py want2buy/local.py
 ./manage.py load_users
 ./manage.py load_categories
 ./manage.py load_city
+npm install
 
