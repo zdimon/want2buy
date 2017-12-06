@@ -28,9 +28,15 @@ package "Account" #DDDDDD {
     ForeignKey user_id
     Double ammount
     Datetime created_at
+    Select service
   }
   
-  
+  class Replanishment {
+    ForeignKey user_id
+    Double ammount
+    Datetime created_at
+    String system
+  }  
     
   
 }

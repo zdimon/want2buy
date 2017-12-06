@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^account/activate/(?P<activation_key>[-:\w]+)/$',MyActivationView.as_view(),name='registration_activate'),
 
 
+    
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),
     #url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
 ]
