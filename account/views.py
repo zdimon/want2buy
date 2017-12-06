@@ -12,15 +12,16 @@ from registration import signals
 from django.contrib.auth import authenticate, login
 from registration.signals import user_activated
 from registration.models import RegistrationProfile
+from .forms import ProfileForm
 # Create your views here.
 
-class ProfileForm(RegistrationFormUniqueEmail):
+class RegForm(RegistrationFormUniqueEmail):
     def __init__(self, *args, **kwargs):
         super(RegistrationFormUniqueEmail,self).__init__(*args, **kwargs)
         del self.fields['username']
 
 class MyRegistrationView(RegistrationView):
-    form_class = ProfileForm
+    form_class = RegForm
     def register(self, form):
         #p = self.create_inactive_user(form)
         
@@ -60,7 +61,8 @@ class MyActivationView(ActivationView):
         return False
 
 def profile_edit(request):
-    return render(request, 'account/profile_edit.html')
+    form = ProfileForm()
+    return render(request, 'account/profile_edit.html', {'form': form})
 
 
 def registration_done(request):

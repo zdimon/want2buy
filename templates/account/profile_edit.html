@@ -2,29 +2,42 @@
 {% load i18n %}
 {% block content %}
 
+<div class="container main-container profile-page">
+    <div class="form-wrapper">
+        <form id="basic-information" class="profile-forms basic-information" method="post" action="">
+            <h4 class="title">{% trans 'Редактирование профайла' %}</h4>
+            <div class="line"></div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="title">{% trans 'Фамилия' %}</span>
+                    {{ form.first_name }}
+                </div>
+                <div class="col-md-4">
+                    <span class="title">{% trans 'Имя' %}</span>
+                    {{ form.last_name }}
+                </div>
+                <div class="col-md-4">
+                    <span class="title">{% trans 'Отчество' %}</span>
+                    {{ form.middle_name }}
+                </div>
 
 
-        <div class="form-wrapper">
-            <form id="sign-in" class="profile-forms basic-information"  method="post">
-                {% csrf_token %}
-                
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h4 class="title">{% trans 'Редактирование профайла' %}</h4>
-                        <div class="line"></div> 
+                <div class="row profile-actions">
+                    <div class="col-sm-4 text-left">
+                        <input type="submit" value="{% trans 'Сохранить' %}">
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-4 text-right">
+                        <a class="add-field" href="#"><i class="fa fa-plus"></i>{% trans 'Сменить пароль' %}</a>
                     </div>
                 </div>
 
-             
-                
-                <div class="row">
-                    <div class="col-md-2  col-md-offset-5">
-                        
-                        <input type="submit" value="{% trans 'Сохранить' %}" class="btn btn-primary">
-                    </div>
-                </div>                
-                
 
-            </form>
-        </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+       
 {% endblock %}

@@ -15,3 +15,14 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'parent_category')
     list_filter = ('parent_category',)
 admin.site.register(SubCategory, SubCategoryAdmin)
+
+
+class RegionAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Region, RegionAdmin)
+
+
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('name', 'region')
+    list_filter = ('region',)
+admin.site.register(City, CityAdmin)
