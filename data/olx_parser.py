@@ -7,7 +7,6 @@ main_url = 'https://www.olx.ua/transport/'
 def write_csv(result):
 	with open('olx-transport.csv', 'w') as f:
 		writer = csv.writer(f)
-		writer.writerow(('РќР°Р·РІР°РЅРёРµ','Р¦РµРЅР°','РђРґСЂРµСЃСЃ','РЎСЃС‹Р»РєР° РЅР° OLX'))
 		for item in result:
 			writer.writerow( (item['name'],
 						  	  item['price'],
