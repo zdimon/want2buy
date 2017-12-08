@@ -19,6 +19,7 @@ from main.views import *
 from django.contrib.auth import views as auth_views
 from account.views import *
 from feedback.views import *
+from replenishment.views import *
 
 urlpatterns = [
     url(r'^$', home, name='home'),
@@ -37,6 +38,7 @@ urlpatterns = [
     url(r'^user/registration/done', registration_done, name='registration_done'), 
     url(r'^user/activation/done', activation_done, name='activation_done'),
     url(r'^account/activate/(?P<activation_key>[-:\w]+)/$',MyActivationView.as_view(),name='registration_activate'),
+    url(r'^replenishment/', replenishment_page, name='replenishment'),
 
 
     
