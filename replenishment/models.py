@@ -8,7 +8,7 @@ from django.utils import timezone
 
 
 class Replanishment(models.Model):
-    user_replanishment = models.ForeignKey(Profile.user)
+    user_replanishment = models.ForeignKey('account.Profile')
     ammount = models.FloatField()
     created_at = models.DateTimeField(default=timezone.now())
     system = models.CharField(max_length=150)
