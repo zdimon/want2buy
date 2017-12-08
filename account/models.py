@@ -6,7 +6,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser, BaseUserManager, User
 from django.contrib.auth import authenticate, login
-
+from catalog.models import *
+from image_cropping import ImageRatioField
+from image_cropping import ImageCropField
 
 class Profile(models.Model):
     user=models.OneToOneField(User, primary_key=True)
@@ -19,7 +21,12 @@ class Profile(models.Model):
     site = models.URLField(_('site'), max_length=50, blank=True)
     address = models.CharField(_('address'), max_length=150, blank=True)
     rating = models.IntegerField(default=0)
+    region = models.ForeignKey(Region, null=True, blank=True)
+    city = models.ForeignKey(City, null=True, blank=True)
     account = models.DecimalField(default=0, max_digits=5, decimal_places=2)
+    cropping = ImageRatioField('avatar', '100x100')
+    def __unicode__(self):
+        return self.user.username
     #USERNAME_FIELD = 'email'
     #objects = MyUserManager()
 

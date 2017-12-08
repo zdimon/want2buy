@@ -3,11 +3,14 @@ from django.contrib.auth.models import User
 from account.models import Profile
 from want2buy.settings import BASE_DIR
 import json
+from django.core.files import File
+import shutil
 
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
         path = '%s/data/users.json' % BASE_DIR
+        shutil.rmtree('%s/media/avatars' % BASE_DIR)
         print 'Start loading users from %s' % path
         Profile.objects.all().delete()
         User.objects.all().delete()
@@ -35,5 +38,9 @@ class Command(BaseCommand):
             p.account = i['account']
             p.site = i['site']
             p.save()
-
+            image_path = '%s/data/images/%s' % (BASE_DIR, i['avatar'])
+            p.avatar.save(
+                i['avatar'],
+                File(open(image_path))
+                )            
             print i['username']

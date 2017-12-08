@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'about/', about, name='about'),
     url(r'feedback/', feedback),
     url(r'^user/register/$', MyRegistrationView.as_view(), name='registration_register'),   
-    url(r'^user/profile/edit$', profile_edit, name='profile_edit'),
+    url(r'^user/profile/edit$', ProfileEditView.as_view(), name='profile_edit'),
     url(r'^user/registration/done', registration_done, name='registration_done'), 
     url(r'^user/activation/done', activation_done, name='activation_done'),
     url(r'^account/activate/(?P<activation_key>[-:\w]+)/$',MyActivationView.as_view(),name='registration_activate'),
@@ -45,3 +45,9 @@ urlpatterns = [
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),
     #url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
 ]
+
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -11,6 +11,7 @@
         "address": "Ворошилова 56 дом 7 кв 45",
         "rating": 4,
         "account": 100,
+        "avatar": "user_1.jpg",
         "is_admin": true
         
     },
@@ -26,6 +27,7 @@
         "address": "Ворошилова 56 дом 7 кв 45",
         "rating": 4,
         "account": 100,
+        "avatar": "user_2.jpg",
         "is_admin": false
     },
     
@@ -41,6 +43,7 @@
         "address": "Ворошилова 56 дом 7 кв 45",
         "rating": 0,
         "account": 0,
+        "avatar": "user_3.jpg",
         "is_admin": false
     },    
     
@@ -55,6 +58,7 @@
         "address": "Ворошилова 56 дом 7 кв 45",
         "rating": 7,
         "account": 50,
+        "avatar": "user_4.jpg",
         "is_admin": false
     }   
     
