@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <form action="/replenishment/" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="подтвердить">
+    </form>
 
-    <form action=""></form>
-    
     
 
 {% endblock %}

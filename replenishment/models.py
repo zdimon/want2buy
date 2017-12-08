@@ -8,8 +8,17 @@ from django.contrib.auth.models import User
 
 
 class Replanishment(models.Model):
+    Visa = 'VS',
+    MasterCard = 'MC',
+    WebMoney = 'WM',
+    Replanishment_system_choices = (
+        (Visa, 'Visa'),
+        (MasterCard, 'MasterCard'),
+        (WebMoney, 'WebMoney'),
+    )
+    Replanishment_system = models.CharField(verbose_name='платежная система', max_length=150, choices=Replanishment_system_choices, default=MasterCard)
     user_replanishment = models.ForeignKey(User)
-    ammount = models.FloatField()
+    ammount = models.FloatField(verbose_name='сумма')
     created_at = models.DateTimeField(default=timezone.now())
-    system = models.CharField(max_length=150)
+
 
