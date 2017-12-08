@@ -6,3 +6,4 @@ db.sqlite3
 tmp
 want2buy/local.py
 media/*
+.idea
