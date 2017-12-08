@@ -32,6 +32,18 @@ class SubCategory(models.Model):
         super(SubCategory, self).save(*args, **kwargs)
 
 
+class SubSubCategory(models.Model):
+    name = models.CharField(max_length=150)
+    parent_sub_category = models.ForeignKey(SubCategory)
+    name_slug = models.CharField(max_length=150)
+
+    def __unicode__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.name_slug = slugify(self.name)
+        super(SubSubCategory, self).save(*args, **kwargs)
+
 class Region(models.Model):
     name = models.CharField(max_length=150)
     name_slug = models.CharField(max_length=150)
