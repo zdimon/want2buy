@@ -5,5 +5,7 @@ server-app/server/local.py
 db.sqlite3
 tmp
 want2buy/local.py
+.idea
+.idea/*
 media/*
 .idea
