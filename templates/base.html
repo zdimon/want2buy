@@ -55,6 +55,7 @@
                         {% if user.is_superuser %}
                             <a href="/admin" target=_blanck data-toggle="modal">{% trans 'Админка' %}</a>
                         {% endif %}
+                        <a href="/account/add" data-toggle="modal">{{ user.profile.account }}</a>
                         <a href="/user/profile/edit" data-toggle="modal">{{ user.username }}</a>
                         <a href="/logout" data-toggle="modal">Log out</a>
                         <a href="/replenishment" data-toggle="modal">Пополнить</a>
@@ -161,5 +162,6 @@
 <script src="/static/js/jquery.validate.min.js"></script>
 <script src="/static/js/jquery.form.min.js"></script>
 <script src="/static/js/indigo.js"></script>
+<script src="/static/js/main.js"></script>
 </body>
 </html>
