@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a2d4dc38-2b53-4691-ba01-ae144ab39136" name="Default" comment="Fix city load">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/replenishment/froms.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/replenishment/migrations/0002_auto_20171208_0953.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/replenishment/models.py" afterPath="$PROJECT_DIR$/replenishment/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/replenishment/views.py" afterPath="$PROJECT_DIR$/replenishment/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/replenishment/replenishment.html" afterPath="$PROJECT_DIR$/templates/replenishment/replenishment.html" />
-    </list>
+    <list default="true" id="a2d4dc38-2b53-4691-ba01-ae144ab39136" name="Default" comment="Fix city load" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
