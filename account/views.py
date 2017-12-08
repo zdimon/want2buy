@@ -13,6 +13,11 @@ from django.contrib.auth import authenticate, login
 from registration.signals import user_activated
 from registration.models import RegistrationProfile
 from .forms import ProfileForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse
+from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
+
 # Create your views here.
 
 class RegForm(RegistrationFormUniqueEmail):
@@ -23,10 +28,6 @@ class RegForm(RegistrationFormUniqueEmail):
 class MyRegistrationView(RegistrationView):
     form_class = RegForm
     def register(self, form):
-        #p = self.create_inactive_user(form)
-        
-        #print self.get_activation_key(p)
-
         p = User()
         p.username = form.cleaned_data['email']
         p.email = form.cleaned_data['email']
@@ -64,6 +65,19 @@ def profile_edit(request):
     form = ProfileForm()
     return render(request, 'account/profile_edit.html', {'form': form})
 
+class ProfileEditView(UpdateView):
+    model = Profile
+    form_class = ProfileForm
+    
+    def get_object(self, queryset=None):
+        obj = Profile.objects.get(user=self.request.user)
+        return obj
+    def get_success_url(self):
+        return reverse('profile_edit')
+    def form_valid(self, form):
+        messages.success(self.request, _('Ваш профиль был успешно сохранен.'))
+        return super(ProfileEditView,self).form_valid(form)        
+    
 
 def registration_done(request):
     return render(request, 'account/registration_done.html')
