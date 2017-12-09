@@ -19,10 +19,10 @@ from main.views import *
 from django.contrib.auth import views as auth_views
 from account.views import *
 from feedback.views import *
-from replenishment.views import *
+from replenishment.views import replenishment_page
 
 urlpatterns = [
-    url(r'^$', home, name='home'),
+    url(r'^$', page, name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', auth_views.LoginView.as_view(), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'), 
@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^account/activate/(?P<activation_key>[-:\w]+)/$',MyActivationView.as_view(),name='registration_activate'),
     url(r'^replenishment/', replenishment_page, name='replenishment'),
 
+    url(r'page/(?P<alias>[-:\w]+)/$', page, name='show_page'),
 
     
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),

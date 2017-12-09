@@ -9,15 +9,13 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Replanishment(models.Model):
-    Visa = 'VS',
-    MasterCard = 'MC',
-    WebMoney = 'WM',
+
     Replanishment_system_choices = (
-        (Visa, 'Visa'),
-        (MasterCard, 'MasterCard'),
-        (WebMoney, 'WebMoney'),
+        ('VS', 'Visa'),
+        ('MC', 'MasterCard'),
+        ('WM', 'WebMoney'),
     )
-    Replanishment_system = models.CharField(verbose_name='платежная система', max_length=150, choices=Replanishment_system_choices, default=MasterCard)
+    Replanishment_system = models.CharField(verbose_name='платежная система', max_length=150, choices=Replanishment_system_choices, default='VS')
     user_replanishment = models.ForeignKey(User)
     ammount = models.FloatField(verbose_name='сумма')
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)

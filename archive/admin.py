@@ -9,3 +9,8 @@ from .models import *
 class NewAnnouncementAdmin(ImageCroppingMixin, admin.ModelAdmin):
     list_display = ('thumbnail', 'title', 'full_category')
 admin.site.register(NewAnnouncement, NewAnnouncementAdmin)
+
+
+class AnnouncementAdmin(ImageCroppingMixin, admin.ModelAdmin):
+    list_display = ('thumbnail', 'title', 'full_category')
+admin.site.register(Announcement, AnnouncementAdmin)

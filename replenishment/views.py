@@ -12,10 +12,13 @@ from django.shortcuts import render
 def replenishment_page(request):
     args = {}
     if request.method == 'POST':
+        print '---------------------'+request.POST['ammount']
         form = ReplanishmentForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            profile = request.user.profile
+            profile.account = profile.account + int(request.POST['ammount'])
+            profile.save()
             return redirect('/')
         else:
             print form.errors
