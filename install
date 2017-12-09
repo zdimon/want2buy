@@ -1,3 +1,4 @@
+git pull
 echo 'Creating a virtual environment.'
 if [ -d "python_ve" ]; then
   echo 'The virtual environment already exists.'

@@ -9,7 +9,7 @@ class Command(BaseCommand):
         Page.objects.all().delete()
         for i in range(1, 10):
             p = Page()
-            p.title = 'First page %s' % i
+            p.title = 'логин admin пароль 123'
             p.content = 'Conteentttt ttttt t tt '
             p.alias = 'alias%s' % i
             p.meta_keywords = 'alias%s' % i
