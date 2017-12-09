@@ -10,7 +10,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         path = '%s/data/users.json' % BASE_DIR
-        shutil.rmtree('%s/media/avatars' % BASE_DIR)
+        try:
+            shutil.rmtree('%s/media/avatars' % BASE_DIR)
+        except:
+            pass
         print 'Start loading users from %s' % path
         Profile.objects.all().delete()
         User.objects.all().delete()
