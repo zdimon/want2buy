@@ -29,7 +29,7 @@ class NewAnnouncement(models.Model):
     opt_roznica = models.CharField(max_length=10, choices=opt)
     price = models.FloatField()
     ammount = models.IntegerField()
-    city = models.ForeignKey('catalog.City')
+    city = models.ForeignKey(City)
     info = models.TextField
     photo = models.ImageField(upload_to='new_announcements/', null=True, blank=True)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
