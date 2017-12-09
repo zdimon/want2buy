@@ -1,11 +1,23 @@
-virtualenv python_ve
+echo 'Creating a virtual environment.'
+if [ -d "python_ve" ]; then
+  echo 'The virtual environment already exists.'
+else
+  virtualenv python_ve
+fi
 . python_ve/bin/activate
+echo 'PIP installation....'
 pip install -r requirements.txt
-cp want2buy/_local.py want2buy/local.py
+if [ ! -f 'want2buy/local.py' ]; then
+   echo "Create local.py."
+fi
+echo 'Loading data'
 ./manage.py migrate
 ./manage.py load_page
 ./manage.py load_users
 ./manage.py load_categories
 ./manage.py load_city
+./manage.py load_new_announcement
 npm install
+echo 'Start dev server'
+./manage.py runserver 0.0.0.0:8080 
 

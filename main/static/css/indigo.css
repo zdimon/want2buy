@@ -2489,7 +2489,7 @@ input[type="submit"]:hover {
 @media (min-width: 992px) {
   .site-branding-wrap {
     width: 32%;
-    padding: 36px 15px 16px; } }
+    padding: 11px 15px 16px; } }
 
 .site-title {
   margin-bottom: 0; }
@@ -2586,7 +2586,7 @@ input[type="submit"]:hover {
   overflow: visible; }
 
 .header-menu > li > a {
-  padding: 28px 0 27px; }
+  padding: 15px 0 15px; }
 
 .header-menu li {
   position: relative; }

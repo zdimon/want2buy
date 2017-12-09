@@ -36,7 +36,11 @@ class SubSubCategory(models.Model):
     name = models.CharField(max_length=150)
     parent_sub_category = models.ForeignKey(SubCategory)
     name_slug = models.CharField(max_length=150)
-
+    
+    @property
+    def parent_category(self):
+        return self.parent_sub_category.parent_category
+    
     def __unicode__(self):
         return self.name
 

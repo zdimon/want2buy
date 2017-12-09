@@ -1,0 +1,42 @@
+[
+
+    {
+        "user": "admin",
+        "title": "куплю мобильный телефон",
+        "category": "Мобильные телефоны / смартфоны",
+        "new_bu": "new",
+        "opt_roznica": "retail",
+        "price": "400",
+        "ammount": "1",
+        "city": "Херсон",
+        "info": "Samsung",
+        "photo": "good_1.jpg"
+    },
+    
+    {
+        "user": "admin",
+        "title": "куплю холодильник",
+        "category": "Холодильники",
+        "new_bu": "new",
+        "opt_roznica": "retail",
+        "price": "400",
+        "ammount": "1",
+        "city": "Херсон",
+        "info": "Samsung",
+        "photo": "good_2.jpg"
+    },
+    
+    {
+        "user": "admin",
+        "title": "куплю велосипед",
+        "category": "Вело",
+        "new_bu": "new",
+        "opt_roznica": "retail",
+        "price": "400",
+        "ammount": "1",
+        "city": "Херсон",
+        "info": "Карпаты",
+        "photo": "good_3.jpg"
+    }          
+    
+]

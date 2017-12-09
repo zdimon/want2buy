@@ -16,6 +16,11 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_filter = ('parent_category',)
 admin.site.register(SubCategory, SubCategoryAdmin)
 
+class SubSubCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'parent_category', 'parent_sub_category')
+    list_filter = ('parent_sub_category',)
+admin.site.register(SubSubCategory, SubSubCategoryAdmin)
+
 
 class RegionAdmin(admin.ModelAdmin):
     pass
