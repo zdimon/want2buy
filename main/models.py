@@ -22,3 +22,11 @@ class Page(models.Model):
 
     def get_absolute_url(self):
         return reverse('show_page', kwargs={'alias': self.alias})
+
+
+class Feedback(models.Model):
+    subject = models.TextField(max_length=100)
+    email = models.TextField(null=True, blank=True)
+    user = models.ForeignKey('account.Profile', null=True, blank=True)
+    message = models.TextField()
+    resolved = models.BooleanField(default=False)
