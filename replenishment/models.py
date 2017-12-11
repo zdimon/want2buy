@@ -15,6 +15,7 @@ class Replanishment(models.Model):
         ('MC', 'MasterCard'),
         ('WM', 'WebMoney'),
     )
+    
     Replanishment_system = models.CharField(verbose_name='платежная система', max_length=150, choices=Replanishment_system_choices, default='VS')
     user_replanishment = models.ForeignKey(User)
     ammount = models.FloatField(verbose_name='сумма')

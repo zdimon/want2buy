@@ -18,3 +18,14 @@ class Command(BaseCommand):
         p.meta_title = 'main'
         p.save()
         print 'Page main was created'
+
+
+        p = Page()
+        p.title = 'blog'
+        p.content = 'blog blog '
+        p.alias = 'blog'
+        p.meta_keywords = 'main'
+        p.meta_description = 'main'
+        p.meta_title = 'main'
+        p.save()
+        print 'Page main was created'        
