@@ -38,7 +38,9 @@ class Command(BaseCommand):
             n = NewAnnouncement()
             n.title = i['title']
             n.user = get_user(i['user'])
-            n.category = get_catalog(i['category'])
+            n.category = get_catalog(i['category']).parent_sub_category.parent_category
+            n.sub_category = get_catalog(i['category']).parent_sub_category
+            n.sub_sub_category = get_catalog(i['category'])
             n.city = get_city(i['city'])
             n.new_bu = i['new_bu']
             n.opt_roznica = i['opt_roznica']

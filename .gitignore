@@ -9,3 +9,4 @@ want2buy/local.py
 .idea/*
 media/*
 .idea
+db.sqlite3-journal

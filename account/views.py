@@ -84,3 +84,6 @@ def registration_done(request):
 
 def activation_done(request):
     return render(request, 'account/activate.html')
+
+def dashboard(request):
+    return render(request, 'account/dashboard.html')

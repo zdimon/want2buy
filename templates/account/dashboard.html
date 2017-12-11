@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block js_lib %} 
+    <script>
+        
+    </script>
+{% endblock %}
+{% block content %}
+{% load cropping %}
+
+
+<div class="container main-container">
+    
+    <header class="section-head">
+            <div class="section-head-inner">
+                <h3 class="section-title">{% trans 'Личный кабинет' %}</h3>
+            </div>
+    </header>
+
+    <div class="row">
+        <div class="col-md-6">
+
+                <h4 class="title">{% trans 'Мои продажи' %}</h4>
+
+                <article class="job-item clearfix">
+                    <figure class="job-figure">
+                        <a href="#"><img class="img-responsive" src="images/jobs/1.jpg" alt="Job"></a>
+                    </figure>
+                    <header class="job-header">
+                        <h4 class="job-title"><a href="#">ABC PVT LTD</a></h4>
+                        <address class="job-address">3301 Woodland Drive Sioux City,<br> IA 51101</address>
+                        <p class="job-time"><span>Available Time:</span> 12:00 AM - 06:00 PM</p>
+                    </header>
+                    <div class="job-meta">
+                        <span class="job-price">$220/Cost</span>
+                        <p class="job-skills">
+                            <span>Skills:</span>
+                            <a href="#">Electrician</a>
+                            <a href="#">House Wiring</a>
+                        </p>
+                    </div>
+                </article>                
+                   
+        </div>
+        <div class="col-md-6">
+        
+                <h4 class="title">
+                    {% trans 'Мои покупки' %} 
+                    
+                    <a href="{% url 'add_announce' %}" class="btn btn-success add_btn">
+                        <i class="fa fa-plus"></i>&nbsp;
+                        {% trans 'Добавить покупку' %}
+                    </a>
+                    <div class="clear"></div>
+                </h4>
+                
+                    
+                
+                <article class="job-item clearfix">
+                        <figure class="job-figure">
+                            <a href="#"><img class="img-responsive" src="images/jobs/1.jpg" alt="Job"></a>
+                        </figure>
+                        <header class="job-header">
+                            <h4 class="job-title"><a href="#">ABC PVT LTD</a></h4>
+                            <address class="job-address">3301 Woodland Drive Sioux City,<br> IA 51101</address>
+                            <p class="job-time"><span>Available Time:</span> 12:00 AM - 06:00 PM</p>
+                        </header>
+                        <div class="job-meta">
+                            <span class="job-price">$220/Cost</span>
+                            <p class="job-skills">
+                                <span>Skills:</span>
+                                <a href="#">Electrician</a>
+                                <a href="#">House Wiring</a>
+                            </p>
+                        </div>
+                    </article>                  
+
+        </div>
+    </div>
+
+</div>
+
+       
+{% endblock %}

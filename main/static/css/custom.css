@@ -875,3 +875,12 @@
 .glyphicon-menu-up:before {
   content: "\e260";
 }
+
+.add_btn{
+  display: block; 
+  float: right;  
+}
+
+.clear {
+  clear: both;
+}

@@ -22,12 +22,26 @@ class AnnouncementBase(models.Model):
         ('retail', _('Розница')),
     )
 
+    tp = (
+        ('service', _('Услуга')),
+        ('good', _('Товар')),
+    )
+
+    once = (
+        ('once', _('Одноразовая покупка')),
+        ('regular', _('Постоянно требуется')),
+    )
+
     user = models.ForeignKey(User)
-    title = models.TextField()
-    category = models.ForeignKey(SubSubCategory)
+    title = models.CharField(max_length=250)
+    category = models.ForeignKey(Category)
+    sub_category = models.ForeignKey(SubCategory)
+    sub_sub_category = models.ForeignKey(SubSubCategory)
     new_category = models.TextField()
-    new_bu = models.CharField(max_length=10, choices=new)
-    opt_roznica = models.CharField(max_length=10, choices=opt)
+    new_bu = models.CharField(max_length=10, choices=new, default='new')
+    opt_roznica = models.CharField(max_length=10, choices=opt, default='retail')
+    type = models.CharField(max_length=10, choices=tp, default='good')
+    once = models.CharField(max_length=10, choices=once, default='once')
     price = models.FloatField()
     ammount = models.IntegerField()
     city = models.ForeignKey(City)

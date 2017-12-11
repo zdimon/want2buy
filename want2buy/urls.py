@@ -18,8 +18,10 @@ from django.contrib import admin
 from main.views import *
 from django.contrib.auth import views as auth_views
 from account.views import *
+from archive.views import *
 from feedback.views import *
 from replenishment.views import replenishment_page
+
 
 urlpatterns = [
     url(r'^$', page, name='home'),
@@ -42,6 +44,8 @@ urlpatterns = [
 
     url(r'page/(?P<alias>[-:\w]+).html$', page, name='show_page'),
 
+    url(r'^dashboard/', dashboard, name='dashboard'),
+    url(r'^add_announce/', add_announce, name='add_announce'),
     
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),
     #url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
