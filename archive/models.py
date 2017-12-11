@@ -86,4 +86,4 @@ class NewAnnouncement(AnnouncementBase):
 
 class Announcement(AnnouncementBase):
     pass
-    
+
