@@ -49,7 +49,10 @@ class AnnouncementBase(models.Model):
     photo = models.ImageField(upload_to='new_announcements/', null=True, blank=True)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     cropping = ImageRatioField('photo', '150x150')
-
+    is_paid = models.BooleanField(default=False)
+    date_expire = models.DateField(_('Date expire'), null=True, blank=True)
+    date_paid_expire = models.DateField(_('Date paid expire'), null=True, blank=True)
+    
     def __unicode__(self):
         return self.title
 
@@ -82,4 +85,5 @@ class NewAnnouncement(AnnouncementBase):
 
 
 class Announcement(AnnouncementBase):
-    is_paid = models.BooleanField(default=False)
+    pass
+    
