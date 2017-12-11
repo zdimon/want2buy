@@ -47,7 +47,7 @@ urlpatterns = [
 
     url(r'^dashboard/', dashboard, name='dashboard'),
     url(r'^add_announce/', add_announce, name='add_announce'),
-    
+
     url(r'^api/', include('api.urls')),
 
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),
