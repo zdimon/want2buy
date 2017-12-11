@@ -21,7 +21,7 @@ from account.views import *
 from archive.views import *
 from feedback.views import *
 from replenishment.views import replenishment_page
-
+import api.urls as api_urls
 
 urlpatterns = [
     url(r'^$', page, name='home'),
@@ -48,6 +48,8 @@ urlpatterns = [
     url(r'^dashboard/', dashboard, name='dashboard'),
     url(r'^add_announce/', add_announce, name='add_announce'),
     
+    url(r'^api/', include('api.urls')),
+
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),
     #url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
 ]
