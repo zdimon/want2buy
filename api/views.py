@@ -9,12 +9,16 @@ from catalog.models import Region, City, Category, SubCategory, SubSubCategory
 
 @json_view
 def regions(request):
-    out = []
-    for r in Region.objects.all():
-        reg = {'id': r.id, 'name': r.name, 'cities': []}
-        for c in City.objects.filter(region=r):
-            reg['cities'].append({'id': c.id, 'name': c.name})
-        out.append(reg)
+    if not cache.get('regions'):
+        out = []
+        for r in Region.objects.all():
+            reg = {'id': r.id, 'name': r.name, 'cities': []}
+            for c in City.objects.filter(region=r):
+                reg['cities'].append({'id': c.id, 'name': c.name, 'lat': c.lat, 'lon': c.lon})
+            out.append(reg)
+            cache.set('regions', out, 60*60*24)
+    else:
+        out = cache.get('regions')
     return out
 
 

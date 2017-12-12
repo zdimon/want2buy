@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from catalog.models import City, Region
 from bs4 import BeautifulSoup
 import os
+from django.core.cache import cache
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -35,3 +36,4 @@ class Command(BaseCommand):
                 c = City(region=r, name=j['name'], lat=j['lat'], lon=j['lon'])
                 c.save()
                 print 'Process ... %s' % c.name
+        cache.delete('regions')
