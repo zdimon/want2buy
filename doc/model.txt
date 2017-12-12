@@ -104,6 +104,10 @@ package Archive {
       ForeignKey announcement_id
       DateTime created_at
       SelectBox status
+      Double price
+      Text content
+      File File
+      Imege image
     }
     
     note top of Offer : архив заявок от продавцов

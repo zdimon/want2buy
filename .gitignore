@@ -10,3 +10,4 @@ want2buy/local.py
 media/*
 .idea
 db.sqlite3-journal
+cache
