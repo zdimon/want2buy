@@ -1,4 +1,4 @@
-System.register(["./index.component", "./edit.announcement.component", "@angular/platform-browser", "@angular/core", "./app.component", "./router.module"], function (exports_1, context_1) {
+System.register(["./index.component", "./edit.announcement.component", "@angular/platform-browser", "@angular/core", "./app.component", "./router.module", "@angular/http"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ System.register(["./index.component", "./edit.announcement.component", "@angular
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var index_component_1, edit_announcement_component_1, platform_browser_1, core_1, app_component_1, router_module_1, AppModule;
+    var index_component_1, edit_announcement_component_1, platform_browser_1, core_1, app_component_1, router_module_1, http_1, AppModule;
     return {
         setters: [
             function (index_component_1_1) {
@@ -27,6 +27,9 @@ System.register(["./index.component", "./edit.announcement.component", "@angular
             },
             function (router_module_1_1) {
                 router_module_1 = router_module_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
             }
         ],
         execute: function () {
@@ -41,7 +44,7 @@ System.register(["./index.component", "./edit.announcement.component", "@angular
                             edit_announcement_component_1.EditAnnouncementComponent,
                             index_component_1.IndexComponent
                         ],
-                        imports: [platform_browser_1.BrowserModule, router_module_1.AppRoutingModule],
+                        imports: [platform_browser_1.BrowserModule, router_module_1.AppRoutingModule, http_1.HttpModule],
                         providers: [],
                         bootstrap: [app_component_1.AppComponent]
                     })

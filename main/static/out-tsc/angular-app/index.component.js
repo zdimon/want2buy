@@ -1,4 +1,4 @@
-System.register(["@angular/core"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/http", "rxjs/add/operator/map"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,23 +10,39 @@ System.register(["@angular/core"], function (exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, IndexComponent;
+    var core_1, http_1, IndexComponent;
     return {
         setters: [
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (_1) {
             }
         ],
         execute: function () {
             IndexComponent = /** @class */ (function () {
-                function IndexComponent() {
+                function IndexComponent(_http) {
+                    this._http = _http;
                 }
-                IndexComponent.prototype.ngOnInit = function () { };
+                IndexComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    var url = 'http://localhost:8080/static/test/users.json';
+                    this._http
+                        .get(url)
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (res) {
+                        console.log(res);
+                        _this.users = res;
+                    });
+                };
                 IndexComponent = __decorate([
                     core_1.Component({
-                        template: '<h2>IndexComponent {{ announcement_id }} </h2>'
+                        template: "<h2>IndexComponent {{ announcement_id }} </h2>\n    <ul>\n    <li *ngFor=\"let u of users\"> {{u.username}} </li>\n  </ul>\n  "
                     }),
-                    __metadata("design:paramtypes", [])
+                    __metadata("design:paramtypes", [http_1.Http])
                 ], IndexComponent);
                 return IndexComponent;
             }());
