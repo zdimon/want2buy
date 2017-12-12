@@ -34,8 +34,9 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'about/', about, name='about'),
-    url(r'feedback/', feedback),
-    url(r'^user/register/$', MyRegistrationView.as_view(), name='registration_register'),   
+    url(r'feedback/', feedback, name='feedback'),
+    url(r'thanks/', postFeedback, name='postFeedback'),
+    url(r'^user/register/$', MyRegistrationView.as_view(), name='registration_register'),
     url(r'^user/profile/edit$', ProfileEditView.as_view(), name='profile_edit'),
     url(r'^user/registration/done', registration_done, name='registration_done'), 
     url(r'^user/activation/done', activation_done, name='activation_done'),
@@ -46,7 +47,7 @@ urlpatterns = [
 
     url(r'^dashboard/', dashboard, name='dashboard'),
     url(r'^add_announce/', add_announce, name='add_announce'),
-    
+
     url(r'^api/', include('api.urls')),
 
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),
