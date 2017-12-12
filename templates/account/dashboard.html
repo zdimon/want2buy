@@ -2,9 +2,38 @@
 {% load i18n %}
 {% load widget_tweaks %}
 {% block js_lib %} 
+    <script src="/static/node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="/static/node_modules/zone.js/dist/zone.js"></script>
+    <script src="/static/node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="/static/node_modules/systemjs/dist/system.js"></script>
+    
     <script>
-        
+
+            SystemJS.config({ 
+                baseURL: '.',
+                map: {
+                  '@angular/core': '/static/node_modules/@angular/core/bundles/core.umd.js',
+                  '@angular/platform-browser-dynamic': '/static/node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+                  '@angular/compiler': '/static/node_modules/@angular/compiler/bundles/compiler.umd.js',
+                  '@angular/common': '/static/node_modules/@angular/common/bundles/common.umd.js',
+                  '@angular/platform-browser': '/static/node_modules/@angular/platform-browser/bundles/platform-browser.umd.js',
+                  'rxjs': '/static/node_modules/rxjs',
+                  'app': '/static/out-tsc/angular-app'
+                }, 
+                paths: {
+                    "*": "*.js" // should load all libraries with .js appended
+                  },                
+                packages: {
+                  rxjs: {defaultExtension: 'js'},
+                  app: { defaultExtension: 'js' }
+                }  
+              })
+              SystemJS.import('/static/out-tsc/main.js').then(function(m){
+              }, function(error){
+                 console.log(error);
+              });        
     </script>
+
 {% endblock %}
 {% block content %}
 {% load cropping %}
@@ -17,6 +46,10 @@
                 <h3 class="section-title">{% trans 'Личный кабинет' %}</h3>
             </div>
     </header>
+
+    <div class="row">
+        <user-dashboard></user-dashboard>
+    </div>
 
     <div class="row">
         <div class="col-md-6">
