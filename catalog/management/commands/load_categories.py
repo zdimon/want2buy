@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from catalog.models import Category, SubCategory, SubSubCategory
 import requests
 from bs4 import BeautifulSoup
+from django.core.cache import cache
 
 
 class Command(BaseCommand):
@@ -47,3 +48,4 @@ class Command(BaseCommand):
                     _s = SubSubCategory(name=h, parent_sub_category=s)
                     _s.save()
                 print 'Process ... %s' % s.name
+        cache.delete('categories')

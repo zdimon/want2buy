@@ -4,4 +4,5 @@ from .views import *
 
 urlpatterns = [
     url(r'^regions$', regions),
+    url(r'categories$', categories)
 ]
