@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-12">
+
+            <h4 class="title">Неутвержденные объявления (на модерации)</h4>
+
+            <article class="job-item clearfix" *ngFor="let a of announcements" >
+                <figure class="job-figure">
+                    <a href="#"><div innerHTML="{{ a.thumbnail }}"></div></a>
+                </figure>
+                <header class="job-header">
+                    <h4 class="job-title"><a href="#">{{ a.title }}</a></h4>
+                    <address class="job-address">{{ a.region }} {{ a.city }}</address>
+                    <p class="job-time"><span>Добавлено: {{ a.created_at }}</span></p>
+                </header>
+                <div class="job-meta">
+                    <span class="job-price">{{ a.price }} грн.</span>
+                    <p class="job-skills">
+                        <span>{{ a.new_bu.value }}</span>
+                        <a href="#">{{ a.opt_roznica.value }}</a>
+                        
+                    </p>
+                </div>
+            </article>                
+               
+    </div>
+</div>

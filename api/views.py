@@ -4,9 +4,12 @@ from __future__ import unicode_literals
 from jsonview.decorators import json_view
 from django.core.cache import cache
 from catalog.models import Region, City, Category, SubCategory, SubSubCategory
-from archive.models import Announcement
+from archive.models import Announcement, NewAnnouncement
 from django.core import serializers
 import json
+from rest_framework import  viewsets
+from .serializers import NewAnnoncementSerializer, AnnoncementSerializer
+
 @json_view
 def regions(request):
     if not cache.get('regions'):
@@ -41,7 +44,7 @@ def categories(request):
 
 
 @json_view
-def announcement(request, slug):
+def announcement_detail(request, slug):
     if len(Announcement.objects.filter(id=slug)) != 0:
         tmp = json.loads(serializers.serialize('json', Announcement.objects.filter(id=slug)))[0]['fields']
         out = {'user_id': tmp['user'], 'title': tmp['title'], 'category': Category.objects.get(id=tmp['category']).name,
@@ -54,3 +57,13 @@ def announcement(request, slug):
     else:
         out = {'message': 'No such element'}
     return out
+
+
+
+class NewAnnouncementViewSet(viewsets.ModelViewSet):
+    queryset = NewAnnouncement.objects.all()
+    serializer_class = NewAnnoncementSerializer
+
+class AnnouncementViewSet(viewsets.ModelViewSet):
+    queryset = Announcement.objects.all()
+    serializer_class = AnnoncementSerializer

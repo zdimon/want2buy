@@ -12,3 +12,4 @@ python_slugify==1.2.4
 psycopg2
 django-widget-tweaks==1.4.1
 django-jsonview==1.1.0
+django-rest-framework==3.7.3

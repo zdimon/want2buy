@@ -75,9 +75,9 @@ class AnnouncementBase(models.Model):
                     'detail': True,
                 }
             )
-            return '<img src="%s"  />' % thumbnail_url
+            return '<img class="img-responsive" src="%s"  />' % thumbnail_url
         except:
-            return '<img src="/static/images/noimage.png" />'
+            return '<img class="img-responsive" src="/static/images/noimage.png" />'
 
     thumbnail.allow_tags = True
 

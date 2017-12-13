@@ -11,6 +11,7 @@
     "sourceMap": true,
     "target": "es5",
     "module": "system",
+    "rootDir": "./angular-app",
     "lib": [
       "es2016",
       "dom"
@@ -19,6 +20,15 @@
   "exclude": [
     "node_modules",
     "main",
-    "static"
+    "static",
+    "doc",
+    "account",
+    "api",
+    "main",
+    "media",
+    "python_ve",
+    "replenishment",
+    "templates",
+    "want2byu"
     ]   
 }

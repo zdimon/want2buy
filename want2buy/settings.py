@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'easy_thumbnails',
     'image_cropping',
+    'angular-app',
+    'rest_framework'
 ]
 
 from easy_thumbnails.conf import Settings as thumbnail_settings

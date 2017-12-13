@@ -17,8 +17,17 @@
     <link href="/static/js/slicknav/slicknav.min.css" rel="stylesheet">
     <link href="/static/js/chosen/chosen.min.css" rel="stylesheet">
     <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+
     <link href="/static/css/indigo.css" rel="stylesheet">
     <link href="/static/css/custom.css" rel="stylesheet">
+
+   
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    
     {% block js_lib %}{% endblock %}
 </head>
 <body>
@@ -79,32 +88,26 @@
 {% block content %} {% endblock %}
 
 <!-- Footer -->
-<footer id="footer" class="footer">
-    <div class="container">
-        <a id="scroll-to-top" href="#header" class="scroll-to-top"></a>
+{% block footer %}
+    <footer id="footer" class="footer">
+        <div class="container">
+            
+            <nav id="footer-navigation" class="footer-navigation">
+                <ul class="footer-menu clearfix">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/category">Категории</a></li>
+                    <li><a href="/about">О нас</a></li>
+                    <li><a href="/blog.html">Условия и правила</a></li>
+                    <li><a href="/feedback">Обратная связь</a></li>
+                </ul>
+            </nav>
 
-        <nav id="footer-navigation" class="footer-navigation">
-            <ul class="footer-menu clearfix">
-                <li><a href="/">Главная</a></li>
-                <li><a href="/category">Категории</a></li>
-                <li><a href="/about">О нас</a></li>
-                <li><a href="/blog.html">Условия и правила</a></li>
-                <li><a href="/feedback">Обратная связь</a></li>
-            </ul>
-        </nav>
+        
 
-        <div class="find-us">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-youtube"></i></a>
-            <a href="#"><i class="fa fa-vimeo"></i></a>
+            <p class="copyright">© Indigo 2017 Designed by <a href="#">mine-tech</a></p>
         </div>
-
-        <p class="copyright">© Indigo 2017 Designed by <a href="#">mine-tech</a></p>
-    </div>
-</footer>
-
+    </footer>
+{% endblock %}
 
 
 <!-- Modal -->
