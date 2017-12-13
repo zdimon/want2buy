@@ -5,9 +5,10 @@ from want2buy.settings import BASE_DIR
 import json
 from django.core.files import File
 import shutil
+import os
+
 
 class Command(BaseCommand):
-
     def handle(self, *args, **options):
         path = '%s/data/users.json' % BASE_DIR
         try:
@@ -31,7 +32,7 @@ class Command(BaseCommand):
                 u.is_superuser = True
                 u.is_staff = True
             u.save()
-            p = u.profile    
+            p = u.profile
             p.first_name = i['first_name']
             p.last_name = i['last_name']
             p.middle_name = i['middle_name']
@@ -41,9 +42,9 @@ class Command(BaseCommand):
             p.account = i['account']
             p.site = i['site']
             p.save()
-            image_path = '%s/data/images/%s' % (BASE_DIR, i['avatar'])
+            image_path = os.path.join(BASE_DIR, 'data', 'images', i['avatar'])
             p.avatar.save(
                 i['avatar'],
                 File(open(image_path))
-                )            
+            )
             print i['username']
