@@ -1,12 +1,30 @@
 {% extends "base.html" %}
-
+{% load i18n %}
+{% load widget_tweaks %}
 {% block content %}
-    <form action="/replenishment/" method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="подтвердить">
-    </form>
 
-    
+<div class="container main-container">
+        <div class="form-wrapper">
+            <form action="/replenishment/" method="POST">
+                {% csrf_token %}
+
+                <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                                {{ form.ammount|add_class:"form-control" }}
+                                {{ form.Replanishment_system|add_class:"form-control indigo-select" }}
+                        </div>
+                    </div>
+
+                    <div class="row profile-actions">
+                            <div class="col-md-4 col-md-offset-4">
+                                <input type="submit" value="{% trans 'Сохранить' %}">
+                            </div>
+                           
+                        </div>
+               
+            </form>
+        </div>
+</div>
+        
 
 {% endblock %}
