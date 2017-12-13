@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.core.urlresolvers import reverse
 from django.db import models
 from slugify import slugify
 
@@ -10,6 +10,9 @@ from slugify import slugify
 class Category(models.Model):
     name = models.CharField(max_length=150)
     name_slug = models.CharField(max_length=150)
+
+    def get_absolute_url(self):
+        return reverse('catalog_main', kwargs={'slug': self.name_slug})
 
     def __unicode__(self):
         return self.name
@@ -24,6 +27,9 @@ class SubCategory(models.Model):
     parent_category = models.ForeignKey(Category)
     name_slug = models.CharField(max_length=150)
 
+    def get_absolute_url(self):
+        return reverse('catalog_sub', kwargs={'slug': self.name_slug})
+
     def __unicode__(self):
         return self.name
 
@@ -37,6 +43,9 @@ class SubSubCategory(models.Model):
     parent_sub_category = models.ForeignKey(SubCategory)
     name_slug = models.CharField(max_length=150)
     
+    def get_absolute_url(self):
+        return reverse('catalog_sub_sub', kwargs={'slug': self.name_slug})
+
     @property
     def parent_category(self):
         return self.parent_sub_category.parent_category

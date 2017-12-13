@@ -31,7 +31,7 @@ admin.site.register(NewAnnouncement, NewAnnouncementAdmin)
 
 
 class AnnouncementAdmin(ImageCroppingMixin, admin.ModelAdmin):
-    list_display = ('thumbnail', 'title')
+    list_display = ('thumbnail', 'title', 'category', 'sub_category', 'sub_sub_category')
     actions = [disapprove]
 
 

@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from main.models import Page
+from catalog.models import Category
 
 
 # Create your views here.
@@ -12,8 +13,10 @@ def update(request):
 
 
 def home(request):
-    page = Page.objects.get(alias='alias1')
-    return render(request, 'home.html', {'page_in_template': page})
+    page = Page.objects.get(alias='main')
+    categories = Category.objects.all()[0:12]
+    #import pdb; pdb.set_trace()
+    return render(request, 'home.html', {'page_in_template': page, 'categories': categories})
 
 class PageObj():
     title = 'пустой'

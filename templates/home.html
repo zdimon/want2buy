@@ -1,11 +1,27 @@
 {% extends "base.html" %}
+{% load i18n %}
+
 
 {% block meta_title %} {{ page_in_template.meta_title }} {% endblock %}
 
 
 {% block content %}
 
-
+<div class="container main-container">
+        <div class="clearfix">
+                {% for c in categories %}
+                        <div class="category-item-wrap col-xs-6 col-md-4 col-lg-3">
+                        <figure class="category-item">
+                                <a href="{{ c.get_absolute_url }}"><img src="/static/images/no_category.jpg" alt="Category"></a>
+                                <figcaption>
+                                <h3 class="title"><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></h3>
+                                </figcaption>
+                        </figure>
+                        </div>
+                {% endfor %}
+                
+        </div>
+</div>
 
 
 <section id="home-categories" class="home-categories section-parallax"> 

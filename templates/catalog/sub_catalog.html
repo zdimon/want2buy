@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block meta_title %}  {% endblock %}
+
+
+{% block content %}
+
+<div class="container main-container">
+
+        <h4 class="title"><a href="/">{% trans 'Каталог' %}</a> / <a href="{{ current.parent_category.get_absolute_url }}">{{ current.parent_category }}</a> / {{ current }}</h4>
+        <div class="line"></div>
+
+        <div class="clearfix">
+                {% for c in current.subsubcategory_set.all %}
+                        <div class="category-item-wrap col-xs-6 col-md-4 col-lg-3">
+                              <a href="{{ c.get_absolute_url }}" >{{ c }} </a>
+                        </div>
+                {% endfor %}
+                
+        </div>
+
+
+        {% for i in items %}
+                {% include "catalog/item.html" with i=i %}
+        {% endfor %}
+
+        {% include "paginator.html" with items=items %}
+
+
+</div>
+
+
+
+
+{% endblock %}
