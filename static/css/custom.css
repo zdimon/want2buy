@@ -1,6 +1,7 @@
 .alert {
   padding: 15px;
   margin-bottom: 20px;
+  margin-top: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
 }
@@ -873,4 +874,13 @@
 }
 .glyphicon-menu-up:before {
   content: "\e260";
+}
+
+.add_btn{
+  display: block; 
+  float: right;  
+}
+
+.clear {
+  clear: both;
 }
