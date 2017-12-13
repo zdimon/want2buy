@@ -57,3 +57,11 @@ def catalog_sub_sub(request,slug):
         'items': items
     }    
     return render(request, 'catalog/sub_sub_catalog.html', ctx)    
+
+def annoncement_detail(request,slug):
+    item = Announcement.objects.get(pk=slug)
+    
+    ctx = {
+        'item': item
+    }    
+    return render(request, 'catalog/annoncement_detail.html', ctx)    

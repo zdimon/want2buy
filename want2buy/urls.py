@@ -22,7 +22,7 @@ from archive.views import *
 from feedback.views import *
 from replenishment.views import replenishment_page
 import api.urls as api_urls
-from catalog.views import catalog_main, catalog_sub, catalog_sub_sub
+from catalog.views import catalog_main, catalog_sub, catalog_sub_sub, annoncement_detail
 
 urlpatterns = [
     url(r'^$', home, name='home'),
@@ -55,6 +55,7 @@ urlpatterns = [
     url(r'^catalog/main/(?P<slug>[-:\w]+).html$',catalog_main,name='catalog_main'),
     url(r'^catalog/sub/(?P<slug>[-:\w]+).html$',catalog_sub,name='catalog_sub'),
     url(r'^catalog/sub/sub/(?P<slug>[-:\w]+).html$',catalog_sub_sub,name='catalog_sub_sub'),
+    url(r'^annoncement/detail/(?P<slug>[-:\w]+).html$',annoncement_detail,name='annoncement_detail'),
 
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),
     #url(r'^login/$', 'django.contrib.auth.views.login', name='login'),

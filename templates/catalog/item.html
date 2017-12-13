@@ -1,13 +1,13 @@
 <div class="job-item-wrap col-xs-6" >
         <article class="job-item clearfix">
         <figure class="job-figure">
-                <a href="#">{{ i.thumbnail|safe }}</a>
+                <a href="{{ i.get_absolute_url }}">{{ i.thumbnail|safe }}</a>
         </figure>
         <header class="job-header">
                 <h4 class="job-title"><a href="#">{{ i.title }}</a></h4>
                 <address class="job-address">{{ i.region }}, {{ i.city }}<br> 
                 </address>
-                <p class="job-time"><span>Создано:</span> {{ i.created_at }} </p>
+                <p class="job-time"><a href="{{ i.get_actual_category }}">{{ i.get_actual_category }} </a></p>
         </header>
         <div class="job-meta">
                 <span class="job-price">{{ i.price }} грн.</span>

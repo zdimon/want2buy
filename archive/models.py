@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from catalog.models import *
 from image_cropping import ImageRatioField
 from image_cropping.utils import get_backend
-
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -55,6 +55,19 @@ class AnnouncementBase(models.Model):
     date_expire = models.DateField(_('Date expire'), null=True, blank=True)
     date_paid_expire = models.DateField(_('Date paid expire'), null=True, blank=True)
     
+    def get_absolute_url(self):
+        return reverse('annoncement_detail', kwargs={'slug': str(self.id)})
+
+    @property
+    def get_actual_category(self):
+        if self.sub_sub_category:
+            return self.sub_sub_category
+        if self.sub_category:
+            return self.sub_category
+        if self.category:
+            return self.category
+        return None
+
     def __unicode__(self):
         return self.title
 
