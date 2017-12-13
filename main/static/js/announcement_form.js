@@ -2,7 +2,7 @@ $( document ).ready(function() {
     
     
 
-    $.getJSON( w2b_app_config.host+"/api/regions", function( data ) {
+    $.getJSON( "/api/regions", function( data ) {
         var regions = data;
        
         $('#id_region').on('change', function() {
@@ -29,7 +29,7 @@ $( document ).ready(function() {
      });
 
   
-     $.getJSON( w2b_app_config.host+"/api/categories", function( data ) {
+     $.getJSON( "/api/categories", function( data ) {
         var categories = data;
         console.log(categories);
 
