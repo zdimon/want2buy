@@ -29,7 +29,7 @@ def categories(request):
         for c in Category.objects.all():
             cat = {'id': c.id, 'name': c.name, 'sub_category': []}
             for s in SubCategory.objects.filter(parent_category=c):
-                sub = {'id': s.id, 'name': s.name, 'sub_category': []}
+                sub = {'id': s.id, 'name': s.name, 'category_id': s.parent_category.id,  'sub_category': []}
                 for ss in SubSubCategory.objects.filter(parent_sub_category=s):
                     sub['sub_category'].append({'id': ss.id, 'name': ss.name})
                 cat['sub_category'].append(sub)

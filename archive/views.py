@@ -5,15 +5,19 @@ from django.shortcuts import render
 from .forms import NewAnnouncementForm
 from .models import NewAnnouncement
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
 # Create your views here.
 
 def add_announce(request):
     
     if request.method == 'POST':
-        form = NewAnnouncementForm(request.POST)
+        form = NewAnnouncementForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/add_announcement/done')
+            messages.success(request, _('Объявление было сохранено. После модерации оно появиться на сайте.'))
+            return redirect('dashboard')
     else:
         a = NewAnnouncement()
         a.user = request.user

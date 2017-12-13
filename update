@@ -9,6 +9,11 @@ echo 'Collecting static files'
 ./manage.py collectstatic --no-input
 echo 'Migration.....'
 ./manage.py migrate
+if [ ! -f 'main/static/js/config.js' ]; then
+   echo "Create config.js."
+   cp main/static/js/_config.js main/static/js/config.js
+fi
 cd main/static
 ln -s ../../node_modules node_modules
+
 
