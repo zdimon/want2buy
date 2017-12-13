@@ -8,6 +8,7 @@ fi
 . python_ve/bin/activate
 echo 'PIP installation....'
 pip install -r requirements.txt
+
 if [ ! -f 'want2buy/local.py' ]; then
    echo "Create local.py."
    cp want2buy/_local.py want2buy/local.py
@@ -24,6 +25,9 @@ echo 'Loading data'
 ./manage.py load_city
 ./manage.py load_new_announcement
 npm install
+cd main/static
+ln -s ../../node_modules node_modules
+cd ../..
 echo 'Start dev server'
 ./manage.py runserver 0.0.0.0:8080 
 
