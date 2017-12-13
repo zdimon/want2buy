@@ -7,6 +7,10 @@ from main.models import Page
 
 # Create your views here.
 
+def update(request):
+    return render(request, 'home.html')
+
+
 def home(request):
     page = Page.objects.get(alias='alias1')
     return render(request, 'home.html', {'page_in_template': page})

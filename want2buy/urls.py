@@ -34,6 +34,7 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'about/', about, name='about'),
+    url(r'update/', update, name='update'),
     url(r'feedback/', feedback, name='feedback'),
     url(r'thanks/', postFeedback, name='postFeedback'),
     url(r'^user/register/$', MyRegistrationView.as_view(), name='registration_register'),
