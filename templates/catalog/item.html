@@ -7,7 +7,7 @@
                 <h4 class="job-title"><a href="#">{{ i.title }}</a></h4>
                 <address class="job-address">{{ i.region }}, {{ i.city }}<br> 
                 </address>
-                <p class="job-time"><a href="{{ i.get_actual_category }}">{{ i.get_actual_category }} </a></p>
+                <p class="job-time"><a href="{{ i.get_actual_category.get_absolute_url }}">{{ i.get_actual_category }} </a></p>
         </header>
         <div class="job-meta">
                 <span class="job-price">{{ i.price }} грн.</span>
