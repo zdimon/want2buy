@@ -27,3 +27,6 @@
 ### Ссылка на модули    
     
     zdimon@webmaster:~/storage1/www/want2buy/main/static$ ln -s ../../node_modules node_modules
+
+
+    git clone git@github.com:zdimon/want2buy.git; cd want2buy; ./install    
