@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hello</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    
+    <script>
+
+          var ng_modules = [
+                              'core', 
+                              'platform-browser-dynamic',
+                              'compiler',
+                              'common',
+                              'platform-browser'
+                            ];
+
+          var map = {};
+          ng_modules.forEach(function (pkg) {
+              map["@angular/" + pkg] = "node_modules/@angular/"+pkg+"/bundles/" + pkg + ".umd.min.js"
+          });
+          map['rxjs'] = 'node_modules/rxjs'
+
+          SystemJS.config({
+            map: map,
+            packages: {
+              rxjs: {defaultExtension: 'js'} 
+            }  
+          })
+          SystemJS.import('app.js').then(function(m){
+          }, function(error){
+             console.log(error);
+          });
+
+    </script>
+    
+    
+</head>
+<body>
+  <hello-angular></hello-angular>
+</body>
+</html>

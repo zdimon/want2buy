@@ -1,0 +1,22 @@
+{
+  "name": "wezomlab",
+  "version": "1.0.0",
+  "description": "git remote add origin ssh://git@134.249.158.138/home/git/repos/wezomlab",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@angular/cli": "^1.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@134.249.158.138/home/git/repos/wezomlab"
+  },
+  "author": "",
+  "license": "ISC"
+}
