@@ -12,6 +12,10 @@ if [ ! -f 'want2buy/local.py' ]; then
    echo "Create local.py."
    cp want2buy/_local.py want2buy/local.py
 fi
+if [ ! -f 'main/static/js/config.js' ]; then
+   echo "Create config.js."
+   cp main/static/js/_config.js main/static/js/config.js
+fi
 echo 'Loading data'
 ./manage.py migrate
 ./manage.py load_page

@@ -56,10 +56,10 @@
                             <a href="/admin" target=_blanck data-toggle="modal">{% trans 'Админка' %}</a>
                         {% endif %}
                         <a href="{% url 'dashboard' %}" data-toggle="modal">{% trans 'Личный кабинет' %}</a>
-                        <a href="/account/add" data-toggle="modal">{{ user.profile.account }}</a>
+                        <a href="{% url 'replenishment' %}" data-toggle="modal">{{ user.profile.account }}</a>
                         <a href="/user/profile/edit" data-toggle="modal">{{ user.username }}</a>
                         <a href="/logout" data-toggle="modal">Log out</a>
-                        <a href="/replenishment" data-toggle="modal">Пополнить</a>
+                       
                     {% endif %}
                 </div>
             </div>
@@ -172,5 +172,8 @@
 <script src="/static/js/jquery.form.min.js"></script>
 <script src="/static/js/indigo.js"></script>
 <script src="/static/js/main.js"></script>
+<script src="/static/js/config.js"></script>
+{% block js_post %}
+{% endblock %}
 </body>
 </html>

@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load widget_tweaks %}
-{% block js_lib %} {{ form.media }} {% endblock %}
+{% block js_lib %} 
+    {{ form.media }} 
+{% endblock %}
+
+{% block js_post %}
+    <script src="/static/js/announcement_form.js"></script> 
+{% endblock %}
+
 {% block content %}
 {% load cropping %}
 
@@ -23,7 +30,7 @@
             </div>   
          {% endif %}        
             
-        <form id="basic-information" class="profile-forms basic-information" method="post" action="">
+        <form enctype="multipart/form-data" id="basic-information" class="profile-forms basic-information" method="post" action="">
             {% csrf_token %}
             <h4 class="title">{% trans 'Новое объявление о покупке' %}</h4>
             <div class="line"></div>
@@ -55,16 +62,108 @@
                             </div>
 
                             <div class="col-md-4">
-                                    {{ form.sub_category|add_class:"form-control indigo-select" }}
+                                    <select name="sub_category" id="id_sub_category" class="form-control indigo-select">
+                                            <option value="">{% trans '---' %} </option>
+                                    </select>
                             </div>                        
 
                             <div class="col-md-4">
-                                    {{ form.sub_sub_category|add_class:"form-control indigo-select" }}
+                                    <select name="sub_sub_category" id="id_sub_sub_category" class="form-control indigo-select">
+                                            <option value="">{% trans '---' %} </option>
+                                    </select>
                             </div>
                         </div>
 
                     </div>
-            </div>             
+            </div>  
+
+
+            <div class="row">
+                
+                <div class="col-md-12">
+                        <span class="title">{% trans 'Укажите свою категорию если не нашли в списке' %}</span>
+                    {{ form.new_category|add_class:"form-control" }}
+                </div>
+            </div> 
+
+            
+            <div class="row">
+                
+                <div class="col-md-12">
+                        
+                    <div class="row">
+                        <div class="col-md-6">
+                                <span class="title">{% trans 'Регион' %}</span>
+                                {{ form.region|add_class:"form-control indigo-select" }}
+                        </div>
+
+                        <div class="col-md-6">
+                                <span class="title">{% trans 'Город' %}</span>
+                                <select id="id_city" name="city" class="form-control indigo-select">
+                                    <option value="">{% trans 'выберите регион' %} </option>
+                                </select>
+                        </div>                        
+
+                        
+                    </div>
+
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                                <span class="title">{% trans 'Укажите свой город/регион если не нашли в списке' %}</span>
+                            {{ form.new_city|add_class:"form-control" }}
+                        </div>
+                    </div>                     
+
+                </div>
+            </div>      
+            
+            
+            <div class="row">
+               
+                <div class="col-md-12">
+                      
+                    <div class="row">
+                        <div class="col-md-4">
+                                {{ form.new_bu|add_class:"form-control indigo-select" }}
+                        </div>
+
+                        <div class="col-md-4">
+                                {{ form.opt_roznica|add_class:"form-control indigo-select" }}
+                        </div>                        
+
+                        <div class="col-md-4">
+                                {{ form.once|add_class:"form-control indigo-select" }}
+                        </div>
+                    </div>
+                </div>
+               
+            </div>  
+
+            <div class="row">
+                
+                 <div class="col-md-12">
+                       
+                     <div class="row">
+                         <div class="col-md-4">
+                                <span class="title">{% trans 'Цена' %}</span>
+                                 {{ form.price|add_class:"form-control" }}
+                         </div>
+ 
+                         <div class="col-md-4">
+                                <span class="title">{% trans 'Количество' %}</span>
+                                 {{ form.ammount|add_class:"form-control" }}
+                         </div>                        
+ 
+                         <div class="col-md-4">
+                                <span class="title">{% trans 'Фото' %}</span>
+                                 {{ form.photo|add_class:"form-control" }}
+                         </div>
+                     </div>
+                 </div>
+                
+             </div>  
+
 
             <div class="row profile-actions">
                 <div class="col-sm-4 text-left">

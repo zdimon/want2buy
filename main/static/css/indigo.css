@@ -4175,7 +4175,7 @@ label.error:last-child {
 .form-wrapper:first-child .title {
   font-size: 18px; }
 
-.form-wrapper input[type="text"] {
+.form-wrapper input[type="text"], input[type="number"]{
   display: block;
   margin-bottom: 20px;
   padding: 19px 20px;

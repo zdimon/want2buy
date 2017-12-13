@@ -34,17 +34,19 @@ class AnnouncementBase(models.Model):
 
     user = models.ForeignKey(User)
     title = models.CharField(max_length=250)
-    category = models.ForeignKey(Category)
-    sub_category = models.ForeignKey(SubCategory)
-    sub_sub_category = models.ForeignKey(SubSubCategory)
-    new_category = models.TextField()
+    category = models.ForeignKey(Category, null=True, blank=True)
+    sub_category = models.ForeignKey(SubCategory, null=True, blank=True)
+    sub_sub_category = models.ForeignKey(SubSubCategory, null=True, blank=True)
+    new_category = models.CharField(max_length=250, null=True, blank=True)
     new_bu = models.CharField(max_length=10, choices=new, default='new')
     opt_roznica = models.CharField(max_length=10, choices=opt, default='retail')
     type = models.CharField(max_length=10, choices=tp, default='good')
     once = models.CharField(max_length=10, choices=once, default='once')
     price = models.FloatField()
-    ammount = models.IntegerField()
-    city = models.ForeignKey(City)
+    ammount = models.IntegerField(default=1)
+    city = models.ForeignKey(City, null=True, blank=True)
+    region = models.ForeignKey(Region, null=True, blank=True)
+    new_city = models.CharField(max_length=250, null=True, blank=True)
     info = models.TextField
     photo = models.ImageField(upload_to='new_announcements/', null=True, blank=True)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
@@ -63,16 +65,19 @@ class AnnouncementBase(models.Model):
                                )
 
     def thumbnail(self):
-        thumbnail_url = get_backend().get_thumbnail_url(
-            self.photo,
-            {
-                'size': (100, 100),
-                'box': self.cropping,
-                'crop': True,
-                'detail': True,
-            }
-        )
-        return '<img src="%s"  />' % thumbnail_url
+        try:
+            thumbnail_url = get_backend().get_thumbnail_url(
+                self.photo,
+                {
+                    'size': (100, 100),
+                    'box': self.cropping,
+                    'crop': True,
+                    'detail': True,
+                }
+            )
+            return '<img src="%s"  />' % thumbnail_url
+        except:
+            return '<img src="/static/images/noimage.png" />'
 
     thumbnail.allow_tags = True
 
