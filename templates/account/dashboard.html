@@ -22,7 +22,7 @@
                   '@angular/router': '/static/node_modules/@angular/router/bundles/router.umd.js',
                   '@angular/http': '/static/node_modules/@angular/http/bundles/http.umd.js',
                   'rxjs': '/static/node_modules/rxjs',
-                  'app': '/static/out-tsc/static/app'
+                  'app': '/static/dist/static/app'
                 }, 
                 paths: {
                     "*": "*.js" // should load all libraries with .js appended
@@ -32,7 +32,7 @@
                   app: { defaultExtension: 'js' }
                 }  
               })
-              SystemJS.import('/static/out-tsc/static/main.js').then(function(m){
+              SystemJS.import('/static/dist/static/main.js').then(function(m){
               }, function(error){
                  console.log(error);
               });        
@@ -48,7 +48,12 @@
 
     <div class="row">
         <user-dashboard>
-            <h3 style="color: red">{% trans 'Подождите идет загрузка...' %}</h3>
+            
+
+            <div class="col-md-4 col-md-offset-4">
+                    <h4 class="title" style="color: #107FC9">{% trans 'Подождите идет загрузка...' %}</h4>
+                <div class="loader"></div>
+            </div>
         </user-dashboard>
     </div>
 

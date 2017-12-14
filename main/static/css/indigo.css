@@ -2351,7 +2351,7 @@ a, .btn, .transition, .category-item figcaption, input[type="submit"] {
 /* Main Container */
 .main-container {
   padding-top: 20px;
-  padding-bottom: 100px; }
+  padding-bottom: 20px; }
 
 /* 03 Button */
 .btn-default {

@@ -2707,8 +2707,8 @@ input[type="submit"]:hover {
 /* 09 Footer */
 .footer {
   position: relative;
-  padding-top: 80px;
-  padding-bottom: 55px;
+  padding-top: 10px;
+  padding-bottom: 15px;
   text-align: center;
   background-color: #107fc9;
   color: #fff; }
@@ -4175,7 +4175,7 @@ label.error:last-child {
 .form-wrapper:first-child .title {
   font-size: 18px; }
 
-.form-wrapper input[type="text"] {
+.form-wrapper input[type="text"], input[type="number"]{
   display: block;
   margin-bottom: 20px;
   padding: 19px 20px;
