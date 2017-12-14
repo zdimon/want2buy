@@ -161,7 +161,7 @@ class OfferMessage(models.Model):
     new_price = models.DecimalField(verbose_name=_(u'Новая цена'), max_digits=19, decimal_places=2)
     message = models.TextField(verbose_name=_(u'Сообщение'))
     file = models.FileField(verbose_name=_(u'Аттачмент'), upload_to='offer_files/', null=True, blank=True)
-    user = models.ForeignKey(User, verbose_name=_(u'Автор'))
+    user = models.ForeignKey(User, verbose_name=_(u'Автор'), null=True, blank=True)
 
     def __unicode__(self):
         return self.message
