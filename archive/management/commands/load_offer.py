@@ -16,6 +16,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print 'Clearing the table'
+        OfferMessage.objects.all().delete()
         Offer.objects.all().delete()
         print 'Start loading..'
         for a in Announcement.objects.all().order_by('-id'):

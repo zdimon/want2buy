@@ -48,7 +48,7 @@ class AnnouncementBase(models.Model):
     region = models.ForeignKey(Region, null=True, blank=True)
     new_city = models.CharField(max_length=250, null=True, blank=True)
     info = models.TextField(null=True, blank=True)
-    photo = models.ImageField(upload_to='new_announcements/', null=True, blank=True)
+    photo = models.ImageField(upload_to='announcements/', null=True, blank=True)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     cropping = ImageRatioField('photo', '150x150')
     is_paid = models.BooleanField(default=False)

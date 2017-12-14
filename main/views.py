@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from main.models import Page
 from catalog.models import Category
-
+from archive.models import Announcement
 
 # Create your views here.
 
@@ -15,8 +15,13 @@ def update(request):
 def home(request):
     page = Page.objects.get(alias='main')
     categories = Category.objects.all()[0:12]
+    announcements = Announcement.objects.all().order_by('?')[0:6]
     #import pdb; pdb.set_trace()
-    return render(request, 'home.html', {'page_in_template': page, 'categories': categories})
+    return render(request, 'home.html', {
+        'page_in_template': page, 
+        'categories': categories,
+        'announcements': announcements
+        })
 
 class PageObj():
     title = 'пустой'

@@ -7,9 +7,26 @@ from want2buy.settings import BASE_DIR
 import json
 from django.core.files import File
 import shutil
-from archive.models import NewAnnouncement, Announcement
+from archive.models import NewAnnouncement, Announcement, Offer, OfferMessage
 from catalog.models import *
+import random
 
+good_array = [
+    'велосипед',
+    'холодильник Самсунг',
+    'умывальник',
+    'форд',
+    'кирпич',
+    'компьютер',
+    'стиральную машину',
+    'лестницу',
+    'диван',
+    'настольную лампу',
+    'яхту',
+    'телевизор',
+    'цемент',
+    'дачу'
+]
 
 def get_user(name):
     return User.objects.get(username=name)
@@ -25,10 +42,12 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         path = '%s/data/new_announcements.json' % BASE_DIR
         try:
-            shutil.rmtree('%s/media/new_announcements' % BASE_DIR)
+            shutil.rmtree('%s/media/announcements' % BASE_DIR)
         except:
             pass
         print 'Clearing the table'
+        OfferMessage.objects.all().delete()
+        Offer.objects.all().delete()        
         Announcement.objects.all().delete()
         print 'Start loading users from %s' % path
         f = open(path)
@@ -37,9 +56,10 @@ class Command(BaseCommand):
         js = json.loads(cnt)
         for c in Category.objects.all():
             for i in js:
-                print 'Creating a new record....%s' % i['title']
+                title = 'куплю %s' % random.choice(good_array)
+                print 'Creating a new record....%s' % title
                 n = Announcement()
-                n.title = i['title']
+                n.title = title
                 n.user = get_user(i['user'])
                 n.category = c
                 #n.sub_category = get_catalog(i['category']).parent_sub_category
@@ -49,7 +69,7 @@ class Command(BaseCommand):
                 n.new_bu = i['new_bu']
                 n.opt_roznica = i['opt_roznica']
                 n.info = i['info']
-                n.price = i['price']
+                n.price = random.randint(100,10000)
                 n.ammount = i['ammount']
                 n.save()
                 image_path = '%s/data/images/%s' % (BASE_DIR, i['photo'])
@@ -57,13 +77,15 @@ class Command(BaseCommand):
                     i['photo'],
                     File(open(image_path))
                     )   
+                t = n.thumbnail()
 
 
         for c in SubCategory.objects.all():
             for i in js:
-                print 'Creating a new record....%s' % i['title']
+                title = 'куплю %s' % random.choice(good_array)
+                print 'Creating a new record....%s' % title
                 n = Announcement()
-                n.title = i['title']
+                n.title = title
                 n.user = get_user(i['user'])
                 n.category = c.parent_category
                 n.sub_category = c
@@ -73,7 +95,7 @@ class Command(BaseCommand):
                 n.new_bu = i['new_bu']
                 n.opt_roznica = i['opt_roznica']
                 n.info = i['info']
-                n.price = i['price']
+                n.price = random.randint(100,10000)
                 n.ammount = i['ammount']
                 n.save()
                 image_path = '%s/data/images/%s' % (BASE_DIR, i['photo'])
@@ -81,13 +103,14 @@ class Command(BaseCommand):
                     i['photo'],
                     File(open(image_path))
                     )                       
-
+                t = n.thumbnail()
 
         for c in SubSubCategory.objects.all():
             for i in js:
-                print 'Creating a new record....%s' % i['title']
+                title = 'куплю %s' % random.choice(good_array)
+                print 'Creating a new record....%s' % title
                 n = Announcement()
-                n.title = i['title']
+                n.title = title
                 n.user = get_user(i['user'])
                 n.category = c.parent_sub_category.parent_category
                 n.sub_category = c.parent_sub_category
@@ -97,7 +120,7 @@ class Command(BaseCommand):
                 n.new_bu = i['new_bu']
                 n.opt_roznica = i['opt_roznica']
                 n.info = i['info']
-                n.price = i['price']
+                n.price = random.randint(100,10000)
                 n.ammount = i['ammount']
                 n.save()
                 image_path = '%s/data/images/%s' % (BASE_DIR, i['photo'])
@@ -105,3 +128,4 @@ class Command(BaseCommand):
                     i['photo'],
                     File(open(image_path))
                     )  
+                t = n.thumbnail()

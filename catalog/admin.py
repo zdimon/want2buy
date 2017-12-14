@@ -3,11 +3,12 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from catalog.models import *
+from image_cropping import ImageCroppingMixin
 
 # Register your models here.
 
-class CategoryAdmin(admin.ModelAdmin):
-    pass
+class CategoryAdmin(ImageCroppingMixin, admin.ModelAdmin):
+    list_display = ('thumbnail', 'name', 'name_slug')
 admin.site.register(Category, CategoryAdmin)
 
 
