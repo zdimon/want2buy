@@ -5,11 +5,23 @@ from django.shortcuts import render
 from main.models import Page
 from catalog.models import Category
 from archive.models import Announcement
+from django.views.decorators.csrf import csrf_exempt
+from jsonview.decorators import json_view
 
-# Create your views here.
-
+@csrf_exempt
+@json_view
 def update(request):
-    return render(request, 'home.html')
+    import subprocess
+    command = 'git pull'
+    p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    out = []
+    for line in p.stdout.readlines():
+        print line
+        out.append(line)
+    retval = p.wait()
+    command = 'tsc'
+    p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    return {'status': 'ok', 'message': out}
 
 
 def home(request):
