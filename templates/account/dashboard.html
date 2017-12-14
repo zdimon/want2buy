@@ -21,6 +21,10 @@
                   '@angular/platform-browser': '/static/node_modules/@angular/platform-browser/bundles/platform-browser.umd.js',
                   '@angular/router': '/static/node_modules/@angular/router/bundles/router.umd.js',
                   '@angular/http': '/static/node_modules/@angular/http/bundles/http.umd.js',
+                  '@angular/animations': '/static/node_modules/@angular/animations/bundles/animations.umd.js',
+                  'angular2-busy': '/static/node_modules/angular2-busy',
+                  '@angular/animations/browser': '/static/node_modules/@angular/animations/bundles/animations-browser.umd.js',
+  '@angular/platform-browser/animations': '/static/node_modules/@angular/platform-browser/bundles/platform-browser-animations.umd.js',   
                   'rxjs': '/static/node_modules/rxjs',
                   'app': '/static/dist/static/app'
                 }, 
@@ -29,6 +33,10 @@
                   },                
                 packages: {
                   rxjs: {defaultExtension: 'js'},
+                  'angular2-busy': {
+                        main: './index.js',
+                        defaultExtension: 'js'
+                    },
                   app: { defaultExtension: 'js' }
                 }  
               })

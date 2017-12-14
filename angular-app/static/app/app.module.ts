@@ -8,6 +8,8 @@ import { HttpModule } from '@angular/http';
 import { NewAnnouncementTableComponent } from './new.announcement.table.component'
 import { AnnouncementService } from './service.module'
 import { ActiveAnnouncementsComponent } from './active.announcements.component'
+import {BusyModule} from 'angular2-busy';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 @NgModule({
 declarations: [
@@ -18,7 +20,13 @@ declarations: [
   NewAnnouncementTableComponent,
   ActiveAnnouncementsComponent
 ],
-imports: [ BrowserModule, AppRoutingModule, HttpModule ],
+imports: [ 
+  BrowserModule, 
+  AppRoutingModule, 
+  HttpModule, 
+  BusyModule, 
+  BrowserAnimationsModule 
+],
 providers: [ AnnouncementService ],
 bootstrap: [AppComponent]
 })

@@ -1,9 +1,11 @@
+
 <div class="row">
     <div class="col-md-12">
-
+            <div [ngBusy]="busy"></div>
             <h4 class="title">Мои объявления</h4>
-
+ 
             <nav class="page-pagination float-right" >
+                
                 <span class="tabel-label">Текущая страница: {{ pager.current }}. Всего объявлений: {{ pager.count }}</span>
                 <ul class="pagination">
                     <li class="pager-item"><a *ngIf="pager.has_prev" class="previous" (click)="goPage(pager.current-1, pager.limit)" >
@@ -41,6 +43,7 @@
 <div class="clear"></div>
 <nav class="page-pagination float-right">
     <ul class="pagination">
+        
         <li *ngIf="pager.has_prev" ><a class="previous" (click)="goPage(pager.current-1, pager.limit)" >
                 <i class="fa fa-chevron-left" aria-hidden="true"></i>    
         </a></li>
