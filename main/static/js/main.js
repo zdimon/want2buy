@@ -46,8 +46,7 @@
             $('.header-links').hide("fast");
             dropdown_counter=0;
         }
-    };
+    }
     $('#header-dropdown')
         .click(dropdown_open_close);
-
 })();

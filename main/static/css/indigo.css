@@ -4385,10 +4385,10 @@ label.error:last-child {
 #header-dropdown-caret-left{
   display: none;
 }
-.dropdown {
+.dropdown, #signin {
   font-weight: 600;
   text-transform: uppercase;
-  ;
+  float:right;
 }
 
 @media (max-width: 600px) {
@@ -4398,7 +4398,6 @@ label.error:last-child {
 @media (min-width: 600px) {
   .dropdown {
     float: right; } }
-
 
 .header-links{
   display: none;
