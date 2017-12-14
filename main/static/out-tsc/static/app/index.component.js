@@ -31,14 +31,16 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/map", "./s
                     this._http = _http;
                     this._service = _service;
                 }
-                IndexComponent.prototype.getActive = function () {
-                    console.log('get active');
-                };
                 IndexComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this._service.getNewAnnoncements().subscribe(function (data) {
-                        _this.announcements = data;
-                        console.log(_this.announcements);
+                        _this.announcements = data.results;
+                        _this.pager = {
+                            'offset': data.offset,
+                            'count': data.count,
+                            'limit': data.limit
+                        };
+                        console.log(_this.pager);
                     });
                 };
                 IndexComponent = __decorate([

@@ -5,6 +5,10 @@ from .utils import  ChoicesSerializerField
 
 # Serializers define the API representation.
 class NewAnnoncementSerializer(serializers.ModelSerializer):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 20
+
     user = serializers.StringRelatedField()
     category = serializers.StringRelatedField()
     sub_category = serializers.StringRelatedField()

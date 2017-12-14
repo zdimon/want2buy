@@ -24,3 +24,20 @@
                
     </div>
 </div>
+
+<div class="clear"></div>
+<nav class="page-pagination" aria-label="Page navigation">
+
+    <ul class="pagination">
+   
+        <li *ngIf="pager.has_prev" ><a class="previous" (click)="goPage(pager.current-1, pager.limit)" >
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>    
+        </a></li>
+    
+        <li *ngIf="pager.has_next"><a class="previous" (click)="goPage(pager.current+1, pager.limit)">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>    
+        </a></li>
+    
+    </ul>
+  
+</nav>

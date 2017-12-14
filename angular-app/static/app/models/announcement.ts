@@ -18,3 +18,16 @@ export class Announcement {
         public creted_at: string,
         ){}
 }
+
+export class AnnouncementPager {
+    constructor(
+        public count: Number, 
+        public offset: Number,
+        public limit: Number,
+        public current: Number,
+        public pager: any,
+        public has_prev: Boolean,
+        public has_next: Boolean,
+        public results: Announcement[],
+        ){}
+}

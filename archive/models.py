@@ -68,6 +68,20 @@ class AnnouncementBase(models.Model):
             return self.category
         return None
 
+    def get_link_to_sub_category(self):
+        if self.sub_category:
+            return '<a href="%s">%s</a>' % (self.sub_category.get_absolute_url, self.sub_category)
+        else:
+            return ''
+
+
+    def get_link_to_sub_sub_category(self):
+        if self.sub_sub_category:
+            return '<a href="%s">%s</a>' % (self.sub_sub_category.get_absolute_url, self.sub_sub_category)
+        else:
+            return ''
+
+
     def __unicode__(self):
         return self.title
 
@@ -83,6 +97,21 @@ class AnnouncementBase(models.Model):
                 self.photo,
                 {
                     'size': (100, 100),
+                    'box': self.cropping,
+                    'crop': True,
+                    'detail': True,
+                }
+            )
+            return '<img class="img-responsive" src="%s"  />' % thumbnail_url
+        except:
+            return '<img class="img-responsive" src="/static/images/noimage.png" />'
+
+    def thumbnail_big(self):
+        try:
+            thumbnail_url = get_backend().get_thumbnail_url(
+                self.photo,
+                {
+                    'size': (250, 250),
                     'box': self.cropping,
                     'crop': True,
                     'detail': True,

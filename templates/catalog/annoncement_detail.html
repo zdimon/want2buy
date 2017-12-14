@@ -9,8 +9,36 @@
 
 <div class="container main-container">
 
-        <h4 class="title">{{ item.title }}</h4>
-        <div class="line"></div>
+        
+                <div class="col-md-7 col-lg-8 profile-inner-wrapper">
+                        <h4 class="title">{{ item.title }}</h4>
+                        <div class="line"></div>
+                        <div class="row">
+                        <div class="col-xs-4 col-sm-4">
+                                <div class="profile-image">
+                                
+                                {{ item.thumbnail_big|safe }}
+                                <div class="upload-photo"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                </div>
+                        </div>
+                        <div class="col-xs-8 col-sm-8 tips">
+                                <h5 class="title">
+                                        {% trans 'Категория:' %}
+                                        <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
+                                        &nbsp;
+                                        {{ item.get_link_to_sub_category }}
+                                        &nbsp;
+                                        {{ item.get_link_to_sub_sub_category }}
+                                </h4>
+                                <p>{{ item.region }}, {{item.city}}</p>
+                                <p>
+                                Цена: {{ item.price }} грн.<br>
+                                {{ item.get_new_bu_display }}
+                                </p>
+                        </div>
+                        </div>
+                </div>
+            
 
        
 </div>

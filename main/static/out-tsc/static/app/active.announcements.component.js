@@ -24,12 +24,35 @@ System.register(["@angular/core", "./service.module"], function (exports_1, cont
             ActiveAnnouncementsComponent = /** @class */ (function () {
                 function ActiveAnnouncementsComponent(_service) {
                     this._service = _service;
+                    this.pager = {};
                 }
+                ActiveAnnouncementsComponent.prototype.goPage = function (page, limit) {
+                    var _this = this;
+                    var offset = limit * page;
+                    this._service.getActiveAnnoncementsPage(limit, offset).subscribe(function (data) {
+                        _this.announcements = data.results;
+                        _this.pager = {
+                            'offset': data.offset,
+                            'count': data.count,
+                            'limit': data.limit,
+                            'has_prev': data.has_prev,
+                            'has_next': data.has_next,
+                            'current': data.current
+                        };
+                    });
+                };
                 ActiveAnnouncementsComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this._service.getActiveAnnoncements().subscribe(function (data) {
-                        _this.announcements = data;
-                        console.log(_this.announcements);
+                        _this.announcements = data.results;
+                        _this.pager = {
+                            'offset': data.offset,
+                            'count': data.count,
+                            'limit': data.limit,
+                            'has_prev': data.has_prev,
+                            'has_next': data.has_next,
+                            'current': data.current
+                        };
                     });
                 };
                 ActiveAnnouncementsComponent = __decorate([

@@ -32,6 +32,11 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/map"], fun
                         .get('/api/new_announcement')
                         .map(function (res) { return res.json(); });
                 };
+                AnnouncementService.prototype.getActiveAnnoncementsPage = function (limit, offset) {
+                    return this.http
+                        .get('/api/announcement/?limit=' + limit + '&offset=' + offset)
+                        .map(function (res) { return res.json(); });
+                };
                 AnnouncementService.prototype.getActiveAnnoncements = function () {
                     return this.http
                         .get('/api/announcement')

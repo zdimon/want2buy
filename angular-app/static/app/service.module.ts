@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map'; 
-import { Announcement } from './models/announcement'
+import { Announcement, AnnouncementPager } from './models/announcement';
 
  
  @Injectable()
@@ -10,14 +10,23 @@ import { Announcement } from './models/announcement'
 
     constructor (private http: Http) {}
      
-    public getNewAnnoncements(): Observable<Announcement[]> { 
+    public getNewAnnoncements(): Observable<AnnouncementPager> { 
         return this.http
         .get('/api/new_announcement')
         .map((res:Response) => res.json())
         
     }
+
+    public getActiveAnnoncementsPage(limit,offset): Observable<AnnouncementPager> { 
+        
+        return this.http
+        .get('/api/announcement/?limit='+limit+'&offset='+offset)
+        .map((res:Response) => res.json())
+        
+    }    
  
-    public getActiveAnnoncements(): Observable<Announcement[]> { 
+    public getActiveAnnoncements(): Observable<AnnouncementPager> { 
+        
         return this.http
         .get('/api/announcement')
         .map((res:Response) => res.json())

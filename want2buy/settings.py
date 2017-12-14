@@ -143,4 +143,10 @@ CACHES = {
     }
 }
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'api.utils.CustomPagination',
+    'PAGE_SIZE': 10
+}
+
 from local import *

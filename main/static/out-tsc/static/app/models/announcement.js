@@ -1,7 +1,7 @@
 System.register([], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Announcement;
+    var Announcement, AnnouncementPager;
     return {
         setters: [],
         execute: function () {
@@ -27,6 +27,20 @@ System.register([], function (exports_1, context_1) {
                 return Announcement;
             }());
             exports_1("Announcement", Announcement);
+            AnnouncementPager = /** @class */ (function () {
+                function AnnouncementPager(count, offset, limit, current, pager, has_prev, has_next, results) {
+                    this.count = count;
+                    this.offset = offset;
+                    this.limit = limit;
+                    this.current = current;
+                    this.pager = pager;
+                    this.has_prev = has_prev;
+                    this.has_next = has_next;
+                    this.results = results;
+                }
+                return AnnouncementPager;
+            }());
+            exports_1("AnnouncementPager", AnnouncementPager);
         }
     };
 });

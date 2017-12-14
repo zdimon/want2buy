@@ -10,20 +10,23 @@ import { Announcement } from './models/announcement'
 })
 export class IndexComponent {
 
-  announcements: Announcement[];
+  announcements: any;
+  pager: any;
 
   constructor(private _http: Http, private _service: AnnouncementService) { }
 
-  public getActive(){
-    console.log('get active');
-  }
 
   ngOnInit() {
 
     this._service.getNewAnnoncements().subscribe(
       (data) => {
-        this.announcements = data;
-        console.log(this.announcements);
+        this.announcements = data.results;
+        this.pager = {
+                      'offset': data.offset,
+                      'count': data.count,
+                      'limit': data.limit
+        }
+        console.log(this.pager);
       }
 
     );
