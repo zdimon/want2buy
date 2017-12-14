@@ -2524,7 +2524,7 @@ input[type="submit"]:hover {
 
 @media (min-width: 600px) {
   .header-links {
-    float: right; } }
+    float: left; } }
 
 .header-links a + a {
   margin-left: 15px; }
@@ -4382,4 +4382,24 @@ label.error:last-child {
   left: 5px;
   font-size: 9px;
   color: #fff; }
+#header-dropdown-caret-left{
+  display: none;
+}
+.dropdown {
+  font-weight: 600;
+  text-transform: uppercase;
+  ;
+}
 
+@media (max-width: 600px) {
+  .dropdown {
+    margin-top: 10px; } }
+
+@media (min-width: 600px) {
+  .dropdown {
+    float: right; } }
+
+
+.header-links{
+  display: none;
+}
