@@ -66,7 +66,6 @@
                         <a href="{% url 'replenishment' %}" data-toggle="modal">{{ user.profile.account }}</a>
                         <a href="/user/profile/edit" data-toggle="modal">{{ user.username }}</a>
                         <a href="/logout" data-toggle="modal">Log out</a>
-                       
                     {% endif %}
                 </div>
             </div>
@@ -92,7 +91,7 @@
             <a id="scroll-to-top" href="#header" class="scroll-to-top"></a>
 
             <nav id="footer-navigation" class="footer-navigation">
-                <ul class="footer-menu">
+                <ul class="footer-menu clearfix">
                     <li id="fnHome"><a href="/">Главная</a></li>
                     <li id="fnAbout"><a href="/about">О нас</a></li>
                     <li id="fnRules"><a href="{% url 'show_page' alias='blog' %}">Условия и правила</a></li>
