@@ -928,3 +928,19 @@
    border-radius: 5px;
    background: #107FC9;
 }
+
+.bold{
+  font-weight: bold !important;
+}
+
+#orderform textarea {
+  height: 80px;
+}
+
+#orderform input[type="text"], input[type="email"], input[type="password"], input[type="url"], textarea {
+  padding: 5px;
+}
+
+#orderform input[type="submit"] {
+  background: #107FC9;
+}

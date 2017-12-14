@@ -287,7 +287,7 @@ h1 small, h1 .small, .h1 small, .h1 .small, h2 small, h2 .small, .h2 small, .h2 
 
 h4, .h4, h5, .h5, h6, .h6 {
   margin-top: 0;
-  margin-bottom: 18px; }
+  margin-bottom: 15px; }
 
 h4 small, h4 .small, .h4 small, .h4 .small, h5 small, h5 .small, .h5 small, .h5 .small, h6 small, h6 .small, .h6 small, .h6 .small {
   font-size: 75%; }
@@ -311,7 +311,7 @@ h6, .h6 {
   font-size: 12px; }
 
 p {
-  margin: 0 0 20px; }
+  margin: 0 0 8px; }
 
 .lead {
   margin-bottom: 20px;
@@ -3697,7 +3697,7 @@ input[type="submit"]:hover {
 
 .widget-title {
   font-size: 16px;
-  margin-bottom: 26px; }
+  margin-bottom: 16px; }
 
 .widget ul {
   list-style: none;
@@ -3770,6 +3770,8 @@ input[type="submit"]:hover {
 
 .widget_popular_posts .post-comment, .widget_popular_posts .post-date {
   font-size: 12px;
+  display: block;
+  margin-bottom: 10px;
   color: #107fc9; }
 
 .widget_popular_posts .post-comment .fa, .widget_popular_posts .post-date .fa {
