@@ -904,3 +904,27 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.tabel-label {
+  color: #107FC9;
+  
+  font-size: 12px;
+
+}
+
+.pagination li.pager-item {
+   width: 32px;
+   height: 26px;
+   border: 1px solid #107FC9;
+   display: inline-block;
+   border-radius: 5px;
+   background: #107FC9;
+}
