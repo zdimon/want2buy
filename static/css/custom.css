@@ -884,3 +884,9 @@
 .clear {
   clear: both;
 }
+
+.entry-tags a.active {
+  background: black;
+  color: white;
+
+}

@@ -13,3 +13,4 @@ db.sqlite3-journal
 cache
 static/*
 main/static/js/config.js
+angular-app/static/dist
