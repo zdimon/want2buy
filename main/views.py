@@ -12,17 +12,15 @@ from jsonview.decorators import json_view
 @json_view
 def update(request):
     out = []
-    '''
+    
     import subprocess
     command = 'git pull'
     p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     out = []
-    for line in p.stdout.readlines():
-        print line
-        out.append(line)
-    retval = p.wait()
+   
     command = 'tsc'
     p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    '''
     for line in p.stdout.readlines():
         print line
         out.append(line)   
