@@ -2734,7 +2734,7 @@ input[type="submit"]:hover {
 
 .footer-menu, .footer-menu ul {
   list-style: none;
-  padding: 0;
+  padding-top: 0;
   margin: 0; }
 
 .footer-menu > li {

@@ -46,12 +46,10 @@
             <div id="extended-bg">
                 <nav id="header-navigation" class="header-navigation clearfix">
                     <ul class="header-menu clearfix">
-                        <li class="current-menu-item menu-item-has-children">
-                            <a href="/">Главная</a>
-                        </li>
-                        <li><a href="/about">О нас</a></li>
-                        <li><a href="{% url 'show_page' alias='blog' %}">Условия и правила</a></li>
-                        <li><a href="/feedback">Обратная связь</a></li>
+                        <li id="hnHome"><a href="/">Главная</a></li>
+                        <li id="hnAbout"><a href="/about">О нас</a></li>
+                        <li id="hnRules"><a href="{% url 'show_page' alias='blog' %}">Условия и правила</a></li>
+                        <li id="hnFeedback"><a href="/feedback">Обратная связь</a></li>
                     </ul>
                 </nav>
             </div>
@@ -91,14 +89,14 @@
 {% block footer %}
     <footer id="footer" class="footer">
         <div class="container">
-            
+            <a id="scroll-to-top" href="#header" class="scroll-to-top"></a>
+
             <nav id="footer-navigation" class="footer-navigation">
-                <ul class="footer-menu clearfix">
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/category">Категории</a></li>
-                    <li><a href="/about">О нас</a></li>
-                    <li><a href="/blog.html">Условия и правила</a></li>
-                    <li><a href="/feedback">Обратная связь</a></li>
+                <ul class="footer-menu">
+                    <li id="fnHome"><a href="/">Главная</a></li>
+                    <li id="fnAbout"><a href="/about">О нас</a></li>
+                    <li id="fnRules"><a href="{% url 'show_page' alias='blog' %}">Условия и правила</a></li>
+                    <li id="fnFeedback"><a href="/feedback">Обратная связь</a></li>
                 </ul>
             </nav>
 
