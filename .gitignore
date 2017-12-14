@@ -14,3 +14,6 @@ cache
 static/*
 main/static/js/config.js
 angular-app/static/dist
+sys
+main/static/out-tsc
+package-lock.json
