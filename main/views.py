@@ -11,6 +11,8 @@ from jsonview.decorators import json_view
 @csrf_exempt
 @json_view
 def update(request):
+    out = []
+    '''
     import subprocess
     command = 'git pull'
     p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -25,6 +27,7 @@ def update(request):
         print line
         out.append(line)   
     retval = p.wait() 
+    '''
     return {'status': 'ok', 'message': out}
 
 
