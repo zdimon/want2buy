@@ -38,7 +38,7 @@ export class ActiveAnnouncementsComponent {
 
   ngOnInit() {
 
-    this._service.getActiveAnnoncements().subscribe(
+    this.busy = this._service.getActiveAnnoncements().subscribe(
       (data) => {
         this.announcements = data.results;
         this.pager = {

@@ -21,6 +21,10 @@ def update(request):
     retval = p.wait()
     command = 'tsc'
     p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    for line in p.stdout.readlines():
+        print line
+        out.append(line)   
+    retval = p.wait() 
     return {'status': 'ok', 'message': out}
 
 

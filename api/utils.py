@@ -55,7 +55,7 @@ class CustomPagination(pagination.LimitOffsetPagination):
 
 
     def get_paginated_response(self, data):
-        import time; time.sleep(2)
+        # import time; time.sleep(2)
         return Response({
            
             'limit': self.get_limit(self.request),

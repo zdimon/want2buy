@@ -8,7 +8,7 @@ import { HttpModule } from '@angular/http';
 import { NewAnnouncementTableComponent } from './new.announcement.table.component'
 import { AnnouncementService } from './service.module'
 import { ActiveAnnouncementsComponent } from './active.announcements.component'
-import {BusyModule} from 'angular2-busy';
+import {BusyModule, BusyConfig} from 'angular2-busy';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 @NgModule({
@@ -24,7 +24,16 @@ imports: [
   BrowserModule, 
   AppRoutingModule, 
   HttpModule, 
-  BusyModule, 
+  BusyModule.forRoot(
+    new BusyConfig({
+        message: 'Подождите идет загрузка...',
+          backdrop: false,
+          //template: '<div>{{message}}</div>',
+          //delay: 0,
+          minDuration: 600
+          //wrapperClass: 'my-class'
+      })
+  ),
   BrowserAnimationsModule 
 ],
 providers: [ AnnouncementService ],
