@@ -65,7 +65,7 @@
                             <a href="/admin" target=_blanck data-toggle="modal">{% trans 'Админка' %}</a>
                         {% endif %}
                         <a href="{% url 'dashboard' %}" data-toggle="modal">{% trans 'Личный кабинет' %}</a>
-                        <a href="{% url 'replenishment' %}" data-toggle="modal">{{ user.profile.account }}</a>
+                        <a href="{% url 'replenishment' %}" data-toggle="modal">На счету {{ user.profile.account }}</a>
                         <a href="/user/profile/edit" data-toggle="modal">{{ user.username }}</a>
                         <a href="/logout" data-toggle="modal">Log out</a>
                        
