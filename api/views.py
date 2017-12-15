@@ -63,7 +63,13 @@ def announcement_detail(request, slug):
 class NewAnnouncementViewSet(viewsets.ModelViewSet):
     queryset = NewAnnouncement.objects.all()
     serializer_class = NewAnnoncementSerializer
+    def get_queryset(self):
+        user = self.request.user
+        return NewAnnouncement.objects.filter(user=user)
 
 class AnnouncementViewSet(viewsets.ModelViewSet):
-    queryset = Announcement.objects.all()
     serializer_class = AnnoncementSerializer
+    queryset = Announcement.objects.all()
+    def get_queryset(self):
+        user = self.request.user
+        return Announcement.objects.filter(user=user)

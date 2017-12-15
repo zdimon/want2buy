@@ -1,6 +1,5 @@
 $( document ).ready(function() {
     
-    
 
     $.getJSON( "/api/regions", function( data ) {
         var regions = data;

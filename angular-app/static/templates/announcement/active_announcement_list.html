@@ -1,8 +1,26 @@
+<div [ngBusy]="busy"></div>
 <div class="row">
     <div class="col-md-12">
 
-            <h4 class="title">Неутвержденные объявления (на модерации)</h4>
 
+            <div class="alert alert-danger text-center" *ngIf="pager.count == 0">
+                    Активные объявления отсутствуют.
+            </div>
+            
+            <nav *ngIf="pager.count > pager.limit" class="page-pagination float-right" >
+                
+                <span class="tabel-label">Текущая страница: {{ pager.current }}. Всего объявлений: {{ pager.count }}</span>
+                <ul class="pagination">
+                    <li class="pager-item"><a *ngIf="pager.has_prev" class="previous" (click)="goPage(pager.current-1, pager.limit)" >
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>    
+                    </a></li>
+                    
+                    <li  class="pager-item" ><a *ngIf="pager.has_next" class="previous" (click)="goPage(pager.current+1, pager.limit)">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>    
+                    </a></li>
+                </ul>
+            </nav>
+            <div class="clear"></div>
             <article class="job-item clearfix" *ngFor="let a of announcements" >
                 <figure class="job-figure">
                     <a href="#"><div innerHTML="{{ a.thumbnail }}"></div></a>
@@ -17,7 +35,7 @@
                     <p class="job-skills">
                         <span>{{ a.new_bu.value }}</span>
                         <a href="#">{{ a.opt_roznica.value }}</a>
-                        
+                        {{ a.user }}
                     </p>
                 </div>
             </article>                
@@ -26,10 +44,9 @@
 </div>
 
 <div class="clear"></div>
-<nav class="page-pagination" aria-label="Page navigation">
-
+<nav  *ngIf="pager.count > pager.limit" class="page-pagination float-right">
     <ul class="pagination">
-   
+        
         <li *ngIf="pager.has_prev" ><a class="previous" (click)="goPage(pager.current-1, pager.limit)" >
                 <i class="fa fa-chevron-left" aria-hidden="true"></i>    
         </a></li>
@@ -37,7 +54,5 @@
         <li *ngIf="pager.has_next"><a class="previous" (click)="goPage(pager.current+1, pager.limit)">
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>    
         </a></li>
-    
     </ul>
-  
 </nav>

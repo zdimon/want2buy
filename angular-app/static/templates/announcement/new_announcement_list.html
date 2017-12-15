@@ -1,8 +1,11 @@
+<div [ngBusy]="busy"></div>
 <div class="row">
     <div class="col-md-12">
 
-            <h4 class="title">Неутвержденные объявления (на модерации)</h4>
-
+            <div class="alert alert-danger text-center" *ngIf="pager.count == 0">
+                Активные объявления отсутствуют.
+            </div>
+           
             <article class="job-item clearfix" *ngFor="let a of announcements" >
                 <figure class="job-figure">
                     <a href="#"><div innerHTML="{{ a.thumbnail }}"></div></a>

@@ -2,4 +2,4 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% trans 'Активация профайла' %}
 {% trans 'Чтобы завершить регистрацию пройдите по ссылке ниже.' %}:
-<a href="http://{{ site }}/account/activate/{{ activation_key }}/">{% trans 'Ссылка' %} </a>
+<a href="http://w2b.webmonstr.com/account/activate/{{ activation_key }}/">{% trans 'Ссылка' %} </a>

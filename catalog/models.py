@@ -3,14 +3,16 @@ from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.db import models
 from slugify import slugify
-
+from image_cropping import ImageRatioField
+from image_cropping.utils import get_backend
 
 # Create your models here.
 
 class Category(models.Model):
     name = models.CharField(max_length=150)
     name_slug = models.CharField(max_length=150)
-
+    photo = models.ImageField(upload_to='catalog_pic/', null=True, blank=True)
+    cropping = ImageRatioField('photo', '255x200')    
     def get_absolute_url(self):
         return reverse('catalog_main', kwargs={'slug': self.name_slug})
 
@@ -21,6 +23,22 @@ class Category(models.Model):
         self.name_slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
+
+    def thumbnail(self):
+        try:
+            thumbnail_url = get_backend().get_thumbnail_url(
+                self.photo,
+                {
+                    'size': (255, 200),
+                    'box': self.cropping,
+                    'crop': True,
+                    'detail': True,
+                }
+            )
+            return '<img class="img-responsive" src="%s"  />' % thumbnail_url
+        except:
+            return '<img class="img-responsive" src="/static/images/noimage.png" />'
+    thumbnail.allow_tags = True
 
 class SubCategory(models.Model):
     name = models.CharField(max_length=150)

@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login
 from catalog.models import *
 from image_cropping import ImageRatioField
 from image_cropping import ImageCropField
+from image_cropping.utils import get_backend
 
 class Profile(models.Model):
     user=models.OneToOneField(User, primary_key=True)
@@ -27,6 +28,22 @@ class Profile(models.Model):
     cropping = ImageRatioField('avatar', '100x100')
     def __unicode__(self):
         return self.user.username
+    def full_name(self):
+        return "%s %s" % (self.first_name, self.middle_name)
+    def thumbnail(self):
+        try:
+            thumbnail_url = get_backend().get_thumbnail_url(
+                self.avatar,
+                {
+                    'size': (100, 100),
+                    'box': self.cropping,
+                    'crop': True,
+                    'detail': True,
+                }
+            )
+            return '<img class="img-responsive" src="%s"  />' % thumbnail_url
+        except:
+            return '<img class="img-responsive" src="/static/images/noimage.png" />'        
     #USERNAME_FIELD = 'email'
     #objects = MyUserManager()
 

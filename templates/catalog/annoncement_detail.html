@@ -9,35 +9,157 @@
 
 <div class="container main-container">
 
-        
-                <div class="col-md-7 col-lg-8 profile-inner-wrapper">
-                        <h4 class="title">{{ item.title }}</h4>
-                        <div class="line"></div>
-                        <div class="row">
-                        <div class="col-xs-4 col-sm-4">
-                                <div class="profile-image">
-                                
-                                {{ item.thumbnail_big|safe }}
-                                <div class="upload-photo"><i class="fa fa-search" aria-hidden="true"></i></div>
-                                </div>
-                        </div>
-                        <div class="col-xs-8 col-sm-8 tips">
-                                <h5 class="title">
-                                        {% trans 'Категория:' %}
-                                        <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
-                                        &nbsp;
-                                        {{ item.get_link_to_sub_category }}
-                                        &nbsp;
-                                        {{ item.get_link_to_sub_sub_category }}
-                                </h4>
-                                <p>{{ item.region }}, {{item.city}}</p>
-                                <p>
-                                Цена: {{ item.price }} грн.<br>
-                                {{ item.get_new_bu_display }}
-                                </p>
-                        </div>
+        <div class="col-md-6">
+                <h4 class="title">{{ item.title }}</h4>
+                <div class="line"></div>
+                <div class="row">
+                <div class="col-xs-4 col-sm-4">
+                        <div class="profile-image">
+                        
+                        {{ item.thumbnail_big|safe }}
+                        <div class="upload-photo"><i class="fa fa-search" aria-hidden="true"></i></div>
                         </div>
                 </div>
+                <div class="col-xs-8 col-sm-8 tips">
+                        <h5 class="title">
+                                {% trans 'Категория:' %}
+                                <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
+                                &nbsp;
+                                {{ item.get_link_to_sub_category }}
+                                &nbsp;
+                                {{ item.get_link_to_sub_sub_category }}
+                        </h5>
+                        <p>
+                                <span class="bold">{% trans 'Регион' %}:</span>
+                                {{ item.region }}, {{item.city}}
+                        </p>
+                        <p>
+                                <span class="bold">{% trans 'Цена' %}:</span>
+                                {{ item.price }} грн.
+                        </p>                                
+                        <p>
+                                <span class="bold">{% trans 'Тип товара' %}:</span>
+                                {{ item.get_new_bu_display }}.
+                        </p> 
+                        <p>
+                                <span class="bold">{% trans 'Тип покупки' %}:</span>
+                                {{ item.get_once_display }}, {{ item.get_opt_roznica_display }}
+                        </p>                               
+                        <p>
+                                <span class="bold">{% trans 'Количество' %}:</span>
+                                {{ item.ammount }} шт.
+                        </p>  
+                        
+                        <section class="widget widget_popular_posts">
+                                <h2 class="widget-title">{% trans 'Автор' %}</h2>
+                                <ul>
+                                        <li>
+                                        <div class="post-thumb">
+                                                <a href="#">{{ item.user.profile.thumbnail|safe }}</a>
+                                        </div>
+                                        <div class="post-content">
+                                                <h3 class="post-title bold">{{ item.user.profile.full_name }}</h3>
+                                                <span class="post-comment"><i class="fa fa-comment" aria-hidden="true"></i> 2 Comments</span>
+                                               
+                                        </div>
+                                        <div class="post-content">
+                                                <span class="post-date">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                         {% trans 'рейтинг' %}</span>
+                                        </div>
+
+                                        <div class="post-content">
+                                                <span class="post-date"><i class="fa fa-calendar-o" aria-hidden="true"></i> July 11, 2016</span>
+                                        </div>                                        
+
+
+                                        </li>
+                                </ul>
+                        </section>
+                                            
+                </div>
+                </div>
+        </div>
+
+        <div class="col-md-6">
+                <h4 class="title">{% trans 'Предложить товар' %}</h4>
+                <div class="line"></div>
+
+                <form action="#" method="post" id="orderform"  novalidate="">
+
+                        <div class="row comment-form-comment">
+                                <div class="col-lg-2">
+                                <label for="comment">{% trans 'Текст заявки' %}</label>
+                                </div>
+                                <div class="col-lg-10">
+                                <textarea id="comment" name="comment" placeholder="{% trans 'расскажите про ваш товар/услугу' %}"></textarea>
+                                </div>
+                        </div>
+
+                        <div class="row comment-form-author">
+                                <div class="col-lg-2">
+                                <label for="author">{% trans 'Имя' %}:</label>
+                                </div>
+                                <div class="col-lg-4">
+                                <input id="author" name="author" type="text" value="" >
+                                </div>
+                                <div class="col-lg-2">
+                                <label for="author">{% trans 'Цена' %}:</label>
+                                </div>
+                                <div class="col-lg-4">
+                                <input id="author" name="author" type="text" value="" >
+                                </div>
+                        </div>
+
+                        <div class="row comment-form-email">
+                                        <div class="col-lg-2">
+                                        <label for="email">{% trans 'URL ресурс' %}</label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                        <input id="email" name="email" type="email" value="" >
+                                        </div>
+                                        <div class="col-lg-2">
+                                        <label for="email">{% trans 'Файл' %}</label>
+                                        </div>
+                                        <div class="col-lg-4">
+                                        <input id="email" name="email" type="file" value="" >
+                                        </div>
+                                </div>
+
+                        <div class="row comment-form-email">
+                                <div class="col-lg-2">
+                                <label for="email">Email</label>
+                                </div>
+                                <div class="col-lg-4">
+                                <input id="email" name="email" type="email" value="" >
+                                </div>
+                                <div class="col-lg-2">
+                                <label for="email">{% trans 'Телефон' %}</label>
+                                </div>
+                                <div class="col-lg-4">
+                                <input id="email" name="email" type="email" value="" >
+                                </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="col-lg-4">
+                                        <label for="email">{% trans 'Зарегистрировать' %}</label>
+                                </div>
+                                <div class="col-lg-2">        
+                                        <input type="checkbox" value="" >
+                                </div>
+                                <div class="col-lg-6 text-right">
+                                <input name="submit" type="submit" id="submit" value="{% trans ' Отправить заявку' %}">
+                                </div>
+                        </div>
+                </form>
+
+
+
+
+        </div>        
             
 
        

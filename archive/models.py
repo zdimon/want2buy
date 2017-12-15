@@ -48,7 +48,7 @@ class AnnouncementBase(models.Model):
     region = models.ForeignKey(Region, null=True, blank=True)
     new_city = models.CharField(max_length=250, null=True, blank=True)
     info = models.TextField(null=True, blank=True)
-    photo = models.ImageField(upload_to='new_announcements/', null=True, blank=True)
+    photo = models.ImageField(upload_to='announcements/', null=True, blank=True)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     cropping = ImageRatioField('photo', '150x150')
     is_paid = models.BooleanField(default=False)
@@ -152,9 +152,17 @@ class Offer(models.Model):
     status = models.CharField(verbose_name=_(u'Статус'), max_length=10, choices=status, default='message')
     created_at = models.DateTimeField(verbose_name=_(u'Когда создано?'), auto_now_add=True)
 
+    def __unicode__(self):
+        return '#%s: %s' % (self.id, self.message)
+
 
 class OfferMessage(models.Model):
     offer = models.ForeignKey(Offer, verbose_name=_(u'Предложение'))
     new_price = models.DecimalField(verbose_name=_(u'Новая цена'), max_digits=19, decimal_places=2)
     message = models.TextField(verbose_name=_(u'Сообщение'))
     file = models.FileField(verbose_name=_(u'Аттачмент'), upload_to='offer_files/', null=True, blank=True)
+    user = models.ForeignKey(User, verbose_name=_(u'Автор'), null=True, blank=True)
+
+    def __unicode__(self):
+        return self.message
+

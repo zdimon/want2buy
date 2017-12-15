@@ -36,3 +36,17 @@ class AnnouncementAdmin(ImageCroppingMixin, admin.ModelAdmin):
 
 
 admin.site.register(Announcement, AnnouncementAdmin)
+
+
+class OfferAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Offer, OfferAdmin)
+
+
+class OfferMessageAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(OfferMessage, OfferMessageAdmin)

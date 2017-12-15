@@ -4,21 +4,23 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { AnnouncementService } from './service.module'
 import { Announcement } from './models/announcement'
+import {Subscription} from 'rxjs';
 
 @Component({
   templateUrl: '/static/templates/announcement/new_announcement_list.html'
 })
 export class IndexComponent {
 
-  announcements: any;
-  pager: any;
+  announcements: any = [];
+  pager: any = {};
+  busy: Subscription;
 
   constructor(private _http: Http, private _service: AnnouncementService) { }
 
 
   ngOnInit() {
 
-    this._service.getNewAnnoncements().subscribe(
+    this.busy = this._service.getNewAnnoncements().subscribe(
       (data) => {
         this.announcements = data.results;
         this.pager = {

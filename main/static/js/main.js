@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (function () {
     'use strict';
 
@@ -63,3 +64,5 @@
     $(window)
         .load(dropdown_memory);
 })();
+=======
+>>>>>>> master

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 {% load i18n %}
 {% load widget_tweaks %}
@@ -61,4 +62,77 @@
 </div>
 
        
+=======
+{% extends 'base.html' %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block footer %} {% endblock %}
+{% block js_lib %} 
+    <base href="/dashboard">
+    <script src="/static/node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="/static/node_modules/zone.js/dist/zone.js"></script>
+    <script src="/static/node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="/static/node_modules/systemjs/dist/system.js"></script>
+    
+    <script>
+
+            SystemJS.config({ 
+                baseURL: '.',
+                map: {
+                  '@angular/core': '/static/node_modules/@angular/core/bundles/core.umd.js',
+                  '@angular/platform-browser-dynamic': '/static/node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+                  '@angular/compiler': '/static/node_modules/@angular/compiler/bundles/compiler.umd.js',
+                  '@angular/common': '/static/node_modules/@angular/common/bundles/common.umd.js',
+                  '@angular/platform-browser': '/static/node_modules/@angular/platform-browser/bundles/platform-browser.umd.js',
+                  '@angular/router': '/static/node_modules/@angular/router/bundles/router.umd.js',
+                  '@angular/http': '/static/node_modules/@angular/http/bundles/http.umd.js',
+                  '@angular/animations': '/static/node_modules/@angular/animations/bundles/animations.umd.js',
+                  'angular2-busy': '/static/node_modules/angular2-busy',
+                  '@angular/animations/browser': '/static/node_modules/@angular/animations/bundles/animations-browser.umd.js',
+  '@angular/platform-browser/animations': '/static/node_modules/@angular/platform-browser/bundles/platform-browser-animations.umd.js',   
+                  'rxjs': '/static/node_modules/rxjs',
+                  'app': '/static/dist/static/app'
+                }, 
+                paths: {
+                    "*": "*.js" // should load all libraries with .js appended
+                  },                
+                packages: {
+                  rxjs: {defaultExtension: 'js'},
+                  'angular2-busy': {
+                        main: './index.js',
+                        defaultExtension: 'js'
+                    },
+                  app: { defaultExtension: 'js' }
+                }  
+              })
+              SystemJS.import('/static/dist/static/main.js').then(function(m){
+              }, function(error){
+                 console.log(error);
+              });        
+    </script>
+
+{% endblock %}
+{% block content %}
+{% load cropping %}
+
+
+<div class="container main-container" style="padding-top: 0">
+    
+
+    <div class="row">
+        <user-dashboard>
+            
+
+            <div class="col-md-4 col-md-offset-4">
+                    <h4 class="title" style="color: #107FC9">{% trans 'Подождите идет загрузка...' %}</h4>
+                <div class="loader"></div>
+            </div>
+        </user-dashboard>
+    </div>
+
+   
+</div>
+
+       
+>>>>>>> master
 {% endblock %}
