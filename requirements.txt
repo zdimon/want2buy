@@ -1,3 +1,4 @@
+-e  git+https://github.com/liqpay/sdk-python#egg=liqpay
 requests
 bs4
 django==1.11.7

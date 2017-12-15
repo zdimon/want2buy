@@ -20,7 +20,7 @@ from django.contrib.auth import views as auth_views
 from account.views import *
 from archive.views import *
 from feedback.views import *
-from replenishment.views import replenishment_page
+from replenishment.views import PayView, PayCallbackView
 import api.urls as api_urls
 from catalog.views import catalog_main, catalog_sub, catalog_sub_sub, annoncement_detail
 
@@ -43,7 +43,6 @@ urlpatterns = [
     url(r'^user/registration/done', registration_done, name='registration_done'), 
     url(r'^user/activation/done', activation_done, name='activation_done'),
     url(r'^account/activate/(?P<activation_key>[-:\w]+)/$',MyActivationView.as_view(),name='registration_activate'),
-    url(r'^replenishment/', replenishment_page, name='replenishment'),
 
     url(r'page/(?P<alias>[-:\w]+).html$', page, name='show_page'),
 
@@ -56,6 +55,9 @@ urlpatterns = [
     url(r'^catalog/sub/(?P<slug>[-:\w]+).html$',catalog_sub,name='catalog_sub'),
     url(r'^catalog/sub/sub/(?P<slug>[-:\w]+).html$',catalog_sub_sub,name='catalog_sub_sub'),
     url(r'^annoncement/detail/(?P<slug>[-:\w]+).html$',annoncement_detail,name='annoncement_detail'),
+
+    url(r'^pay/$', PayView.as_view(), name='pay_view'),
+    url(r'^pay-callback/$', PayCallbackView.as_view(), name='pay_callback'),
 
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),
     #url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
