@@ -9,7 +9,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, View
 from django.views.decorators.csrf import csrf_exempt
 from .models import Replanishment
-
+from account.models import Profile
+import decimal
 
 # Create your views here.
 
@@ -39,9 +40,8 @@ class PayView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         liqpay = LiqPay(LIQPAY_PUBLIC_KEY, LIQPAY_PRIVATE_KEY)
-        print request.POST
-        print request.session['payment_id']
         amount = Replanishment.objects.get(id=request.session['payment_id']).amount
+        print request.user
         params = {
             'action': 'pay',
             'amount': amount,
@@ -50,7 +50,7 @@ class PayView(TemplateView):
             'order_id': request.session['payment_id'],
             'version': '3',
             'sandbox': '1',
-            'server_url': 'https://qkprwgpmaf.localtunnel.me/pay-callback/',
+            'server_url': 'https://4584b4b9.ngrok.io/pay-callback/',
         }
         signature = liqpay.cnb_signature(params)
         data = liqpay.cnb_data(params)
@@ -73,5 +73,10 @@ class PayCallbackView(View):
             rep = Replanishment.objects.get(id=oreder_id)
             rep.status = status
             rep.save()
+            if status == 'sandbox':
+                profile = Profile.objects.get(user_id=rep.user_replanishment_id)
+                profile.account = profile.account + decimal.Decimal(rep.amount)
+                profile.save()
+
         print('callback data', response)
         return HttpResponse()
