@@ -1,10 +1,13 @@
 <div [ngBusy]="busy"></div>
 <div class="row">
     <div class="col-md-12">
+
+
+            <div class="alert alert-danger text-center" *ngIf="pager.count == 0">
+                    Активные объявления отсутствуют.
+            </div>
             
-            <h4 class="title">Мои объявления</h4>
- 
-            <nav class="page-pagination float-right" >
+            <nav *ngIf="pager.count > pager.limit" class="page-pagination float-right" >
                 
                 <span class="tabel-label">Текущая страница: {{ pager.current }}. Всего объявлений: {{ pager.count }}</span>
                 <ul class="pagination">
@@ -41,7 +44,7 @@
 </div>
 
 <div class="clear"></div>
-<nav class="page-pagination float-right">
+<nav  *ngIf="pager.count > pager.limit" class="page-pagination float-right">
     <ul class="pagination">
         
         <li *ngIf="pager.has_prev" ><a class="previous" (click)="goPage(pager.current-1, pager.limit)" >

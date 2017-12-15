@@ -3506,7 +3506,10 @@ input[type="submit"]:hover {
 /* Tags */
 @media (min-width: 1200px) {
   .entry-tags {
-    float: left; } }
+    float: left; 
+    margin-bottom: 10px;
+  }
+   }
 
 .entry-tags a {
   display: inline-block;

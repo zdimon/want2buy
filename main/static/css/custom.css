@@ -944,3 +944,9 @@
 #orderform input[type="submit"] {
   background: #107FC9;
 }
+
+
+.entry-tags a.active-white {
+  background: white;
+  color: black;
+}

@@ -11,8 +11,8 @@ import {Subscription} from 'rxjs';
 })
 export class IndexComponent {
 
-  announcements: any;
-  pager: any;
+  announcements: any = [];
+  pager: any = {};
   busy: Subscription;
 
   constructor(private _http: Http, private _service: AnnouncementService) { }
