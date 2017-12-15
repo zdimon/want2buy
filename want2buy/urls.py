@@ -20,7 +20,7 @@ from django.contrib.auth import views as auth_views
 from account.views import *
 from archive.views import *
 from feedback.views import *
-from replenishment.views import PayView, PayCallbackView
+from replenishment.views import PayView, PayCallbackView, replenishment_page
 import api.urls as api_urls
 from catalog.views import catalog_main, catalog_sub, catalog_sub_sub, annoncement_detail
 
@@ -56,8 +56,9 @@ urlpatterns = [
     url(r'^catalog/sub/sub/(?P<slug>[-:\w]+).html$',catalog_sub_sub,name='catalog_sub_sub'),
     url(r'^annoncement/detail/(?P<slug>[-:\w]+).html$',annoncement_detail,name='annoncement_detail'),
 
-    url(r'^pay/$', PayView.as_view(), name='pay_view'),
+    url(r'^pay/(?P<payment_id>)$', PayView.as_view(), name='pay_view'),
     url(r'^pay-callback/$', PayCallbackView.as_view(), name='pay_callback'),
+    url(r'^replenishment/', replenishment_page, name='replenishment'),
 
     #url(r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}, name='logout'),
     #url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
