@@ -46,31 +46,33 @@
             <div id="extended-bg">
                 <nav id="header-navigation" class="header-navigation clearfix">
                     <ul class="header-menu clearfix">
-                        <li class="current-menu-item menu-item-has-children">
-                            <a href="/">Главная</a>
-                        </li>
-                        <li><a href="/about">О нас</a></li>
-                        <li><a href="{% url 'show_page' alias='blog' %}">Условия и правила</a></li>
-                        <li><a href="/feedback">Обратная связь</a></li>
+                        <li id="hnHome"><a href="/">Главная</a></li>
+                        <li id="hnAbout"><a href="/about">О нас</a></li>
+                        <li id="hnRules"><a href="{% url 'show_page' alias='blog' %}">Условия и правила</a></li>
+                        <li id="hnFeedback"><a href="/feedback">Обратная связь</a></li>
                     </ul>
+
                 </nav>
             </div>
             <div class="header-links-wrap clearfix">
-                
+                {% if not user.is_authenticated %}
+                <a id="signin" href="#sign-in-up" data-toggle="modal">Signin <span class="fa fa-sign-in"></span></a>
+                {% else %}
                 <div class="header-links">
-                    {% if not user.is_authenticated %}
-                        <a href="#sign-in-up" data-toggle="modal">Signin</a>
-                    {% else %}
-                        {% if user.is_superuser %}
-                            <a href="/admin" target=_blanck data-toggle="modal">{% trans 'Админка' %}</a>
-                        {% endif %}
-                        <a href="{% url 'dashboard' %}" data-toggle="modal">{% trans 'Личный кабинет' %}</a>
-                        <a href="{% url 'replenishment' %}" data-toggle="modal">{{ user.profile.account }}</a>
-                        <a href="/user/profile/edit" data-toggle="modal">{{ user.username }}</a>
-                        <a href="/logout" data-toggle="modal">Log out</a>
-                       
+
+                    {% if user.is_superuser %}
+                    <a href="/admin" target=_blanck data-toggle="modal">{% trans 'Админка' %}</a>
                     {% endif %}
+                    <a href="{% url 'dashboard' %}" data-toggle="modal">{% trans 'Личный кабинет' %}</a>
+                    <a href="{% url 'replenishment' %}" data-toggle="modal">{{ user.profile.account }}</a>
+                    <a href="/user/profile/edit" data-toggle="modal">Профиль</a>
+                    <a href="/logout" data-toggle="modal">Выйти <span class="fa fa-sign-out"></span></a>
                 </div>
+                <div class="dropdown">
+                    <a id="header-dropdown"> <i id="header-dropdown-caret-left" class="fa fa-caret-left"></i> Здравствуйте, {{user.username}} <i id="header-dropdown-caret-down" class="fa fa-caret-down"></i></a>
+                </div>
+                {% endif %}
+
             </div>
         </div>
     </div>
@@ -89,24 +91,24 @@
 
 <!-- Footer -->
 {% block footer %}
-    <footer id="footer" class="footer">
-        <div class="container">
-            
-            <nav id="footer-navigation" class="footer-navigation">
-                <ul class="footer-menu clearfix">
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/category">Категории</a></li>
-                    <li><a href="/about">О нас</a></li>
-                    <li><a href="/blog.html">Условия и правила</a></li>
-                    <li><a href="/feedback">Обратная связь</a></li>
-                </ul>
-            </nav>
+<footer id="footer" class="footer">
+    <div class="container">
+        <a id="scroll-to-top" href="#header" class="scroll-to-top"></a>
 
-        
+        <nav id="footer-navigation" class="footer-navigation">
+            <ul class="footer-menu clearfix">
+                <li id="fnHome"><a href="/">Главная</a></li>
+                <li id="fnAbout"><a href="/about">О нас</a></li>
+                <li id="fnRules"><a href="{% url 'show_page' alias='blog' %}">Условия и правила</a></li>
+                <li id="fnFeedback"><a href="/feedback">Обратная связь</a></li>
+            </ul>
+        </nav>
 
-            <p class="copyright">© Indigo 2017 Designed by <a href="#">mine-tech</a></p>
-        </div>
-    </footer>
+
+
+        <p class="copyright">© Indigo 2017 Designed by <a href="#">mine-tech</a></p>
+    </div>
+</footer>
 {% endblock %}
 
 
