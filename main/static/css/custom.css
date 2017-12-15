@@ -950,3 +950,24 @@
   background: white;
   color: black;
 }
+
+.dashboard-loader {
+  position: fixed;
+  top:50%;
+  left: 40%;
+}
+.dashboard-loader-title {
+  color: #107FC9;
+  position: fixed;
+  top:44%;
+  left: 37%;
+}
+.ng-busy,
+.ng-busy > *,
+.ng-busy > ng-component > * {
+  position: fixed;
+  top: 50%;
+  left: 0px;
+  right: 0px;
+  bottom: 50%;
+}
