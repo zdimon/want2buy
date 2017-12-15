@@ -51,22 +51,15 @@
 {% load cropping %}
 
 
-<div class="container main-container" style="padding-top: 0">
-    
 
-    <div class="row">
+
         <user-dashboard>
-            
-
-            <div class="dashboard-loader">
-                    <h4 class="dashboard-loader-title">{% trans 'Подождите идет загрузка...' %}</h4>
-                <div class="loader"></div>
+            <div class="user-dashboard-loader">
+                <h4 style="color: #107FC9">{% trans 'Подождите идет загрузка...' %}</h4>
+                <div class="dashboard-loader"></div>
             </div>
         </user-dashboard>
-    </div>
 
-   
-</div>
 
        
 {% endblock %}
