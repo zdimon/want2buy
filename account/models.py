@@ -21,10 +21,10 @@ class Profile(models.Model):
     phone = models.CharField(_('phone'), max_length=50, blank=True)
     site = models.URLField(_('site'), max_length=50, blank=True)
     address = models.CharField(_('address'), max_length=150, blank=True)
-    rating = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0, null=True, blank=True)
     region = models.ForeignKey(Region, null=True, blank=True)
     city = models.ForeignKey(City, null=True, blank=True)
-    account = models.DecimalField(default=0, max_digits=5, decimal_places=2)
+    account = models.DecimalField(default=0, max_digits=5, decimal_places=2, null=True, blank=True)
     cropping = ImageRatioField('avatar', '100x100')
     def __unicode__(self):
         return self.user.username
