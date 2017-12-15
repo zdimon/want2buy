@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, HiddenInput, TextInput
 from .models import Profile
 from image_cropping import ImageCropWidget
 
@@ -9,4 +9,6 @@ class ProfileForm(ModelForm):
         fields = '__all__'
         widgets = {
             'avatar': ImageCropWidget,
+            'user': HiddenInput()
+            #'first_name': TextInput(attrs={'require': True})
         }

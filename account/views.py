@@ -62,7 +62,7 @@ class MyActivationView(ActivationView):
         return False
 
 def profile_edit(request):
-    form = ProfileForm()
+    form = ProfileForm(instance=request.user.profile)
     return render(request, 'account/profile_edit.html', {'form': form})
 
 class ProfileEditView(UpdateView):
