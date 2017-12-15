@@ -32,21 +32,34 @@
         .addClass('current-menu-item menu-item-has-children');
 
 
-    var dropdown_counter=0;
     function dropdown_open_close(){
-        if (dropdown_counter==0) {
+        if (sessionStorage.dropdown_counter==0) {
             $('#header-dropdown-caret-down').hide("fast");
             $('.header-links').show("fast");
             $('#header-dropdown-caret-left').show("fast");
-            dropdown_counter=1;
+            window.sessionStorage.dropdown_counter=1;
         }
         else {
             $('#header-dropdown-caret-down').show("fast");
             $('#header-dropdown-caret-left').hide("fast");
             $('.header-links').hide("fast");
-            dropdown_counter=0;
+            window.sessionStorage.dropdown_counter=0;
+        }
+    }
+    function dropdown_memory() {
+        if (sessionStorage.dropdown_counter==1) {
+            $('#header-dropdown-caret-down').hide("fast");
+            $('.header-links').show("fast");
+            $('#header-dropdown-caret-left').show("fast");
+        }
+        else {
+            $('#header-dropdown-caret-down').show("fast");
+            $('#header-dropdown-caret-left').hide("fast");
+            $('.header-links').hide("fast");
         }
     }
     $('#header-dropdown')
         .click(dropdown_open_close);
+    $(window)
+        .load(dropdown_memory);
 })();
