@@ -68,13 +68,14 @@ class AnnouncementBase(models.Model):
             return self.category
         return None
 
+    @property
     def get_link_to_sub_category(self):
         if self.sub_category:
             return '<a href="%s">%s</a>' % (self.sub_category.get_absolute_url, self.sub_category)
         else:
             return ''
 
-
+    @property
     def get_link_to_sub_sub_category(self):
         if self.sub_sub_category:
             return '<a href="%s">%s</a>' % (self.sub_sub_category.get_absolute_url, self.sub_sub_category)

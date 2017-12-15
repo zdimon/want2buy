@@ -15,7 +15,7 @@
 
 <div class="container main-container">
     <div class="form-wrapper">
-
+      
         {% if form.errors %}
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
@@ -162,7 +162,15 @@
                      </div>
                  </div>
                 
-             </div>  
+             </div>
+             
+             <div class="row">
+                    
+                    <div class="col-md-12">
+                            <span class="title">{% trans 'Дополнительная информация.' %}</span>
+                        {{ form.info|add_class:"form-control" }}
+                    </div>
+                </div>              
 
 
             <div class="row profile-actions">
