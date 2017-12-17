@@ -145,6 +145,7 @@ class Offer(models.Model):
     )
 
     user = models.ForeignKey(User, verbose_name=_(u'Автор'))
+    announcement = models.ForeignKey(Announcement, verbose_name=_(u'Объявление'))
     message = models.TextField(verbose_name=_(u'Сообщение'))
     url = models.CharField(verbose_name=_(u'Ссылка на сайт'), max_length=250, null=True, blank=True)
     image = models.ImageField(verbose_name=_(u'Изображение'), upload_to='offer_images/', null=True, blank=True)

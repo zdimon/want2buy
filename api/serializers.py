@@ -81,4 +81,4 @@ class AnnoncementSerializer(serializers.ModelSerializer):
                 'created_at',
                 'thumbnail'
                 )
-        #fields = '__all__'        
+        #fields = '__all__'

@@ -32,6 +32,7 @@ class Command(BaseCommand):
                 o.message = 'test message'
                 o.url = 'test url'
                 o.price = 10
+                o.announcement = a
                 o.save()
 
                 m = OfferMessage()
