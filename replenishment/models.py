@@ -16,9 +16,9 @@ class Replanishment(models.Model):
         ('WM', 'WebMoney'),
     )
     
-    Replanishment_system = models.CharField(verbose_name='платежная система', max_length=150, choices=Replanishment_system_choices, default='VS')
+    Replanishment_system = models.CharField(verbose_name=_('платежная система'), max_length=150, choices=Replanishment_system_choices, default='VS')
     user_replanishment = models.ForeignKey(User)
-    ammount = models.FloatField(verbose_name='сумма')
-    created_at = models.DateTimeField(_('created at'), auto_now_add=True)
+    ammount = models.FloatField(verbose_name=_('сумма'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_(u'Дата создани'))
 
 

@@ -11,25 +11,30 @@ from image_cropping import ImageRatioField
 from image_cropping import ImageCropField
 from image_cropping.utils import get_backend
 
+
 class Profile(models.Model):
-    user=models.OneToOneField(User, primary_key=True)
-    first_name = models.CharField(_('first name'), max_length=50, blank=True)
-    last_name = models.CharField(_('last name'), max_length=50, blank=True)
-    middle_name = models.CharField(_('middle name'), max_length=50, blank=True)
-    date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
-    phone = models.CharField(_('phone'), max_length=50, blank=True)
-    site = models.URLField(_('site'), max_length=50, blank=True)
-    address = models.CharField(_('address'), max_length=150, blank=True)
-    rating = models.IntegerField(default=0, null=True, blank=True)
-    region = models.ForeignKey(Region, null=True, blank=True)
-    city = models.ForeignKey(City, null=True, blank=True)
-    account = models.DecimalField(default=0, max_digits=5, decimal_places=2, null=True, blank=True)
-    cropping = ImageRatioField('avatar', '100x100')
+    user = models.OneToOneField(User, primary_key=True, verbose_name=_(u'Пользователь'))
+    first_name = models.CharField(max_length=50, blank=True, verbose_name=_(u'Имя'))
+    last_name = models.CharField(max_length=50, blank=True, verbose_name=_(u'Фамилия'))
+    middle_name = models.CharField(max_length=50, blank=True, verbose_name=_(u'Отчество'))
+    date_joined = models.DateTimeField(auto_now_add=True, verbose_name=_(u'дата регистрации'))
+    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True, verbose_name=_(u'Аватарка'))
+    phone = models.CharField(max_length=50, blank=True, verbose_name=_(u'Номер телефона'))
+    site = models.URLField(max_length=50, blank=True, verbose_name=_(u'Сайт'))
+    address = models.CharField( max_length=150, blank=True, verbose_name=_(u'Адрес'))
+    rating = models.IntegerField(default=0, null=True, blank=True, verbose_name=_(u'Рейтинг'))
+    region = models.ForeignKey(Region, null=True, blank=True, verbose_name=_(u'Регион'))
+    city = models.ForeignKey(City, null=True, blank=True, verbose_name=_(u'Город'))
+    account = models.DecimalField(default=0, max_digits=5, decimal_places=2, null=True, blank=True,
+                                  verbose_name=_(u'Счет'))
+    cropping = ImageRatioField('avatar', '100x100', verbose_name=_(u'Кадрирование'))
+
     def __unicode__(self):
         return self.user.username
+
     def full_name(self):
         return "%s %s" % (self.first_name, self.middle_name)
+
     def thumbnail(self):
         try:
             thumbnail_url = get_backend().get_thumbnail_url(
@@ -43,22 +48,26 @@ class Profile(models.Model):
             )
             return '<img class="img-responsive" src="%s"  />' % thumbnail_url
         except:
-            return '<img class="img-responsive" src="/static/images/noimage.png" />'        
-    #USERNAME_FIELD = 'email'
-    #objects = MyUserManager()
+            return '<img class="img-responsive" src="/static/images/noimage.png" />'
+            # USERNAME_FIELD = 'email'
+            # objects = MyUserManager()
 
-def create_user_profile(sender, instance, created, **kwargs):  
-    if created:  
-       profile, created = Profile.objects.get_or_create(user=instance)  
 
-post_save.connect(create_user_profile, sender=User)     
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        profile, created = Profile.objects.get_or_create(user=instance)
+
+
+post_save.connect(create_user_profile, sender=User)
+
 
 class Testimonial(models.Model):
-    author = models.ForeignKey(Profile)
-    content = models.TextField()
-    created_at = models.DateTimeField(_('created at'), auto_now_add=True)
+    author = models.ForeignKey(Profile, verbose_name=_(u'Пользователь'))
+    content = models.TextField(verbose_name=_(u'Содержание'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_(u'Дата создания'))
+
 
 class Transaction(models.Model):
-    user = models.ForeignKey(Profile)
-    ammount = models.DecimalField(default=0, max_digits=5, decimal_places=2)
-    created_at = models.DateTimeField(_('created at'), auto_now_add=True)    
+    user = models.ForeignKey(Profile, verbose_name=_(u'Пользователь'))
+    ammount = models.DecimalField(default=0, max_digits=5, decimal_places=2, verbose_name=_(u'Количество'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_(u'Дата создания'))
