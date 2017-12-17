@@ -26,7 +26,7 @@
                     <a routerLink="/announcement/detail/{{a.id}}" href="#"><div innerHTML="{{ a.thumbnail }}"></div></a>
                 </figure>
                 <header class="job-header">
-                    <h4 class="job-title"><a href="#">{{ a.title }}</a></h4>
+                    <h4 class="job-title"><a routerLink="/announcement/detail/{{a.id}}" href="#">{{ a.title }}</a></h4>
                     <address class="job-address">{{ a.region }} {{ a.city }}</address>
                     <p class="job-time"><span>Добавлено: {{ a.created_at }}</span></p>
                 </header>

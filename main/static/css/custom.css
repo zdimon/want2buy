@@ -971,3 +971,24 @@
     margin-right: -50%;
     transform: translate(-50%, -50%)
 }
+
+.table {
+
+  width: 100%;
+}
+
+.table th{
+  
+    background: #107FC9;
+    color: white;
+    text-align: right;
+  }
+
+  .table th td {
+
+    background: #107FC9;
+    color: white;
+    text-align: right;
+    padding: 5px;
+
+  } 
