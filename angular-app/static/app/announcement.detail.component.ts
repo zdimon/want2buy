@@ -22,7 +22,7 @@ export class AnnouncementDetailComponent {
         this.busy = this._service.getAnnoncement(this.route.snapshot.params['announcement_id']).subscribe(
           (data) => {
             this.announcement = data; 
-            console.log();
+            console.log(this.announcement);
           }
     
         );
