@@ -27,7 +27,7 @@ from catalog.views import catalog_main, catalog_sub, catalog_sub_sub, annoncemen
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^admin/', admin.site.urls),
-    url(r'^login/$', auth_views.LoginView.as_view(), name='login'),
+    url(r'^accounts/login/$', auth_views.LoginView.as_view(), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'), 
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
     url(r'^password_reset/done/$', auth_views.password_reset_done, name='password_reset_done'),

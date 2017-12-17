@@ -1,6 +1,7 @@
 (function () {
-    'use strict';
 
+    'use strict';
+/*
     $('ul.header-menu li')
         .click(function(){
             window.sessionStorage.currentMenuItem = this.id;
@@ -62,4 +63,5 @@
         .click(dropdown_open_close);
     $(window)
         .load(dropdown_memory);
+*/        
 })();

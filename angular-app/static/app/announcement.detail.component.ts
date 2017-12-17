@@ -3,8 +3,8 @@ import { Announcement } from './models/announcement'
 
 @Component({
   selector: 'announcement',
-  templateUrl: '/static/templates/announcement/new_announcement_list.html'
+  templateUrl: '/static/templates/announcement/announcement_detail.html'
 })
-export class NewAnnouncementTableComponent {
+export class AnnouncementDetailComponent {
   @Input() announcements: Announcement[];
 }

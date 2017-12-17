@@ -5,11 +5,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './router.module';
 import { HttpModule } from '@angular/http';
-import { NewAnnouncementTableComponent } from './new.announcement.table.component'
 import { AnnouncementService } from './service.module'
 import { ActiveAnnouncementsComponent } from './active.announcements.component'
 import {BusyModule, BusyConfig} from 'angular2-busy';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { AnnouncementDetailComponent } from './announcement.detail.component'
 
 @NgModule({
 declarations: [
@@ -17,7 +17,7 @@ declarations: [
   AppComponent,
   EditAnnouncementComponent,
   IndexComponent,
-  NewAnnouncementTableComponent,
+  AnnouncementDetailComponent,
   ActiveAnnouncementsComponent
 ],
 imports: [ 

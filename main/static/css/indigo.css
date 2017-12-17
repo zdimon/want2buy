@@ -2517,7 +2517,7 @@ input[type="submit"]:hover {
 
 .header-links {
   font-weight: 600;
-  display:none;
+  
 }
 
 @media (max-width: 600px) {

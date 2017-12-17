@@ -23,6 +23,7 @@ class NewAnnoncementSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewAnnouncement
         fields = (
+                'id',
                 'title', 
                 'user', 
                 'category', 
@@ -63,6 +64,7 @@ class AnnoncementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Announcement
         fields = (
+                'id',
                 'title', 
                 'user', 
                 'category', 
