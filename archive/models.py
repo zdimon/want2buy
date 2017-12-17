@@ -49,11 +49,11 @@ class AnnouncementBase(models.Model):
     new_city = models.CharField(max_length=250, null=True, blank=True, verbose_name=_(u'Новый город'))
     info = models.TextField(null=True, blank=True, verbose_name=_(u'Информация'))
     photo = models.ImageField(upload_to='announcements/', null=True, blank=True, verbose_name=_(u'Фото'))
-    created_at = models.DateTimeField(_('created at'), auto_now_add=True, verbose_name=_(u'дата создания'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_(u'дата создания'))
     cropping = ImageRatioField('photo', '150x150', verbose_name=_(u'Кадрирование'))
     is_paid = models.BooleanField(default=False, verbose_name=_(u'Оплачиваемое'))
-    date_expire = models.DateField(_('Date expire'), null=True, blank=True, verbose_name=_(u'Дата окончания'))
-    date_paid_expire = models.DateField(_('Date paid expire'), null=True, blank=True, verbose_name=_(u'Дата окончания оплаты'))
+    date_expire = models.DateField(null=True, blank=True, verbose_name=_(u'Дата окончания'))
+    date_paid_expire = models.DateField(null=True, blank=True, verbose_name=_(u'Дата окончания оплаты'))
     
     def get_absolute_url(self):
         return reverse('annoncement_detail', kwargs={'slug': str(self.id)})
