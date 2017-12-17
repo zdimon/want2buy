@@ -32,5 +32,13 @@ import { Announcement, AnnouncementPager } from './models/announcement';
         .map((res:Response) => res.json())
         
     }
+
+    public getAnnoncement(id): any { 
+        
+        return this.http
+        .get('/api/announcement/detail/'+id)
+        .map((res:Response) => res.json())
+        
+    }    
     
  } 
