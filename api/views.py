@@ -47,15 +47,23 @@ def categories(request):
 @json_view
 def announcement_detail(request, id):
     if len(Announcement.objects.filter(id=id)) != 0:
-        tmp = json.loads(serializers.serialize('json', Announcement.objects.filter(id=id)))[0]['fields']
-        out = {'user_id': tmp['user'], 'title': tmp['title'], 'category': Category.objects.get(id=tmp['category']).name,
-               'sub_category': SubCategory.objects.get(id=tmp['sub_category']).name,
-               'sub_sub_category': SubSubCategory.objects.get(id=tmp['sub_sub_category']).name,
-               'new_category': tmp['new_category'], 'new_bu': tmp['new_bu'], 'opt_roznica': tmp['opt_roznica'],
-               'type': tmp['type'], 'once': tmp['once'], 'price': tmp['price'], 'amount': tmp['ammount'],
-               'city': City.objects.get(id=tmp['city']).name, 'photo': Announcement.objects.get(id=id).photo.url,
-               'created_at': tmp['created_at'], 'is_paid': tmp['is_paid'], 'expire': tmp['date_expire'],
-               'paid_expire': tmp['date_paid_expire'], 'offers': []}
+        a = Announcement.objects.filter(id=id)[0]
+        try:
+            subsub = a.sub_sub_category.name
+        except AttributeError:
+            subsub = None
+        try:
+            sub = a.sub_category.name
+        except AttributeError:
+            sub = None
+        out = {'user_id': a.user_id, 'title': a.title, 'category': a.category.name,
+               'sub_category': sub,
+               'sub_sub_category': subsub,
+               'new_category': a.new_category, 'new_bu': a.new_bu, 'opt_roznica': a.opt_roznica,
+               'type': a.type, 'once': a.once, 'price': a.price, 'amount': a.ammount,
+               'city': a.city.name, 'photo': a.photo.url,
+               'created_at': a.created_at, 'is_paid': a.is_paid, 'expire': a.date_expire,
+               'paid_expire': a.date_paid_expire, 'offers': []}
         offers = Offer.objects.filter(announcement_id=id)
         _offers = []
         if len(offers) != 0:
