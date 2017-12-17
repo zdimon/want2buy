@@ -52,8 +52,12 @@ def announcement_detail(request, id):
             subsub = a.sub_sub_category.name
         except AttributeError:
             subsub = None
+        try:
+            sub = a.sub_category.name
+        except AttributeError:
+            sub = None
         out = {'user_id': a.user_id, 'title': a.title, 'category': a.category.name,
-               'sub_category': a.sub_category.name,
+               'sub_category': sub,
                'sub_sub_category': subsub,
                'new_category': a.new_category, 'new_bu': a.new_bu, 'opt_roznica': a.opt_roznica,
                'type': a.type, 'once': a.once, 'price': a.price, 'amount': a.ammount,
