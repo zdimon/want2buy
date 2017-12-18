@@ -16,7 +16,9 @@ export class AnnouncementDetailComponent {
   busy: Subscription;
   id: number;
   public messageForm = this.fb.group({
-    message: ["", Validators.required]
+    message: ["", Validators.required],
+    price: [""],
+    file: [""]
   });
 
   constructor(private _service: AnnouncementService, private route: ActivatedRoute, public fb: FormBuilder) { }

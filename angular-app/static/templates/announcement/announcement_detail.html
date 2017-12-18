@@ -47,7 +47,8 @@
                           </th>
                         -->
                           <tr *ngFor="let o of announcement.offers" [class.current-row]="o.id == current_offer.id">
-                             <td  [class.current-row]="o.id == current_offer.id"><a (click)="selectOffer(o.id)" class="pointer"> {{ o.user.name }} </a></td> 
+                            <td><span class="fa fa-user"></span></td> 
+                            <td  [class.current-row]="o.id == current_offer.id"><a (click)="selectOffer(o.id)" class="pointer"> {{ o.user.name }} </a></td> 
                              <td>{{ o.price }} грн.</td> 
                              <td>сообщений {{ o.cnt_messages }}</td>
                           </tr>
@@ -120,13 +121,30 @@
                     <form [formGroup]="messageForm" (ngSubmit)="doSaveMessage($event)" method="post" class="comment-form" >
                         
                         <div class="row comment-form-comment">
-                            <div class="col-lg-2">
-                                <label for="comment">Ответить</label>
+                            <div class="col-lg-3">
+                                <label for="comment">Цена</label>
                             </div>
-                            <div class="col-lg-10">
-                                <textarea id="comment" formControlName="message" placeholder="Сообщение"></textarea>
+                            <div class="col-lg-3">
+                                <input type="text" formControlName="price" />
                             </div>
+                            <div class="col-lg-3">
+                                    <label for="comment">Файл</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input formControlName="file" type="file" />
+                                </div>
                         </div>
+
+                        <div class="row comment-form-comment">
+                                <div class="col-lg-2">
+                                    <label for="comment">Ответить</label>
+                                </div>
+                                <div class="col-lg-10">
+                                    <textarea id="comment" formControlName="message" placeholder="Сообщение"></textarea>
+                                </div>
+                        </div>
+
+
                         <div class="row">
                             <div class="col-lg-2"></div>
                             <div class="col-lg-10 text-right">
