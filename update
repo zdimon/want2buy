@@ -15,5 +15,5 @@ if [ ! -f 'main/static/js/config.js' ]; then
 fi
 cd main/static
 ln -s ../../node_modules node_modules
-
+tsc
 
