@@ -17,7 +17,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 class RegForm(RegistrationFormUniqueEmail):
@@ -85,5 +85,6 @@ def registration_done(request):
 def activation_done(request):
     return render(request, 'account/activate.html')
 
+@login_required
 def dashboard(request):
     return render(request, 'account/dashboard.html')

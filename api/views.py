@@ -43,9 +43,9 @@ def categories(request):
         out = cache.get('categories')
     return out
 
-
 @json_view
 def announcement_detail(request, id):
+
     if len(Announcement.objects.filter(id=id)) != 0:
         a = Announcement.objects.filter(id=id)[0]
         try:
@@ -57,6 +57,9 @@ def announcement_detail(request, id):
         except AttributeError:
             sub = None
         out = {
+               'current_user': {
+                   'name': request.user.profile.full_name
+               }, 
                'id': a.id,
                'thumbnail': a.get_thumbnail_url(),
                'user_id': a.user_id,

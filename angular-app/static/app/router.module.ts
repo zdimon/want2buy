@@ -6,6 +6,7 @@ import { IndexComponent } from './index.component'
 import { ActiveAnnouncementsComponent } from './active.announcements.component'
 import { OfferListComponent } from './offer.list.component'; 
 import { OfferDetailComponent } from './offer.detail.component';
+import { UserDetailComponent } from './user.detail.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'announcements', pathMatch: 'full' }, 
@@ -15,6 +16,8 @@ const routes: Routes = [
   { path: 'announcements', component: ActiveAnnouncementsComponent },
   { path: 'offer/list', component: OfferListComponent },
   { path: 'offer/detail/:offer_id', component: OfferDetailComponent },
+  { path: 'user/detail/:user_id', component: UserDetailComponent },
+
 
 ];
 

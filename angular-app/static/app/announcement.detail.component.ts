@@ -11,7 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AnnouncementDetailComponent {
   
-  announcement: any = {'offers':[]};
+  announcement: any = {'offers':[], current_user: {}};
   current_offer: any = {user: {}};
   busy: Subscription;
   id: number;
@@ -38,19 +38,25 @@ export class AnnouncementDetailComponent {
   doSaveMessage(event) {
     //console.log(event);
     //console.log(this.messageForm.value);
-    this.current_offer.messages.push(
-      {
-        'user': {
-          'name': 'bla bla',
-          'thumbnail': '/static/images/nouser.png'
-        },
-        'message': this.messageForm.value.message,
-        'created_at': '2018-01-01'
-      }
-    );
+    let obj_message = {
+      'user': {
+        'name': this.announcement.current_user.name,
+        'thumbnail': '/static/images/nouser.png'
+      },
+      'message': this.messageForm.value.message,
+      'created_at': '2018-01-01'
+    };
+    this.current_offer.messages.push(obj_message);
     this.messageForm.reset({
       'message': ''
     });
+
+    this.busy = this._service.saveMessage(obj_message).subscribe(
+      function (data) {
+        console.log(data);
+      }
+    );
+
   }
 
   ngOnInit() {

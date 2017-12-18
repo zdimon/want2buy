@@ -40,5 +40,21 @@ import { Announcement, AnnouncementPager } from './models/announcement';
         .map((res:Response) => res.json())
         
     }    
+
+    public getUser(id): any { 
+        
+        return this.http
+        .get('/api/user/detail/'+id)
+        .map((res:Response) => res.json())
+        
+    }     
+
+    public saveMessage(obj): any { 
+        
+        return this.http
+        .post('/api/offer/save/message/',obj)
+        .map((res:Response) => res.json())
+        
+    }     
     
  } 
