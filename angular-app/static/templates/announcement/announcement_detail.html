@@ -141,6 +141,10 @@
                                 </div>
                                 <div class="col-lg-10">
                                     <textarea id="comment" formControlName="message" placeholder="Сообщение"></textarea>
+                                    <small *ngIf="!messageForm.controls.message.valid" class=" red text-danger">
+                                            Поле обязательно!
+                                    </small>
+
                                 </div>
                         </div>
 
@@ -148,7 +152,7 @@
                         <div class="row">
                             <div class="col-lg-2"></div>
                             <div class="col-lg-10 text-right">
-                                <input name="submit" type="submit" id="submit" value="Comment">
+                                <input name="submit" [disabled]="!messageForm.valid" type="submit" id="submit" value="Сохранить">
                             </div>
                         </div>
                     </form>

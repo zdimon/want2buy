@@ -86,7 +86,7 @@ def announcement_detail(request, id):
                 user_obj = {
                     'name': user.full_name,
                     'id': user.user_id,
-                    'thumbnail': user.thumbnail_url(),
+                    'thumbnail': user.get_thumbnail_url(),
                     'rating': user.rating
                 }
                 messages = i.offermessage_set.all()
@@ -95,7 +95,7 @@ def announcement_detail(request, id):
                     muser_obj = {
                         'name': m.user.profile.full_name,
                         'id': m.user.profile.user_id,
-                        'thumbnail': m.user.profile.thumbnail_url(),
+                        'thumbnail': m.user.profile.get_thumbnail_url(),
                         'rating': m.user.profile.rating
                     }
                     mesobj.append({

@@ -2,12 +2,12 @@
 {% load i18n %}
 {% load widget_tweaks %}
 {% block js_lib %} {{ form.media }} {% endblock %}
-{% block content %}
-{% load cropping %}
-
 {% block js_post %}
-<script src="/static/js/announcement_form.js"></script> 
+    <script src="/static/js/announcement_form.js"></script> 
 {% endblock %}
+{% load cropping %}
+{% block content %}
+
 
 
 <div class="container main-container">

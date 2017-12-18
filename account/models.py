@@ -36,7 +36,7 @@ class Profile(models.Model):
     def full_name(self):
         return "%s %s" % (self.first_name, self.middle_name)
 
-    def thumbnail_url(self):
+    def get_thumbnail_url(self):
         try:
             thumbnail_url = get_backend().get_thumbnail_url(
                 self.avatar,
@@ -45,14 +45,14 @@ class Profile(models.Model):
                     'box': self.cropping,
                     'crop': True,
                     'detail': True,
-                }
+                }   
             )
             return thumbnail_url
         except:
             return "/static/images/noimage.png"   
 
     def thumbnail(self):
-        return '<img class="img-responsive" src="%s"  />' % thumbnail_url()
+        return '<img class="img-responsive" src="%s"  />' % self.get_thumbnail_url()
         
 
 def create_user_profile(sender, instance, created, **kwargs):

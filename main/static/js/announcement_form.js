@@ -1,11 +1,12 @@
 $( document ).ready(function() {
     
 
+
     $.getJSON( "/api/regions", function( data ) {
         var regions = data;
-       
+   
         $('#id_region').on('change', function() {
-          
+   
             var arrayLength = regions.length;
             for (var i = 0; i < arrayLength; i++) {
                 if(parseInt(this.value)==parseInt(regions[i].id)){
