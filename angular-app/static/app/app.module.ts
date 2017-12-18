@@ -10,6 +10,7 @@ import { ActiveAnnouncementsComponent } from './active.announcements.component'
 import {BusyModule, BusyConfig} from 'angular2-busy';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { AnnouncementDetailComponent } from './announcement.detail.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 declarations: [
@@ -24,6 +25,8 @@ imports: [
   BrowserModule, 
   AppRoutingModule, 
   HttpModule, 
+  FormsModule,
+  ReactiveFormsModule,
   BusyModule.forRoot(
     new BusyConfig({
         message: 'Подождите идет загрузка...',

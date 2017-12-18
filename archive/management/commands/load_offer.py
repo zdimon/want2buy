@@ -22,8 +22,8 @@ class Command(BaseCommand):
         cnt = 0
         for a in Announcement.objects.all().order_by('-id'):
             cnt = cnt + 1
-            if cnt == 10:
-                break
+            #if cnt == 10:
+            #    break
             print 'Process announcement...%s' % a.id
             for u in User.objects.exclude(id=a.user_id):
                 print 'Saving .....'

@@ -32,10 +32,11 @@ class Profile(models.Model):
     def __unicode__(self):
         return self.user.username
 
+    @property
     def full_name(self):
         return "%s %s" % (self.first_name, self.middle_name)
 
-    def thumbnail(self):
+    def thumbnail_url(self):
         try:
             thumbnail_url = get_backend().get_thumbnail_url(
                 self.avatar,
@@ -46,12 +47,13 @@ class Profile(models.Model):
                     'detail': True,
                 }
             )
-            return '<img class="img-responsive" src="%s"  />' % thumbnail_url
+            return thumbnail_url
         except:
-            return '<img class="img-responsive" src="/static/images/noimage.png" />'
-            # USERNAME_FIELD = 'email'
-            # objects = MyUserManager()
+            return "/static/images/noimage.png"   
 
+    def thumbnail(self):
+        return '<img class="img-responsive" src="%s"  />' % thumbnail_url()
+        
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

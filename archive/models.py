@@ -92,7 +92,8 @@ class AnnouncementBase(models.Model):
                                self.category \
                                )
 
-    def thumbnail(self):
+
+    def get_thumbnail_url(self):
         try:
             thumbnail_url = get_backend().get_thumbnail_url(
                 self.photo,
@@ -103,10 +104,13 @@ class AnnouncementBase(models.Model):
                     'detail': True,
                 }
             )
-            return '<img class="img-responsive" src="%s"  />' % thumbnail_url
+            return thumbnail_url
         except:
-            return '<img class="img-responsive" src="/static/images/noimage.png" />'
+            return '/static/images/noimage.png'    
 
+    def thumbnail(self):
+        return '<img class="img-responsive" src="%s"  />' % self.get_thumbnail_url()
+       
     def thumbnail_big(self):
         try:
             thumbnail_url = get_backend().get_thumbnail_url(
@@ -164,6 +168,6 @@ class OfferMessage(models.Model):
     message = models.TextField(verbose_name=_(u'Сообщение'))
     file = models.FileField(verbose_name=_(u'Аттачмент'), upload_to='offer_files/', null=True, blank=True)
     user = models.ForeignKey(User, verbose_name=_(u'Автор'), null=True, blank=True)
-
+    created_at = models.DateTimeField(verbose_name=_(u'Когда создано?'), auto_now_add=True)
     def __unicode__(self):
         return self.message

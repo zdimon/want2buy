@@ -56,13 +56,19 @@ def announcement_detail(request, id):
             sub = a.sub_category.name
         except AttributeError:
             sub = None
-        out = {'user_id': a.user_id, 'title': a.title, 'category': a.category.name,
+        out = {
+               'id': a.id,
+               'thumbnail': a.get_thumbnail_url(),
+               'user_id': a.user_id,
+               'cnt_offers': a.offer_set.all().count(), 
+               'title': a.title, 
+               'category': a.category.name,
                'sub_category': sub,
                'sub_sub_category': subsub,
-               'new_category': a.new_category, 'new_bu': a.new_bu, 'opt_roznica': a.opt_roznica,
+               'new_category': a.new_category, 'new_bu': a.get_new_bu_display(), 'opt_roznica': a.get_opt_roznica_display(),
                'type': a.type, 'once': a.once, 'price': a.price, 'amount': a.ammount,
                'city': a.city.name, 'photo': a.photo.url,
-               'created_at': a.created_at, 'is_paid': a.is_paid, 'expire': a.date_expire,
+               'created_at': a.created_at.strftime('%d %b %Y %H:%M'), 'is_paid': a.is_paid, 'expire': a.date_expire,
                'paid_expire': a.date_paid_expire, 'offers': []}
         offers = Offer.objects.filter(announcement_id=id)
         _offers = []
@@ -76,14 +82,39 @@ def announcement_detail(request, id):
                     file = i.file.url
                 except ValueError:
                     file = None
-                _offers.append({'user_id': i.user_id,
+                user = i.user.profile
+                user_obj = {
+                    'name': user.full_name,
+                    'id': user.user_id,
+                    'thumbnail': user.thumbnail_url(),
+                    'rating': user.rating
+                }
+                messages = i.offermessage_set.all()
+                mesobj = []
+                for m in messages:
+                    muser_obj = {
+                        'name': m.user.profile.full_name,
+                        'id': m.user.profile.user_id,
+                        'thumbnail': m.user.profile.thumbnail_url(),
+                        'rating': m.user.profile.rating
+                    }
+                    mesobj.append({
+                        'user': muser_obj,
+                        'message': m.message,
+                        'new_price': m.new_price,
+                        'created_at': m.created_at.strftime('%d %b %Y %H:%M')
+                    })
+                _offers.append({'user': user_obj,
+                                'id': i.id,
                                 'message': i.message,
+                                'messages': mesobj,
+                                'cnt_messages': i.offermessage_set.all().count(),
                                 'url': i.url,
                                 'image': image,
                                 'file': file,
                                 'price': i.price,
                                 'status': i.status,
-                                'created_at': i.created_at})
+                                'created_at': i.created_at.strftime('%d %b %Y %H:%M')})
         out.update({'offers': _offers})
     else:
         out = {'message': 'No such element'}
