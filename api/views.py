@@ -5,12 +5,12 @@ from jsonview.decorators import json_view
 from django.core.cache import cache
 from catalog.models import Region, City, Category, SubCategory, SubSubCategory
 from archive.models import Announcement, NewAnnouncement, Offer
-from django.core import serializers
-import json
 from rest_framework import viewsets
 from .serializers import NewAnnoncementSerializer, AnnoncementSerializer
+from json_auth import json_auth
 
 
+@json_auth
 @json_view
 def regions(request):
     if not cache.get('regions'):
@@ -26,6 +26,7 @@ def regions(request):
     return out
 
 
+@json_auth
 @json_view
 def categories(request):
     if not cache.get('categories'):
@@ -43,9 +44,10 @@ def categories(request):
         out = cache.get('categories')
     return out
 
+
+@json_auth
 @json_view
 def announcement_detail(request, id):
-
     if len(Announcement.objects.filter(id=id)) != 0:
         a = Announcement.objects.filter(id=id)[0]
         try:
@@ -57,22 +59,23 @@ def announcement_detail(request, id):
         except AttributeError:
             sub = None
         out = {
-               'current_user': {
-                   'name': request.user.profile.full_name
-               }, 
-               'id': a.id,
-               'thumbnail': a.get_thumbnail_url(),
-               'user_id': a.user_id,
-               'cnt_offers': a.offer_set.all().count(), 
-               'title': a.title, 
-               'category': a.category.name,
-               'sub_category': sub,
-               'sub_sub_category': subsub,
-               'new_category': a.new_category, 'new_bu': a.get_new_bu_display(), 'opt_roznica': a.get_opt_roznica_display(),
-               'type': a.type, 'once': a.once, 'price': a.price, 'amount': a.ammount,
-               'city': a.city.name, 'photo': a.photo.url,
-               'created_at': a.created_at.strftime('%d %b %Y %H:%M'), 'is_paid': a.is_paid, 'expire': a.date_expire,
-               'paid_expire': a.date_paid_expire, 'offers': []}
+            'current_user': {
+                'name': request.user.profile.full_name
+            },
+            'id': a.id,
+            'thumbnail': a.get_thumbnail_url(),
+            'user_id': a.user_id,
+            'cnt_offers': a.offer_set.all().count(),
+            'title': a.title,
+            'category': a.category.name,
+            'sub_category': sub,
+            'sub_sub_category': subsub,
+            'new_category': a.new_category, 'new_bu': a.get_new_bu_display(),
+            'opt_roznica': a.get_opt_roznica_display(),
+            'type': a.type, 'once': a.once, 'price': a.price, 'amount': a.ammount,
+            'city': a.city.name, 'photo': a.photo.url,
+            'created_at': a.created_at.strftime('%d %b %Y %H:%M'), 'is_paid': a.is_paid, 'expire': a.date_expire,
+            'paid_expire': a.date_paid_expire, 'offers': []}
         offers = Offer.objects.filter(announcement_id=id)
         _offers = []
         if len(offers) != 0:
