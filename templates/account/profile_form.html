@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load widget_tweaks %}
-{% block js_lib %} {{ form.media }} {% endblock %}
+
 {% block js_post %}
-    <script src="/static/js/announcement_form.js"></script> 
+<link href="/static/image_cropping/css/jquery.Jcrop.min.css" type="text/css" media="all" rel="stylesheet" />
+<link href="/static/image_cropping/css/image_cropping.css" type="text/css" media="all" rel="stylesheet" />
+
+     
+    <script type="text/javascript" src="/static/image_cropping/js/jquery.Jcrop.min.js"></script>
+    <script type="text/javascript" src="/static/js/my_image_cropping.js"></script> 
+    <script src="/static/js/announcement_form.js"></script>
 {% endblock %}
 {% load cropping %}
 {% block content %}
