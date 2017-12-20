@@ -29,7 +29,7 @@ class Command(BaseCommand):
             Offer.objects.all().delete()
 
         cnt = Announcement.objects.all().count()
-        if cnt>0:
+        if cnt==0:
 
             print 'Start loading..'
             cnt = 0

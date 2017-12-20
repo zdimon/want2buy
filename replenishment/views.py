@@ -24,7 +24,7 @@ def replenishment_page(request):
         if form.is_valid():
             amount = request.POST['ammount']
             rep = Replanishment()
-            rep.amount = amount
+            rep.ammount = amount
             rep.user_replanishment = request.user
             rep.save()
             request.session['payment_id'] = rep.id
