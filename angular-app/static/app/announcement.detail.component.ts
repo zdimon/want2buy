@@ -41,6 +41,7 @@ export class AnnouncementDetailComponent {
     let obj_message = {
       'user': {
         'name': this.announcement.current_user.name,
+        'price': this.messageForm.value.price,
         'thumbnail': '/static/images/nouser.png'
       },
       'message': this.messageForm.value.message,

@@ -10,6 +10,20 @@ from rest_framework import viewsets
 from api.serializers import OfferSerializer
 from rest_framework.permissions import IsAuthenticated
 from api.json_auth import json_auth
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+@csrf_exempt
+@json_auth
+@json_view
+def offer_save_message(request):
+    obj = json.loads(request.body)
+    print obj
+    #m = OfferMessage()
+    #m.offer = 
+    #m.save()
+    print obj['user']['name']
+    return {'status': 0, 'message': 'Success'}
 
 @json_auth
 @json_view
