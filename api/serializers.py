@@ -82,3 +82,16 @@ class AnnoncementSerializer(serializers.ModelSerializer):
                 'thumbnail'
                 )
         #fields = '__all__'
+
+
+class OfferSerializer(serializers.ModelSerializer):
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 20
+    user = serializers.StringRelatedField()
+    class Meta:
+        model = Offer
+        fields = (
+                'id',
+                'user'
+                )

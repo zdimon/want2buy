@@ -3,45 +3,29 @@ from __future__ import unicode_literals
 
 from jsonview.decorators import json_view
 from django.core.cache import cache
-from catalog.models import Region, City, Category, SubCategory, SubSubCategory
-from archive.models import Announcement, NewAnnouncement, Offer
+from archive.models import *
 from django.core import serializers
 import json
 from rest_framework import viewsets
-from .serializers import NewAnnoncementSerializer, AnnoncementSerializer
+from api.serializers import *
+
+class NewAnnouncementViewSet(viewsets.ModelViewSet):
+    queryset = NewAnnouncement.objects.all()
+    serializer_class = NewAnnoncementSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return NewAnnouncement.objects.filter(user=user)
 
 
-@json_view
-def regions(request):
-    if not cache.get('regions'):
-        out = []
-        for r in Region.objects.all():
-            reg = {'id': r.id, 'name': r.name, 'cities': []}
-            for c in City.objects.filter(region=r):
-                reg['cities'].append({'id': c.id, 'name': c.name, 'lat': c.lat, 'lon': c.lon})
-            out.append(reg)
-            cache.set('regions', out, 60 * 60 * 24)
-    else:
-        out = cache.get('regions')
-    return out
+class AnnouncementViewSet(viewsets.ModelViewSet):
+    serializer_class = AnnoncementSerializer
+    queryset = Announcement.objects.all()
 
+    def get_queryset(self):
+        user = self.request.user
+        return Announcement.objects.filter(user=user)
 
-@json_view
-def categories(request):
-    if not cache.get('categories'):
-        out = []
-        for c in Category.objects.all():
-            cat = {'id': c.id, 'name': c.name, 'sub_category': []}
-            for s in SubCategory.objects.filter(parent_category=c):
-                sub = {'id': s.id, 'name': s.name, 'category_id': s.parent_category.id, 'sub_category': []}
-                for ss in SubSubCategory.objects.filter(parent_sub_category=s):
-                    sub['sub_category'].append({'id': ss.id, 'name': ss.name})
-                cat['sub_category'].append(sub)
-            out.append(cat)
-        cache.set('categories', out, 60 * 60 * 24)
-    else:
-        out = cache.get('categories')
-    return out
 
 @json_view
 def announcement_detail(request, id):
@@ -122,21 +106,3 @@ def announcement_detail(request, id):
     else:
         out = {'message': 'No such element'}
     return out
-
-
-class NewAnnouncementViewSet(viewsets.ModelViewSet):
-    queryset = NewAnnouncement.objects.all()
-    serializer_class = NewAnnoncementSerializer
-
-    def get_queryset(self):
-        user = self.request.user
-        return NewAnnouncement.objects.filter(user=user)
-
-
-class AnnouncementViewSet(viewsets.ModelViewSet):
-    serializer_class = AnnoncementSerializer
-    queryset = Announcement.objects.all()
-
-    def get_queryset(self):
-        user = self.request.user
-        return Announcement.objects.filter(user=user)

@@ -139,6 +139,7 @@ class NewAnnouncement(AnnouncementBase):
 class Announcement(AnnouncementBase):
     pass
 
+#Offer.objects.raw('delete * from archive_offer')
 
 class Offer(models.Model):
     status = (
@@ -148,7 +149,8 @@ class Offer(models.Model):
         ('closed', _('Закрытое')),
     )
 
-    user = models.ForeignKey(User, verbose_name=_(u'Автор'))
+    seller = models.ForeignKey(User, related_name='seller', verbose_name=_(u'Продавец'))
+    buyer = models.ForeignKey(User, related_name='buyer', verbose_name=_(u'Покупатель'))
     announcement = models.ForeignKey(Announcement, verbose_name=_(u'Объявление'))
     message = models.TextField(verbose_name=_(u'Сообщение'))
     url = models.CharField(verbose_name=_(u'Ссылка на сайт'), max_length=250, null=True, blank=True)
