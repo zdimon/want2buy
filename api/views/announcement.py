@@ -3,16 +3,25 @@ from __future__ import unicode_literals
 
 from jsonview.decorators import json_view
 from django.core.cache import cache
+<<<<<<< HEAD:api/views/announcement.py
 from archive.models import *
 from django.core import serializers
 import json
 from rest_framework import viewsets
 from api.serializers import *
+=======
+from catalog.models import Region, City, Category, SubCategory, SubSubCategory
+from archive.models import Announcement, NewAnnouncement, Offer
+from rest_framework import viewsets
+from .serializers import NewAnnoncementSerializer, AnnoncementSerializer
+from json_auth import json_auth
+>>>>>>> 069b9ff50e37a413e66f0aebab5b6f030c26bbbc:api/views.py
 
 class NewAnnouncementViewSet(viewsets.ModelViewSet):
     queryset = NewAnnouncement.objects.all()
     serializer_class = NewAnnoncementSerializer
 
+<<<<<<< HEAD:api/views/announcement.py
     def get_queryset(self):
         user = self.request.user
         return NewAnnouncement.objects.filter(user=user)
@@ -26,10 +35,46 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
         user = self.request.user
         return Announcement.objects.filter(user=user)
 
+=======
+@json_auth
+@json_view
+def regions(request):
+    if not cache.get('regions'):
+        out = []
+        for r in Region.objects.all():
+            reg = {'id': r.id, 'name': r.name, 'cities': []}
+            for c in City.objects.filter(region=r):
+                reg['cities'].append({'id': c.id, 'name': c.name, 'lat': c.lat, 'lon': c.lon})
+            out.append(reg)
+            cache.set('regions', out, 60 * 60 * 24)
+    else:
+        out = cache.get('regions')
+    return out
 
+
+@json_auth
+@json_view
+def categories(request):
+    if not cache.get('categories'):
+        out = []
+        for c in Category.objects.all():
+            cat = {'id': c.id, 'name': c.name, 'sub_category': []}
+            for s in SubCategory.objects.filter(parent_category=c):
+                sub = {'id': s.id, 'name': s.name, 'category_id': s.parent_category.id, 'sub_category': []}
+                for ss in SubSubCategory.objects.filter(parent_sub_category=s):
+                    sub['sub_category'].append({'id': ss.id, 'name': ss.name})
+                cat['sub_category'].append(sub)
+            out.append(cat)
+        cache.set('categories', out, 60 * 60 * 24)
+    else:
+        out = cache.get('categories')
+    return out
+>>>>>>> 069b9ff50e37a413e66f0aebab5b6f030c26bbbc:api/views.py
+
+
+@json_auth
 @json_view
 def announcement_detail(request, id):
-
     if len(Announcement.objects.filter(id=id)) != 0:
         a = Announcement.objects.filter(id=id)[0]
         try:
@@ -41,22 +86,23 @@ def announcement_detail(request, id):
         except AttributeError:
             sub = None
         out = {
-               'current_user': {
-                   'name': request.user.profile.full_name
-               }, 
-               'id': a.id,
-               'thumbnail': a.get_thumbnail_url(),
-               'user_id': a.user_id,
-               'cnt_offers': a.offer_set.all().count(), 
-               'title': a.title, 
-               'category': a.category.name,
-               'sub_category': sub,
-               'sub_sub_category': subsub,
-               'new_category': a.new_category, 'new_bu': a.get_new_bu_display(), 'opt_roznica': a.get_opt_roznica_display(),
-               'type': a.type, 'once': a.once, 'price': a.price, 'amount': a.ammount,
-               'city': a.city.name, 'photo': a.photo.url,
-               'created_at': a.created_at.strftime('%d %b %Y %H:%M'), 'is_paid': a.is_paid, 'expire': a.date_expire,
-               'paid_expire': a.date_paid_expire, 'offers': []}
+            'current_user': {
+                'name': request.user.profile.full_name
+            },
+            'id': a.id,
+            'thumbnail': a.get_thumbnail_url(),
+            'user_id': a.user_id,
+            'cnt_offers': a.offer_set.all().count(),
+            'title': a.title,
+            'category': a.category.name,
+            'sub_category': sub,
+            'sub_sub_category': subsub,
+            'new_category': a.new_category, 'new_bu': a.get_new_bu_display(),
+            'opt_roznica': a.get_opt_roznica_display(),
+            'type': a.type, 'once': a.once, 'price': a.price, 'amount': a.ammount,
+            'city': a.city.name, 'photo': a.photo.url,
+            'created_at': a.created_at.strftime('%d %b %Y %H:%M'), 'is_paid': a.is_paid, 'expire': a.date_expire,
+            'paid_expire': a.date_paid_expire, 'offers': []}
         offers = Offer.objects.filter(announcement_id=id)
         _offers = []
         if len(offers) != 0:
