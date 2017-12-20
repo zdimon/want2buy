@@ -13,6 +13,7 @@ export class OfferDetailComponent {
   
   offer: any = {};
   busy: Subscription;
+  id: number;
  
   public messageForm = this.fb.group({
     message: ["", Validators.required]
@@ -31,7 +32,13 @@ export class OfferDetailComponent {
 
   ngOnInit() {
 
-    
+
+      this.busy = this._service.getOffer(this.route.snapshot.params['offer_id']).subscribe(
+        (data) => {
+          this.offer = data;
+          console.log(this.offer);
+        }
+      );       
         
         
        }  

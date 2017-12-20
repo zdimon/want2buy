@@ -2,6 +2,7 @@ from django.conf.urls import url, include
 from archive.models import *
 from rest_framework import routers, serializers, viewsets
 from .utils import  ChoicesSerializerField
+from account.models import Profile
 
 # Serializers define the API representation.
 class NewAnnoncementSerializer(serializers.ModelSerializer):
@@ -84,14 +85,41 @@ class AnnoncementSerializer(serializers.ModelSerializer):
         #fields = '__all__'
 
 
+class UserSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Profile
+        fields = (
+                'user_id',
+                'first_name', 
+                'last_name', 
+                )
+
+
 class OfferSerializer(serializers.ModelSerializer):
     page_size = 20
     page_size_query_param = 'page_size'
     max_page_size = 20
-    user = serializers.StringRelatedField()
+    seller = UserSerializer(many=False)
+    buyer = serializers.StringRelatedField()
+    announcement = serializers.StringRelatedField()
+    created_at = serializers.DateTimeField(format='iso-8601')
+
     class Meta:
         model = Offer
         fields = (
                 'id',
-                'user'
+                'seller',
+                'buyer',
+                'buyer_id',
+                'message',
+                'price',
+                'created_at',
+                'announcement',
+                'url',
+                'image',
+                'file',
+                'status',
+                'announcement',
+                'announcement_id'
                 )

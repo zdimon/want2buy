@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Subscription} from 'rxjs';
-
+import { AnnouncementService } from './service.module'
 
 
 @Component({
@@ -12,7 +12,7 @@ export class OfferListComponent {
   pager = {};
   busy: Subscription;
 
-  constructor() { }
+  constructor(private _service: AnnouncementService) { }
 
   public goPage(page,limit){
     
@@ -21,15 +21,14 @@ export class OfferListComponent {
 
   ngOnInit() {
 
-    this.offers =[ {
-      'title': 'title',
-      'thumbnail': '<img src="/static/images/noimage.png" />',
-      'id': 12,
-      'region': 'Киеваский',
-      'city': 'Киев',
-      'created_at': '2018-01-01',
-      'price': 123
-    }];
+    this.busy = this._service.getOfferPage(10, 0).subscribe(
+      (data) => {
+        this.offers = data;
+        console.log(this.offers);
+      }
+    );    
+
+    
     
    }
 

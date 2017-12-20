@@ -152,3 +152,4 @@ REST_FRAMEWORK = {
 #LOGIN_REDIRECT_URL = 'login'
 
 from local import *
+DATE_FORMAT = 'iso-8601'

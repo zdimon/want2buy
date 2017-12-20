@@ -16,6 +16,6 @@ urlpatterns = [
     url(r'^regions$', regions),
     url(r'categories$', categories),
     url(r'announcement/detail/(?P<id>[0-9]+)$', announcement_detail),
-    url(r'order/detail/(?P<id>[0-9]+)$', offer_detail)
+    url(r'offer/detail/(?P<id>[0-9]+)$', offer_detail)
     
 ]

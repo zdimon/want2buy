@@ -3,25 +3,38 @@
     <div class="col-md-12">
 
 
-            <div class="alert alert-danger text-center" >
+            <div class="alert alert-danger text-center" *ngIf="offers.count == 0">
                     Заявки отсутствуют.
             </div>
             
-            <article class="job-item clearfix" *ngFor="let a of offers" >
-                    <figure class="job-figure">
-                        <a routerLink="/offer/detail/{{a.id}}" href="#"><div innerHTML="{{ a.thumbnail }}"></div></a>
-                    </figure>
-                    <header class="job-header">
-                        <h4 class="job-title"><a routerLink="/offer/detail/{{a.id}}" href="#">{{ a.title }}</a></h4>
-                        <address class="job-address">{{ a.region }} {{ a.city }}</address>
-                        <p class="job-time"><span>Добавлено: {{ a.created_at }}</span></p>
-                    </header>
-                    <div class="job-meta">
-                        <span class="job-price">{{ a.price }} грн.</span>
-                        
-                    </div>
-            </article>                
+
+            <div class="table-responsive">
+                <h4 class="title table-hover">Заявки продавцов</h4>
+                <table class="table">
+                <!---
+                  <th>
+                      <tr>
+                        <td>Автор</td>
+                        <td>Цена</td>
+                        <td>Сообщений</td>
+                    </tr>                                                                           
+                  </th>
+                -->
+                  <tr *ngFor="let o of offers.results">
+                    <td><a routerLink="/offer/detail/{{o.id}}" class="pointer"> {{ o.announcement }} </a></td> 
+                    <td> <a href="#"> {{ o.seller }} </a></td>
+                    <td>{{ o.price }} грн.</td> 
+                    <td>{{ o.created_at }}</td>
+                  </tr>
+                 
+                </table>
+                </div>            
+
+                  
                
     </div>
 </div>
+
+
+
 

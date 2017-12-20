@@ -3,25 +3,22 @@ from __future__ import unicode_literals
 
 from jsonview.decorators import json_view
 from django.core.cache import cache
-<<<<<<< HEAD:api/views/announcement.py
 from archive.models import *
 from django.core import serializers
 import json
 from rest_framework import viewsets
 from api.serializers import *
-=======
 from catalog.models import Region, City, Category, SubCategory, SubSubCategory
 from archive.models import Announcement, NewAnnouncement, Offer
 from rest_framework import viewsets
-from .serializers import NewAnnoncementSerializer, AnnoncementSerializer
-from json_auth import json_auth
->>>>>>> 069b9ff50e37a413e66f0aebab5b6f030c26bbbc:api/views.py
+from api.serializers import NewAnnoncementSerializer, AnnoncementSerializer
+from api.json_auth import json_auth
+
 
 class NewAnnouncementViewSet(viewsets.ModelViewSet):
     queryset = NewAnnouncement.objects.all()
     serializer_class = NewAnnoncementSerializer
 
-<<<<<<< HEAD:api/views/announcement.py
     def get_queryset(self):
         user = self.request.user
         return NewAnnouncement.objects.filter(user=user)
@@ -35,7 +32,7 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
         user = self.request.user
         return Announcement.objects.filter(user=user)
 
-=======
+
 @json_auth
 @json_view
 def regions(request):
@@ -69,7 +66,6 @@ def categories(request):
     else:
         out = cache.get('categories')
     return out
->>>>>>> 069b9ff50e37a413e66f0aebab5b6f030c26bbbc:api/views.py
 
 
 @json_auth

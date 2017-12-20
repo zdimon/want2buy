@@ -149,8 +149,8 @@ class Offer(models.Model):
         ('closed', _('Закрытое')),
     )
 
-    seller = models.ForeignKey(User, related_name='seller', verbose_name=_(u'Продавец'))
-    buyer = models.ForeignKey(User, related_name='buyer', verbose_name=_(u'Покупатель'))
+    seller = models.ForeignKey(User, related_name='seller', verbose_name=_(u'Продавец'), null=True, blank=True)
+    buyer = models.ForeignKey(User, related_name='buyer', verbose_name=_(u'Покупатель'), null=True, blank=True)
     announcement = models.ForeignKey(Announcement, verbose_name=_(u'Объявление'))
     message = models.TextField(verbose_name=_(u'Сообщение'))
     url = models.CharField(verbose_name=_(u'Ссылка на сайт'), max_length=250, null=True, blank=True)
