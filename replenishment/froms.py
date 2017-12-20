@@ -5,4 +5,4 @@ from replenishment.models import Replanishment
 class ReplanishmentForm(ModelForm):
     class Meta:
         model = Replanishment
-        fields = ['amount']
+        fields = ['ammount']

@@ -1,0 +1,40 @@
+<div [ngBusy]="busy"></div>
+<div class="row">
+    <div class="col-md-12">
+
+
+            <div class="alert alert-danger text-center" *ngIf="offers.count == 0">
+                    Заявки отсутствуют.
+            </div>
+            
+
+            <div class="table-responsive">
+                <h4 class="title table-hover">Заявки продавцов</h4>
+                <table class="table">
+                <!---
+                  <th>
+                      <tr>
+                        <td>Автор</td>
+                        <td>Цена</td>
+                        <td>Сообщений</td>
+                    </tr>                                                                           
+                  </th>
+                -->
+                  <tr *ngFor="let o of offers.results">
+                    <td><a routerLink="/offer/detail/{{o.id}}" class="pointer"> {{ o.announcement }} </a></td> 
+                    <td> <a href="#"> {{ o.seller.profile.full_name }} </a></td>
+                    <td>{{ o.price }} грн.</td> 
+                    <td>{{ o.created_at }}</td>
+                  </tr>
+                 
+                </table>
+                </div>            
+
+                  
+               
+    </div>
+</div>
+
+
+
+

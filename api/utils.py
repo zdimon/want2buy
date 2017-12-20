@@ -24,6 +24,8 @@ class CustomPagination(pagination.LimitOffsetPagination):
     def get_has_prev(self):
         if self.get_offset(self.request) == 0:
             return False
+        if self.get_current_page()==1:
+            return False
         else:
             return True
 

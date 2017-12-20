@@ -24,6 +24,10 @@ echo 'Loading data'
 ./manage.py load_categories
 ./manage.py load_city
 ./manage.py load_new_announcement
+./manage.py load_announcement
+./manage.py load_catalog_picture
+./manage.py load_offer
+
 npm install
 cd main/static
 ln -s ../../node_modules node_modules

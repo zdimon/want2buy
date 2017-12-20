@@ -32,5 +32,47 @@ import { Announcement, AnnouncementPager } from './models/announcement';
         .map((res:Response) => res.json())
         
     }
+
+    public getAnnoncement(id): any { 
+        
+        return this.http
+        .get('/api/announcement/detail/'+id)
+        .map((res:Response) => res.json())
+        
+    }    
+
+    public getUser(id): any { 
+        
+        return this.http
+        .get('/api/user/detail/'+id)
+        .map((res:Response) => res.json())
+        
+    }     
+
+    public saveMessage(obj): any { 
+        
+        return this.http
+        .post('/api/offer/save/message/',obj)
+        .map((res:Response) => res.json())
+        
+    }  
+    
+    
+    public getOfferPage(limit,offset): Observable<AnnouncementPager> { 
+        
+        return this.http
+        .get('/api/offer/?limit='+limit+'&offset='+offset)
+        .map((res:Response) => res.json())
+        
+    }    
+ 
+    public getOffer(id): any { 
+        
+        return this.http
+        .get('/api/offer/detail/'+id)
+        .map((res:Response) => res.json())
+        
+    }     
+
     
  } 

@@ -2516,7 +2516,9 @@ input[type="submit"]:hover {
   color: #a3d6f8; }
 
 .header-links {
-  font-weight: 600; }
+  font-weight: 600;
+  
+}
 
 @media (max-width: 600px) {
   .header-links {
@@ -2735,7 +2737,7 @@ input[type="submit"]:hover {
 .footer-menu, .footer-menu ul {
   list-style: none;
   padding: 0;
-  margin: 0; }
+  margin-top: 50px; }
 
 .footer-menu > li {
   display: inline-block;
@@ -3569,7 +3571,9 @@ input[type="submit"]:hover {
   margin: 0; }
 
 .comment-list .comment-body {
-  margin-bottom: 28px; }
+  margin-bottom: 28px; 
+  border-top: 1px solid #d7d7d7;
+}
 
 .comment-list .avatar {
   float: left;
@@ -3583,7 +3587,8 @@ input[type="submit"]:hover {
   display: table;
   padding: 15px 78px 0 31px;
   background-color: #fff;
-  border: 1px solid #d7d7d7; }
+  border: 0px solid #d7d7d7; 
+}
 
 .comment-list .comment-meta {
   float: left; }
@@ -3693,7 +3698,7 @@ input[type="submit"]:hover {
 
 /* Widgets */
 .widget {
-  margin-bottom: 58px; }
+  margin-bottom: 20px; }
 
 .widget:last-child {
   margin-bottom: 0; }
@@ -4387,3 +4392,19 @@ label.error:last-child {
   left: 5px;
   font-size: 9px;
   color: #fff; }
+
+.dropdown, #signin {
+  font-weight: 600;
+  float: right;
+text-transform: uppercase}
+
+@media (max-width: 600px) {
+  .dropdown, #signin {
+    margin-top: 10px; } }
+
+@media (min-width: 600px) {
+  .dropdown, #signin {
+    float: right; } }
+.header-links {
+  float: left;
+}

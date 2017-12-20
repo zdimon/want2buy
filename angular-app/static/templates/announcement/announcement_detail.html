@@ -1,0 +1,170 @@
+<div [ngBusy]="busy"></div>
+<div class="row">
+    <div class="col-md-12">
+        <h4>#{{ announcement.id }} {{ announcement.title }} {{  announcement.current_user.name }} </h4>
+
+        <div class="row">
+                
+            <div class="col-md-4">
+                <section class="widget widget_popular_posts">
+                            
+                    
+                    <ul>
+                        <li>
+                            <div class="post-thumb">
+                                <a href="#"><img src="{{ announcement.thumbnail }}" alt="#"></a>
+                            </div>
+                            <div class="post-content">
+                                <h3 class="post-title">Цена: {{ announcement.price }} грн. </h3>
+
+                                <h3 class="post-title">
+                                    {{ announcement.opt_roznica }}, {{ announcement.new_bu }}
+                                </h3>
+                                <span class="post-comment"><i class="fa fa-comment" aria-hidden="true"></i> предложений - {{ announcement.cnt_offers }}</span>
+                                <span class="post-date"><i class="fa fa-calendar-o" aria-hidden="true"></i>  {{ announcement.created_at }}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="row">
+                    <a href="" class="btn btn-danger" >Закрыть сделку</a>
+                    <a href="" class="btn btn-success" >Оплатить рекламу</a>
+                </div>                
+
+                
+
+                <div class="table-responsive">
+                        <h4 class="title table-hover">Заявки продавцов</h4>
+                        <table class="table">
+                        <!---
+                          <th>
+                              <tr>
+                                <td>Автор</td>
+                                <td>Цена</td>
+                                <td>Сообщений</td>
+                            </tr>                                                                           
+                          </th>
+                        -->
+                          <tr *ngFor="let o of announcement.offers" [class.current-row]="o.id == current_offer.id">
+                            <td><a routerLink="/user/detail/{{ o.user.id }}"> <span class="fa fa-user"></span></a></td> 
+                            <td  [class.current-row]="o.id == current_offer.id"><a (click)="selectOffer(o.id)" class="pointer"> {{ o.user.name }} </a></td> 
+                             <td>{{ o.price }} грн.</td> 
+                             <td>сообщений {{ o.cnt_messages }}</td>
+                          </tr>
+                         
+                        </table>
+                </div>
+
+
+            </div>
+                
+                
+            <div class="col-md-8">
+
+                <a href="" class="btn btn-success" >Принять предложение</a>
+                <a href="" class="btn btn-danger" >Отклонить предложение</a>
+
+                <div id="comments" class="comments-area">
+                    <h2 class="comments-title"></h2>
+                    <ol class="comment-list">
+                        <li id="comment-1" class="comment even thread-even depth-1 parent">
+                            <article class="comment-body">
+                                <img alt="avatar" src="{{ current_offer.user.thumbnail }}" class="avatar">
+                                <div class="comment-wrapper">
+                                    <div class="comment-meta">
+                                        <div class="comment-author vcard">
+                                            <h4 class="fn">{{ current_offer.user.name }}</h4>
+                                        </div>
+                                        <div class="comment-content">
+                                            <p>
+                                                    {{ current_offer.message }}
+                                            </p>
+                                            <p class="strong">
+                                                   Предложенная цена {{ current_offer.price }} грн.
+                                            </p>
+                                        </div>
+                                        <span class="comment-metadata float-right" >{{ current_offer.created_at }}</span>
+                                    </div>
+                                    
+                                </div>
+                            </article>
+
+                            
+                            <article class="comment-body" *ngFor="let m of current_offer.messages">
+                                    <img alt="avatar" src="{{ m.user.thumbnail }}" class="avatar">
+                                    <div class="comment-wrapper">
+                                        <div class="comment-meta">
+                                            <div class="comment-author vcard">
+                                                    <h4 class="fn">{{ m.user.name }}</h4>
+                                                
+                                            </div>
+                                            <div class="comment-content">
+                                                <p>
+                                                    {{ m.message }}
+                                                </p>
+                                            </div>
+                                            <span class="comment-metadata">05/08/2016</span>
+                                        </div>
+                                        
+                                    </div>
+                                </article>
+                            
+
+                        </li>
+                    </ol>
+                </div>
+
+
+                <div id="respond" class="comment-respond">
+                    
+                    <form [formGroup]="messageForm" (ngSubmit)="doSaveMessage($event)" method="post" class="comment-form" >
+                        
+                        <div class="row comment-form-comment">
+                            <div class="col-lg-3">
+                                <label for="comment">Цена</label>
+                            </div>
+                            <div class="col-lg-3">
+                                <input type="text" formControlName="price" />
+                            </div>
+                            <div class="col-lg-3">
+                                    <label for="comment">Файл</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input formControlName="file" type="file" />
+                                </div>
+                        </div>
+
+                        <div class="row comment-form-comment">
+                                <div class="col-lg-2">
+                                    <label for="comment">Ответить</label>
+                                </div>
+                                <div class="col-lg-10">
+                                    <textarea id="comment" formControlName="message" placeholder="Сообщение"></textarea>
+                                    <small *ngIf="!messageForm.controls.message.valid" class=" red text-danger">
+                                            Поле обязательно!
+                                    </small>
+
+                                </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-10 text-right">
+                                <input name="submit" [disabled]="!messageForm.valid" type="submit" id="submit" value="Сохранить">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+    
+
+
+
+                    
+            </div>            
+                
+                 
+               
+    </div>
+</div>

@@ -80,7 +80,7 @@
   position: relative;
   top: 1px;
   display: inline-block;
-  font-family: 'Glyphicons Halflings' !important;
+  font-family: 'Glyphicons Halflings';
   font-style: normal;
   font-weight: normal;
   line-height: 1;
@@ -889,4 +889,85 @@
   background: black;
   color: white;
 
+}
+
+.dashboard-loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear infinite;
+    margin-left: 50px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.tabel-label {
+  color: #107FC9;
+  
+  font-size: 12px;
+
+}
+
+.pagination li.pager-item {
+   width: 32px;
+   height: 26px;
+   border: 1px solid #107FC9;
+   display: inline-block;
+   border-radius: 5px;
+   background: #107FC9;
+}
+
+.bold{
+  font-weight: bold !important;
+}
+
+#orderform textarea {
+  height: 80px;
+}
+
+#orderform input[type="text"], input[type="email"], input[type="password"], input[type="url"], textarea {
+  padding: 5px;
+}
+
+#orderform input[type="submit"] {
+  background: #107FC9;
+}
+
+
+.entry-tags a.active-white {
+  background: white;
+  color: black;
+}
+
+
+
+.user-dashboard-loader{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.ng-busy,
+.ng-busy > *,
+.ng-busy > ng-component > * {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
 }

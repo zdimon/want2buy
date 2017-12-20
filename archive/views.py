@@ -8,8 +8,10 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def add_announce(request):
     
     if request.method == 'POST':

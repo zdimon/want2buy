@@ -149,4 +149,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+#LOGIN_REDIRECT_URL = 'login'
+
 from local import *
+DATE_FORMAT = 'iso-8601'
+ALLOWED_HOSTS = ['*']

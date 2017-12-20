@@ -21,3 +21,4 @@ DATABASES = {
 
 LIQPAY_PUBLIC_KEY = ''
 LIQPAY_PRIVATE_KEY = ''
+DOMAIN_NAME = 'w2b.webmonstr.com'

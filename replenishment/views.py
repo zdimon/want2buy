@@ -11,6 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Replanishment
 from account.models import Profile
 import decimal
+from want2buy.settings import DOMAIN_NAME
+
 
 # Create your views here.
 
@@ -20,10 +22,10 @@ def replenishment_page(request):
     if request.method == 'POST':
         form = ReplanishmentForm(request.POST)
         if form.is_valid():
-            amount = request.POST['amount']
+            amount = request.POST['ammount']
             rep = Replanishment()
             rep.amount = amount
-            rep.user_replanishment = request.user.profile
+            rep.user_replanishment = request.user
             rep.save()
             request.session['payment_id'] = rep.id
             return redirect('/pay', payment_id=rep.id)
@@ -40,7 +42,7 @@ class PayView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         liqpay = LiqPay(LIQPAY_PUBLIC_KEY, LIQPAY_PRIVATE_KEY)
-        amount = Replanishment.objects.get(id=request.session['payment_id']).amount
+        amount = Replanishment.objects.get(id=request.session['payment_id']).ammount
         print request.user
         params = {
             'action': 'pay',
@@ -50,7 +52,7 @@ class PayView(TemplateView):
             'order_id': request.session['payment_id'],
             'version': '3',
             'sandbox': '1',
-            'server_url': 'https://4584b4b9.ngrok.io/pay-callback/',
+            'server_url': 'https://%s/pay-callback/' % DOMAIN_NAME,
         }
         signature = liqpay.cnb_signature(params)
         data = liqpay.cnb_data(params)
@@ -75,7 +77,7 @@ class PayCallbackView(View):
             rep.save()
             if status == 'sandbox':
                 profile = Profile.objects.get(user_id=rep.user_replanishment_id)
-                profile.account = profile.account + decimal.Decimal(rep.amount)
+                profile.account = profile.account + decimal.Decimal(rep.ammount)
                 profile.save()
 
         print('callback data', response)

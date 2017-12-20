@@ -287,7 +287,7 @@ h1 small, h1 .small, .h1 small, .h1 .small, h2 small, h2 .small, .h2 small, .h2 
 
 h4, .h4, h5, .h5, h6, .h6 {
   margin-top: 0;
-  margin-bottom: 18px; }
+  margin-bottom: 15px; }
 
 h4 small, h4 .small, .h4 small, .h4 .small, h5 small, h5 .small, .h5 small, .h5 .small, h6 small, h6 .small, .h6 small, .h6 .small {
   font-size: 75%; }
@@ -311,7 +311,7 @@ h6, .h6 {
   font-size: 12px; }
 
 p {
-  margin: 0 0 20px; }
+  margin: 0 0 8px; }
 
 .lead {
   margin-bottom: 20px;
@@ -2351,7 +2351,7 @@ a, .btn, .transition, .category-item figcaption, input[type="submit"] {
 /* Main Container */
 .main-container {
   padding-top: 20px;
-  padding-bottom: 100px; }
+  padding-bottom: 20px; }
 
 /* 03 Button */
 .btn-default {
@@ -2449,7 +2449,7 @@ input[type="submit"]:hover {
 /* 06 Parallax */
 .section-parallax {
   position: relative;
-  min-height: 600px;
+  padding-bottom: 20px;
   overflow: hidden; }
 
 .section-parallax-image {
@@ -2516,7 +2516,9 @@ input[type="submit"]:hover {
   color: #a3d6f8; }
 
 .header-links {
-  font-weight: 600; }
+  font-weight: 600;
+  display:none;
+}
 
 @media (max-width: 600px) {
   .header-links {
@@ -2734,8 +2736,8 @@ input[type="submit"]:hover {
 
 .footer-menu, .footer-menu ul {
   list-style: none;
-  padding-top: 0;
-  margin: 0; }
+  padding: 0;
+  margin-top: 50px; }
 
 .footer-menu > li {
   display: inline-block;
@@ -3128,8 +3130,8 @@ input[type="submit"]:hover {
 
 /* 10.8 Jobs */
 .home-jobs {
-  padding-top: 100px;
-  padding-bottom: 85px; }
+  padding-top: 20px;
+  padding-bottom: 20px; }
 
 @media (max-width: 1199px) {
   .job-item-wrap {
@@ -3506,7 +3508,10 @@ input[type="submit"]:hover {
 /* Tags */
 @media (min-width: 1200px) {
   .entry-tags {
-    float: left; } }
+    float: left; 
+    margin-bottom: 10px;
+  }
+   }
 
 .entry-tags a {
   display: inline-block;
@@ -3697,7 +3702,7 @@ input[type="submit"]:hover {
 
 .widget-title {
   font-size: 16px;
-  margin-bottom: 26px; }
+  margin-bottom: 16px; }
 
 .widget ul {
   list-style: none;
@@ -3770,6 +3775,8 @@ input[type="submit"]:hover {
 
 .widget_popular_posts .post-comment, .widget_popular_posts .post-date {
   font-size: 12px;
+  display: block;
+  margin-bottom: 10px;
   color: #107fc9; }
 
 .widget_popular_posts .post-comment .fa, .widget_popular_posts .post-date .fa {
@@ -4382,3 +4389,19 @@ label.error:last-child {
   left: 5px;
   font-size: 9px;
   color: #fff; }
+
+.dropdown, #signin {
+  font-weight: 600;
+  float: right;
+text-transform: uppercase}
+
+@media (max-width: 600px) {
+  .dropdown, #signin {
+    margin-top: 10px; } }
+
+@media (min-width: 600px) {
+  .dropdown, #signin {
+    float: right; } }
+.header-links {
+  float: left;
+}

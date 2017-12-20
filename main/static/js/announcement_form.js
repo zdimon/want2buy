@@ -1,11 +1,12 @@
 $( document ).ready(function() {
     
 
+
     $.getJSON( "/api/regions", function( data ) {
         var regions = data;
-       
-        $('#id_region').on('change', function() {
-          
+   
+        $('#id_region').chosen().change(function() {
+   
             var arrayLength = regions.length;
             for (var i = 0; i < arrayLength; i++) {
                 if(parseInt(this.value)==parseInt(regions[i].id)){
@@ -30,7 +31,7 @@ $( document ).ready(function() {
   
      $.getJSON( "/api/categories", function( data ) {
         var categories = data;
-        console.log(categories);
+        //console.log(categories);
 
         $('#id_category').on('change', function() {
             $('#id_sub_sub_category').empty();
