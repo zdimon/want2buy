@@ -1,3 +1,5 @@
+gitc
 git push
 ssh -t zdimon@w2b.webmonstr.com "cd /home/zdimon/www/want2buy; git pull"
 ssh -t zdimon@w2b.webmonstr.com "cd /home/zdimon/www/want2buy; tsc"
+ssh -t zdimon@w2b.webmonstr.com "cd /home/zdimon/www/want2buy; . ./python_ve/bin/activate;  ./manage.py migrate"

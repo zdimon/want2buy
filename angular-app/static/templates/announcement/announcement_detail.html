@@ -104,7 +104,7 @@
                 <div id="respond" class="comment-respond">
                     
                     <form [formGroup]="messageForm" (ngSubmit)="doSaveMessage($event)" method="post" class="comment-form" >
-                        <input type="text" formControlName="offer_id" />
+                        <input type="hidden" formControlName="offer_id" />
                         <div class="row comment-form-comment">
                             <div class="col-lg-3">
                                 <label for="comment">Цена</label>
