@@ -438,3 +438,15 @@ table th[class*="col-"] {
 .current-row{
   background: #a6e1ec !important;
 }
+
+
+.current-row  td{
+  background: #a6e1ec !important;
+}
+
+#comments {
+
+  max-height: 400px;
+  overflow: auto;
+  margin-top: 10px;
+}

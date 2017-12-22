@@ -26,4 +26,4 @@ class Replanishment(models.Model):
     ammount = models.FloatField(verbose_name=_('сумма'), null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_(u'Дата создани'))
     status = models.CharField(max_length=100, choices=status_choices, default='pending', verbose_name='Статус')
-
+    

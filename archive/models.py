@@ -159,14 +159,14 @@ class Offer(models.Model):
     price = models.DecimalField(verbose_name=_(u'Цена'), max_digits=19, decimal_places=2)
     status = models.CharField(verbose_name=_(u'Статус'), max_length=10, choices=status, default='message')
     created_at = models.DateTimeField(verbose_name=_(u'Когда создано?'), auto_now_add=True)
-
+    is_current = models.BooleanField(default=False)
     def __unicode__(self):
         return '#%s: %s' % (self.id, self.message)
 
 
 class OfferMessage(models.Model):
     offer = models.ForeignKey(Offer, verbose_name=_(u'Предложение'))
-    new_price = models.DecimalField(verbose_name=_(u'Новая цена'), max_digits=19, decimal_places=2)
+    new_price = models.DecimalField(verbose_name=_(u'Новая цена'), max_digits=19, decimal_places=2, null=True, blank=True)
     message = models.TextField(verbose_name=_(u'Сообщение'))
     file = models.FileField(verbose_name=_(u'Аттачмент'), upload_to='offer_files/', null=True, blank=True)
     user = models.ForeignKey(User, verbose_name=_(u'Автор'), null=True, blank=True)

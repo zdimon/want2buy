@@ -170,20 +170,22 @@
 {% endif %}
 
 <!-- Scripts -->
-<script src="/static/js/jquery-3.1.1.min.js"></script>
-<script src="/static/js/jquery-migrate.min.js"></script>
-<script src="/static/js/bootstrap.js"></script>
-<script src="/static/js/owl.carousel/owl.carousel.min.js"></script>
-<script src="/static/js/lightcase/vendor/jQuery/jquery.events.touch.js"></script>
-<script src="/static/js/lightcase/js/lightcase.js"></script>
-<script src="/static/js/jquery.waypoints.min.js"></script>
-<script src="/static/js/jquery-countTo/jquery.countTo.js"></script>
-<script src="/static/js/slicknav/jquery.slicknav.min.js"></script>
-<script src="/static/js/chosen/chosen.jquery.min.js"></script>
-<script src="/static/js/jquery.validate.min.js"></script>
-<script src="/static/js/jquery.form.min.js"></script>
-<script src="/static/js/indigo.js"></script>
-<script src="/static/js/main.js"></script>
+{% block js_design %}
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/jquery-migrate.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/js/lightcase/vendor/jQuery/jquery.events.touch.js"></script>
+    <script src="/static/js/lightcase/js/lightcase.js"></script>
+    <script src="/static/js/jquery.waypoints.min.js"></script>
+    <script src="/static/js/jquery-countTo/jquery.countTo.js"></script>
+    <script src="/static/js/slicknav/jquery.slicknav.min.js"></script>
+    <script src="/static/js/chosen/chosen.jquery.min.js"></script>
+    <script src="/static/js/jquery.validate.min.js"></script>
+    <script src="/static/js/jquery.form.min.js"></script>
+    <script src="/static/js/indigo.js"></script>
+    <script src="/static/js/main.js"></script>
+{% endblock %}
 
 {% block js_post %}
 {% endblock %}

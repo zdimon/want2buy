@@ -1,25 +1,24 @@
 <div [ngBusy]="busy"></div>
 <div class="row">
     <div class="col-md-12">
-        <h4>#{{ offer.id }}  {{ offer.title }}</h4>
+        
 
         <div class="row">    
                 <div class="col-md-4">
-
+                    <h4>#{{ offer.id }}  {{ offer.title }}</h4>
                         <section class="widget widget_popular_posts">
                             <ul>
                                 <li>
                                     <div class="post-thumb">
-                                        <a href="#"><img src="/static/images/noimage.png" alt="#"></a>
+                                        <a href="#"><img src="{{ offer.thumbnail }}" alt="#"></a>
                                     </div>
                                     <div class="post-content">
-                                        <h3 class="post-title">Цена:123 грн. </h3>
+                                        <h3 class="post-title">Цена: {{ offer.price }} грн. </h3>
         
                                         <h3 class="post-title">
-                                            текст
+                                            
                                         </h3>
-                                        <span class="post-comment"><i class="fa fa-comment" aria-hidden="true"></i> текст</span>
-                                        <span class="post-date"><i class="fa fa-calendar-o" aria-hidden="true"></i>  дата</span>
+                                        
                                     </div>
                                 </li>
                             </ul>
@@ -28,6 +27,36 @@
                         <div class="row">
                                 <a href="" class="btn btn-danger" >Завершить сделку</a>      
                         </div>
+
+
+
+                        <div class="table-responsive">
+                            <h4 class="title table-hover">Предложения покупателей</h4>
+
+                            <nav *ngIf="offers.count > offers.limit" class="page-pagination float-right" >
+                
+                                <span class="tabel-label">Страница: {{ offers.current }}. Всего: {{ offers.count }}</span>
+                                <ul class="pagination">
+                                    <li class="pager-item"><a *ngIf="offers.has_prev" class="previous" (click)="goToPage(offers.current-1, offers.limit)" >
+                                            <i class="fa fa-chevron-left" aria-hidden="true"></i>    
+                                    </a></li>
+                                    
+                                    <li  class="pager-item" ><a *ngIf="offers.has_next" class="previous" (click)="goToPage(offers.current+1, offers.limit)">
+                                            <i class="fa fa-chevron-right" aria-hidden="true"></i>    
+                                    </a></li>
+                                </ul>
+                            </nav>
+
+                            <table class="table">
+                              <tr *ngFor="let o of offers.results" [class.current-row]="o.id == offer.id">
+                                <td><a routerLink="/user/detail/{{ o.buyer.id }}"> <span class="fa fa-user"></span></a></td> 
+                                <td ><a (click)="selectOffer(o.id)" class="pointer"> {{ o.seller.profile.full_name }} </a></td> 
+                                 <td> <a (click)="selectOffer(o.id)" class="pointer">{{ o.announcement }} <p>{{ o.price }} грн. </p></a></td> 
+                                 
+                              </tr>
+                             
+                            </table>
+                    </div>                        
 
                 </div>
                 <div class="col-md-8">

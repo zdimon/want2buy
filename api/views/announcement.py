@@ -83,7 +83,9 @@ def announcement_detail(request, id):
             sub = None
         out = {
             'current_user': {
-                'name': request.user.profile.full_name
+                'name': request.user.profile.full_name,
+                'thumbnail': request.user.profile.get_thumbnail_url(),
+                'id': request.user.id
             },
             'id': a.id,
             'thumbnail': a.get_thumbnail_url(),
@@ -118,7 +120,7 @@ def announcement_detail(request, id):
                     'thumbnail': user.get_thumbnail_url(),
                     'rating': user.rating
                 }
-                messages = i.offermessage_set.all()
+                messages = i.offermessage_set.all().order_by('id')
                 mesobj = []
                 for m in messages:
                     muser_obj = {

@@ -125,6 +125,7 @@ class OfferSerializer(serializers.ModelSerializer):
                 'id',
                 'seller',
                 'buyer',
+                'is_current',
                 'buyer_id',
                 'message',
                 'price',

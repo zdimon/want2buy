@@ -17,8 +17,8 @@ urlpatterns = [
     url(r'categories$', categories),
     url(r'announcement/detail/(?P<id>[0-9]+)$', announcement_detail),
     url(r'offer/detail/(?P<id>[0-9]+)$', offer_detail),
-
-     url(r'offer/save/message/$', offer_save_message),
+    url(r'offer/(?P<id>[0-9]+)/set/current/$', set_current_offer),
+    url(r'offer/save/message/$', offer_save_message),
 
     
 ]

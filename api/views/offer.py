@@ -19,11 +19,27 @@ import json
 def offer_save_message(request):
     obj = json.loads(request.body)
     print obj
-    #m = OfferMessage()
-    #m.offer = 
-    #m.save()
-    print obj['user']['name']
+    offer = Offer.objects.get(pk=obj['offer_id'])
+    m = OfferMessage()
+    m.offer = offer
+    m.message = obj['message']
+    m.user = offer.announcement.user
+    try:
+        m.new_price = int(obj['new_price'])
+    except:
+        pass
+    m.save()
     return {'status': 0, 'message': 'Success'}
+
+@json_auth
+@json_view
+def set_current_offer(request,id):
+    offer = Offer.objects.get(pk=id)
+    Offer.objects.filter(buyer=offer.buyer).update(is_current=False)
+    offer.is_current = True
+    offer.save()
+    return {'status': 0, 'message': 'Ok'}
+
 
 @json_auth
 @json_view
@@ -41,6 +57,7 @@ def offer_detail(request,id):
         'id': offer.id,
         'title': offer.announcement.title,
         'price': offer.price,
+        'thumbnail': offer.announcement.get_thumbnail_url(),
         'message': offer.message,
         'created_at': offer.created_at,
         'messages': messages
@@ -53,4 +70,4 @@ class OfferListViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     def get_queryset(self):
         user = self.request.user
-        return Offer.objects.filter(buyer=user)
+        return Offer.objects.filter(buyer=user).order_by('-is_current')

@@ -27,6 +27,7 @@
                   '@angular/animations/browser': '/static/node_modules/@angular/animations/bundles/animations-browser.umd.js',
   '@angular/platform-browser/animations': '/static/node_modules/@angular/platform-browser/bundles/platform-browser-animations.umd.js',   
                   'rxjs': '/static/node_modules/rxjs',
+                  'jquery': '/static/node_modules/jquery/dist/jquery.min.js',
                   'app': '/static/dist/static/app'
                 }, 
                 paths: {
@@ -53,7 +54,7 @@
 
 
 
-<div class="container">
+<div class="container" id="announcement_block">
         <user-dashboard>
             <div class="user-dashboard-loader">
                 <h4 style="color: #107FC9">{% trans 'Подождите идет загрузка...' %}</h4>

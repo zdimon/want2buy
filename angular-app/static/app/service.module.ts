@@ -74,5 +74,13 @@ import { Announcement, AnnouncementPager } from './models/announcement';
         
     }     
 
+
+    public setCurrentOffer(id): any { 
+        
+        return this.http
+        .get('/api/offer/'+id+'/set/current')
+        .map((res:Response) => res.json())
+        
+    }  
     
  } 
