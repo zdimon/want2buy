@@ -43,18 +43,10 @@ export class AnnouncementDetailComponent {
     
   }
 
-  scrollMessages(){
 
-    var box = $('#announcement_block').find('#comments');
-    var h = box[0].scrollHeight + 400;
-    //alert(h);
-
-    //box.scrollTop( 20000000 );  
-
-  }
 
   doSaveMessage(event) {
-    console.log(this.announcement.current_user);
+    //console.log(this.announcement.current_user);
     //console.log(this.messageForm.value);
     let obj_message = {
       'user': {
@@ -72,15 +64,10 @@ export class AnnouncementDetailComponent {
       'offer_id': this.messageForm.value.offer_id
     });
 
-    this.scrollMessages();
-
 
     this._service.saveMessage(obj_message).subscribe(
       function (data) {
-        console.log($('#announcement_block').find('#comments'));
-
-      
-
+       
 
       }
     );
@@ -93,7 +80,7 @@ export class AnnouncementDetailComponent {
         this.busy = this._service.getAnnoncement(this.route.snapshot.params['announcement_id']).subscribe(
           (data) => {
             this.announcement = data; 
-            setTimeout(this.scrollMessages(),1000);
+           
             
             if(parseInt(this.announcement.cnt_offers)>0){
               this.current_offer = this.announcement.offers[0];

@@ -46,11 +46,17 @@ def set_current_offer(request,id):
 def offer_detail(request,id):
     offer = Offer.objects.get(pk=id)
     messages = []
-    for m in offer.offermessage_set.all():
+    for m in offer.offermessage_set.all().order_by('id'):
         messages.append(
             {
                 'id': m.id,
-                'message': m.message
+                'message': m.message,
+                'user': {'name': m.user.profile.full_name,
+                         'thumbnail': m.user.profile.get_thumbnail_url(),
+                         'id': m.user.id
+                        },
+                'new_price': m.new_price,
+                'created_at': m.created_at
             }
         )
     out = {
@@ -60,7 +66,11 @@ def offer_detail(request,id):
         'thumbnail': offer.announcement.get_thumbnail_url(),
         'message': offer.message,
         'created_at': offer.created_at,
-        'messages': messages
+        'messages': messages,
+        'user': {'name': offer.buyer.profile.full_name,
+                    'thumbnail': offer.buyer.profile.get_thumbnail_url(),
+                    'id': offer.buyer.id
+                }        
     }
     return out
     

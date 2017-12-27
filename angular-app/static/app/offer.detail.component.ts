@@ -17,7 +17,10 @@ export class OfferDetailComponent {
   id: number;
  
   public messageForm = this.fb.group({
-    message: ["", Validators.required]
+    message: ["", Validators.required],
+    new_price: [""],
+    offer_id: [""],
+    file: [""]
   });
 
   constructor(private _route: Router, private _service: AnnouncementService, private route: ActivatedRoute, public fb: FormBuilder) { }
@@ -41,6 +44,7 @@ export class OfferDetailComponent {
         this.offer = data;
         this._service.setCurrentOffer(id).subscribe();  
         this._route.navigate(['offer/detail/'+id]);
+        this.messageForm.controls.offer_id.setValue(id);
       }
     );    
     
@@ -50,8 +54,31 @@ export class OfferDetailComponent {
   
 
   doSaveMessage(event) {
-    
-    
+    //console.log(this.announcement.current_user);
+    console.log(this.offer);
+
+    let obj_message = {
+      'user': {
+        'name': this.offer.user.name,
+        'thumbnail': this.offer.user.thumbnail,
+      },
+      'new_price': this.messageForm.value.new_price,
+      'offer_id': this.messageForm.value.offer_id,
+      'message': this.messageForm.value.message
+    };
+    this.offer.messages.push(obj_message);
+    this.messageForm.reset({
+      'message': '',
+      'offer_id': this.messageForm.value.offer_id
+    });
+
+
+    this._service.saveMessage(obj_message).subscribe(
+      function (data) {
+          
+      } 
+    );
+
   }
 
   ngOnInit() {
@@ -60,20 +87,21 @@ export class OfferDetailComponent {
       this.busy = this._service.getOffer(this.route.snapshot.params['offer_id']).subscribe(
         (data) => {
           this.offer = data;
+          this.messageForm.controls.offer_id.setValue(this.route.snapshot.params['offer_id']);
         }
       );    
       
 
       this._service.setCurrentOffer(this.route.snapshot.params['offer_id']).subscribe(
         (data) => {
-          console.log(data);
+          //console.log(data);
         }
       );      
       
       this.busy = this._service.getOfferPage(10, 0).subscribe(
         (data) => {
           this.offers = data;
-          console.log(this.offers);
+          //console.log(this.offers);
         }
       ); 
 
