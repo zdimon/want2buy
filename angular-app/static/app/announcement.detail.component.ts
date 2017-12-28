@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, ElementRef, ViewChild } from '@angular/core';
 import { Announcement } from './models/announcement'
 import { AnnouncementService } from './service.module'
 import {Subscription} from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
 
 declare var $: any;
 
@@ -13,11 +14,17 @@ declare var $: any;
 })
 export class AnnouncementDetailComponent {
   
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+
   announcement: any = {'offers':[], current_user: {}};
   current_offer: any = {user: {}};
   busy: Subscription;
   id: number;
   
+
+
+  
+
   public messageForm = this.fb.group({
     message: ["", Validators.required],
     new_price: [""],
@@ -25,9 +32,19 @@ export class AnnouncementDetailComponent {
     file: [""]
   });
 
-  constructor(private _service: AnnouncementService, private route: ActivatedRoute, public fb: FormBuilder) { 
+  constructor(private _service: AnnouncementService, private route: ActivatedRoute, public fb: FormBuilder, private cdRef:ChangeDetectorRef) { 
 
    
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    try {
+        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }
   }
 
   

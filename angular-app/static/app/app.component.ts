@@ -9,9 +9,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
 
-  public getActive($event){
-    console.log('get activ ddddddd');
-  }
-
-  
+ 
 }

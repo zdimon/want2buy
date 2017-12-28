@@ -50,7 +50,7 @@
                             <table class="table">
                               <tr *ngFor="let o of offers.results" [class.current-row]="o.id == offer.id">
                                 <td><a routerLink="/user/detail/{{ o.buyer.id }}"> <span class="fa fa-user"></span></a></td> 
-                                <td ><a (click)="selectOffer(o.id)" class="pointer"> {{ o.seller.profile.full_name }} </a></td> 
+                                <td ><a (click)="selectOffer(o.id)" class="pointer"> #{{ o.id }} {{ o.seller.profile.full_name }} </a></td> 
                                  <td> <a (click)="selectOffer(o.id)" class="pointer">{{ o.announcement }} <p>{{ o.price }} грн. </p></a></td> 
                                  
                               </tr>
@@ -62,7 +62,7 @@
                 <div class="col-md-8">
                     <h4 class="title table-hover">Сообщения</h4>
  
-                    <div id="comments" class="comments-area" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+                    <div id="comments" class="comments-area" #scrollMe >
                            
                             <ol class="comment-list">
 
@@ -97,7 +97,7 @@
                         <div id="respond" class="comment-respond">
                     
                             <form [formGroup]="messageForm" (ngSubmit)="doSaveMessage($event)" method="post" class="comment-form" >
-                                <input type="text" formControlName="offer_id" />
+                                <input type="hidden" formControlName="offer_id" />
                                 <div class="row comment-form-comment">
                                     <div class="col-lg-3">
                                         <label for="comment">Цена</label>

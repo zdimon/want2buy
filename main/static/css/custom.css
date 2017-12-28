@@ -447,6 +447,6 @@ table th[class*="col-"] {
 #comments {
 
   max-height: 400px;
-  overflow: auto;
+  overflow: scroll;
   margin-top: 10px;
 }
