@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OfferListComponent } from './offer.list.component'; 
 import { OfferDetailComponent } from './offer.detail.component';
 import { UserDetailComponent } from './user.detail.component'
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
 declarations: [
@@ -33,6 +34,7 @@ imports: [
   HttpModule, 
   FormsModule,
   ReactiveFormsModule,
+  FileUploadModule,
   BusyModule.forRoot(
     new BusyConfig({
         message: 'Подождите идет загрузка...',

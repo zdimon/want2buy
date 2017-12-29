@@ -81,6 +81,15 @@ def announcement_detail(request, id):
             sub = a.sub_category.name
         except AttributeError:
             sub = None
+
+        if a.current_offer>0:
+            co = a.current_offer
+        else:
+            try:
+                co = a.offer_set.all()[0].id
+            except:
+                co = 0
+
         out = {
             'current_user': {
                 'name': request.user.profile.full_name,
@@ -88,6 +97,7 @@ def announcement_detail(request, id):
                 'id': request.user.id
             },
             'id': a.id,
+            'current_offer': co,
             'thumbnail': a.get_thumbnail_url(),
             'user_id': a.user_id,
             'cnt_offers': a.offer_set.all().count(),
@@ -97,8 +107,12 @@ def announcement_detail(request, id):
             'sub_sub_category': subsub,
             'new_category': a.new_category, 'new_bu': a.get_new_bu_display(),
             'opt_roznica': a.get_opt_roznica_display(),
-            'type': a.type, 'once': a.once, 'price': a.price, 'amount': a.ammount,
-            'city': a.city.name, 'photo': a.photo.url,
+            'type': a.type, 
+            'once': a.once, 
+            'price': a.price, 
+            'amount': a.ammount,
+            'city': a.city.name, 
+            'photo': a.get_photo_url(),
             'created_at': a.created_at.strftime('%d %b %Y %H:%M'), 'is_paid': a.is_paid, 'expire': a.date_expire,
             'paid_expire': a.date_paid_expire, 'offers': []}
         offers = Offer.objects.filter(announcement_id=id)

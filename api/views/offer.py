@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from jsonview.decorators import json_view
 from django.core.cache import cache
-from archive.models import Offer, OfferMessage
+from archive.models import Offer, OfferMessage, Announcement
 from django.core import serializers
 import json
 from rest_framework import viewsets
@@ -39,6 +39,14 @@ def set_current_offer(request,id):
     offer.is_current = True
     offer.save()
     return {'status': 0, 'message': 'Ok'}
+
+@json_auth
+@json_view
+def set_current_offer_in_announcement(request,announcement_id, offer_id):
+    an = Announcement.objects.get(pk=announcement_id)
+    an.current_offer = offer_id
+    an.save()
+    return {'status': 0, 'message': offer_id} 
 
 
 @json_auth

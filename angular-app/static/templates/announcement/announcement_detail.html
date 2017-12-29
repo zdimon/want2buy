@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-12">
         <h4>#{{ announcement.id }} {{ announcement.title }} {{  announcement.current_user.name }} </h4>
-
+        
         <div class="row">
                 
             <div class="col-md-4">
@@ -62,89 +62,95 @@
                 
             <div class="col-md-8">
 
-                <a href="" class="btn btn-success" >Принять предложение</a>
-                <a href="" class="btn btn-danger" >Отклонить предложение</a>
-                <a href="" class="btn btn-danger" >Заблокировать пользователя</a>
+                    <div class="alert alert-danger text-center" *ngIf="announcement.cnt_offers == 0">
+                            Предложения отсутствуют.
+                    </div>
 
-                <div id="comments" class="comments-area" #scrollMe>
-                    <h2 class="comments-title"></h2>
-                    <ol class="comment-list">
-                        <li id="comment-1" class="comment even thread-even depth-1 parent">
-                
+                    <div *ngIf="announcement.cnt_offers>0">
 
-                            
-                            <article class="comment-body" *ngFor="let m of current_offer.messages">
-                                    <img alt="avatar" src="{{ m.user.thumbnail }}" class="avatar">
-                                    <div class="comment-wrapper">
-                                        <div class="comment-meta">
-                                            <div class="comment-author vcard">
-                                                    <h4 class="fn">{{ m.user.name }}</h4>
-                                                
-                                            </div>
-                                            <div class="comment-content">
-                                                <p>
-                                                    {{ m.message }}
-                                                </p>
-                                                <p *ngIf="m.new_price > 0">
-                                                    Новая цена: {{ m.new_price }} грн.
-                                                </p>
-                                            </div>
-                                            <span class="comment-metadata">{{ m.created_at }}</span>
-                                        </div>
-                                        
-                                    </div>
-                                </article>
-                            
+                    <a href="" class="btn btn-success" >Принять предложение</a>
+                    <a href="" class="btn btn-danger" >Отклонить предложение</a>
+                    <a href="" class="btn btn-danger" >Заблокировать пользователя</a>
 
-                        </li>
-                    </ol>
-                </div>
-
-
-                <div id="respond" class="comment-respond">
+                    <div id="comments" class="comments-area" #scrollMe>
+                        <h2 class="comments-title"></h2>
+                        <ol class="comment-list">
+                            <li id="comment-1" class="comment even thread-even depth-1 parent">
                     
-                    <form [formGroup]="messageForm" (ngSubmit)="doSaveMessage($event)" method="post" class="comment-form" >
-                        <input type="hidden" formControlName="offer_id" />
-                        <div class="row comment-form-comment">
-                            <div class="col-lg-3">
-                                <label for="comment">Цена</label>
-                            </div>
-                            <div class="col-lg-3">
-                                <input type="text" formControlName="new_price" />
-                            </div>
-                            <div class="col-lg-3">
-                                    <label for="comment">Файл</label>
+
+                                
+                                <article class="comment-body" *ngFor="let m of current_offer.messages">
+                                        <img alt="avatar" src="{{ m.user.thumbnail }}" class="avatar">
+                                        <div class="comment-wrapper">
+                                            <div class="comment-meta">
+                                                <div class="comment-author vcard">
+                                                        <h4 class="fn">{{ m.user.name }}</h4>
+                                                    
+                                                </div>
+                                                <div class="comment-content">
+                                                    <p>
+                                                        {{ m.message }}
+                                                    </p>
+                                                    <p *ngIf="m.new_price > 0">
+                                                        Новая цена: {{ m.new_price }} грн.
+                                                    </p>
+                                                </div>
+                                                <span class="comment-metadata">{{ m.created_at }}</span>
+                                            </div>
+                                            
+                                        </div>
+                                    </article>
+                                
+
+                            </li>
+                        </ol>
+                    </div>
+
+
+                    <div id="respond" class="comment-respond">
+                        
+                        <form [formGroup]="messageForm" (ngSubmit)="doSaveMessage($event)" method="post" class="comment-form" >
+                            <input type="hidden" formControlName="offer_id" />
+                            <div class="row comment-form-comment">
+                                <div class="col-lg-3">
+                                    <label for="comment">Цена</label>
                                 </div>
                                 <div class="col-lg-3">
-                                    <input formControlName="file" type="file" />
+                                    <input type="text" formControlName="new_price" />
                                 </div>
-                        </div>
-
-                        <div class="row comment-form-comment">
-                                <div class="col-lg-2">
-                                    <label for="comment">Ответить</label>
-                                </div>
-                                <div class="col-lg-10">
-                                    <textarea id="comment" formControlName="message" placeholder="Сообщение"></textarea>
-                                    <small *ngIf="!messageForm.controls.message.valid" class=" red text-danger">
-                                            Поле обязательно!
-                                    </small>
-
-                                </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-lg-2"></div>
-                            <div class="col-lg-10 text-right">
-                                <input name="submit" [disabled]="!messageForm.valid" type="submit" id="submit" value="Сохранить">
+                                <div class="col-lg-3">
+                                        <label for="comment">Файл</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input formControlName="file" type="file" />
+                                    </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
+
+                            <div class="row comment-form-comment">
+                                    <div class="col-lg-2">
+                                        <label for="comment">Ответить</label>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <textarea id="comment" formControlName="message" placeholder="Сообщение"></textarea>
+                                        <small *ngIf="!messageForm.controls.message.valid" class=" red text-danger">
+                                                Поле обязательно!
+                                        </small>
+
+                                    </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-10 text-right">
+                                    <input name="submit" [disabled]="!messageForm.valid" type="submit" id="submit" value="Сохранить">
+                                </div>
+                            </div>
+                        </form>
+                        <input type="file" ng2FileSelect [uploader]="uploader" multiple />
+                    </div>
     
-
-
+                </div>
 
                     
             </div>            

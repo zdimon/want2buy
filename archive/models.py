@@ -54,7 +54,7 @@ class AnnouncementBase(models.Model):
     is_paid = models.BooleanField(default=False, verbose_name=_(u'Оплачиваемое'))
     date_expire = models.DateField(null=True, blank=True, verbose_name=_(u'Дата окончания'))
     date_paid_expire = models.DateField(null=True, blank=True, verbose_name=_(u'Дата окончания оплаты'))
-    
+    current_offer = models.IntegerField(null=True, blank=True, verbose_name=_(u'Текущее предложение'))
     def get_absolute_url(self):
         return reverse('annoncement_detail', kwargs={'slug': str(self.id)})
 
@@ -92,6 +92,12 @@ class AnnouncementBase(models.Model):
                                self.category \
                                )
 
+
+    def get_photo_url(self):
+        try:
+            return self.photo.url
+        except:
+            return '/static/images/noimage.png'    
 
     def get_thumbnail_url(self):
         try:

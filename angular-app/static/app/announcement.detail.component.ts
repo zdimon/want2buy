@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, Output, ElementRef, ViewChild } from '@angular/core';
-import { Announcement } from './models/announcement'
+import { Announcement, Test } from './models/announcement'
 import { AnnouncementService } from './service.module'
 import {Subscription} from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
+import { FileUploader  } from 'ng2-file-upload';
+
 
 declare var $: any;
 
@@ -20,8 +22,8 @@ export class AnnouncementDetailComponent {
   current_offer: any = {user: {}};
   busy: Subscription;
   id: number;
-  
-
+  test: Test = new Test();
+  public uploader:FileUploader = new FileUploader({url: 'announcement/file/upload'});
 
   
 
@@ -47,9 +49,7 @@ export class AnnouncementDetailComponent {
     } catch(err) { }
   }
 
-  
-
-  selectOffer(id){
+  setCurrentOffer(id){
 
     this.announcement.offers.forEach( (element) => {
       if(element.id==id){
@@ -57,6 +57,17 @@ export class AnnouncementDetailComponent {
         this.messageForm.controls.offer_id.setValue(id);
       }
     });
+
+  }
+
+  selectOffer(id){
+
+    this.setCurrentOffer(id);
+    this._service.setCurrentOfferInAnnouncement(this.announcement.id,id).subscribe(
+      (data) => {
+        console.log (data);
+      }
+    );
     
   }
 
@@ -100,9 +111,7 @@ export class AnnouncementDetailComponent {
            
             
             if(parseInt(this.announcement.cnt_offers)>0){
-              this.current_offer = this.announcement.offers[0];
-              this.messageForm.controls.offer_id.setValue(this.announcement.offers[0].id);
-
+              this.setCurrentOffer(this.announcement.current_offer);
             } else {
 
             }

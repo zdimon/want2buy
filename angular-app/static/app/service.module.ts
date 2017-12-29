@@ -82,5 +82,13 @@ import { Announcement, AnnouncementPager } from './models/announcement';
         .map((res:Response) => res.json())
         
     }  
+
+    public setCurrentOfferInAnnouncement(announcement_id,offer_id): any { 
+        
+        return this.http
+        .get('/api/announcement/'+announcement_id+'/offer/'+offer_id+'/set/current')
+        .map((res:Response) => res.json())
+        
+    }     
     
  } 

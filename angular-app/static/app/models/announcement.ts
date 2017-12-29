@@ -1,3 +1,9 @@
+export class Test {
+    getNow(){
+        return Date();
+    }
+}
+
 export class Announcement {
     constructor(
         public id: Number, 

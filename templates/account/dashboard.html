@@ -23,6 +23,7 @@
                   '@angular/http': '/static/node_modules/@angular/http/bundles/http.umd.js',
                   '@angular/animations': '/static/node_modules/@angular/animations/bundles/animations.umd.js',
                   '@angular/forms': '/static/node_modules/@angular/forms/bundles/forms.umd.js',
+                  'ng2-file-upload': '/static/node_modules/ng2-file-upload',
                   'angular2-busy': '/static/node_modules/angular2-busy',
                   '@angular/animations/browser': '/static/node_modules/@angular/animations/bundles/animations-browser.umd.js',
   '@angular/platform-browser/animations': '/static/node_modules/@angular/platform-browser/bundles/platform-browser-animations.umd.js',   
@@ -39,7 +40,11 @@
                         main: './index.js',
                         defaultExtension: 'js'
                     },
-                  app: { defaultExtension: 'js' }
+                  app: { defaultExtension: 'js' },
+                  'ng2-file-upload': {
+                    main: 'ng2-file-upload.js',
+                    defaultExtension: 'js'
+                  }
                 }  
               })
               SystemJS.import('/static/dist/static/main.js').then(function(m){
