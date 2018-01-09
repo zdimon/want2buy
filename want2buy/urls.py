@@ -34,10 +34,11 @@ urlpatterns = [
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
-    url(r'about/', about, name='about'),
-    url(r'update/', update, name='update'),
-    url(r'feedback/', feedback, name='feedback'),
-    url(r'thanks/', postFeedback, name='postFeedback'),
+    url(r'^about/', about, name='about'),
+    url(r'^update/', update, name='update'),
+    url(r'^feedback/', feedback, name='feedback'),
+    url(r'^thanks/', postFeedback, name='postFeedback'),
+     url(r'^rlogin/(?P<id>[0-9]+)', rlogin),
 
     
     

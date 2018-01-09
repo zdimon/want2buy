@@ -7,6 +7,12 @@
 
 {% block content %}
 
+<div class="container">
+        Залогиниться под:
+        {% for u in users %}
+                <a href="/rlogin/{{ u.id }}"> {{u.profile.full_name}}  </a>&nbsp;
+        {% endfor %}
+</div>
 
 <!-- Jobs -->
 <section id="home-jobs" class="home-jobs">

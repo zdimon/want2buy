@@ -69,6 +69,7 @@
 
                     <div *ngIf="announcement.cnt_offers>0">
 
+                    <h4>#{{current_offer.id}} {{current_offer.user.name}}</h4>    
                     <a  class="btn btn-success" (click)="acceptOffer(current_offer.id)">Принять предложение</a>
                     <!-- <a  class="btn btn-danger" (click)="deniteOffer(current_offer.id)">Отклонить предложение</a> -->
                     <a  class="btn btn-danger" >Заблокировать пользователя</a>

@@ -7,6 +7,16 @@ from catalog.models import Category
 from archive.models import Announcement
 from django.views.decorators.csrf import csrf_exempt
 from jsonview.decorators import json_view
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+
+def rlogin(request,id):
+    user = User.objects.get(pk=id)
+    user.backend = 'django.contrib.auth.backends.ModelBackend'
+    login(request, user)
+    return HttpResponseRedirect('/')
+
 
 @csrf_exempt
 @json_view
@@ -33,11 +43,13 @@ def home(request):
     page = Page.objects.get(alias='main')
     categories = Category.objects.all()[0:12]
     announcements = Announcement.objects.all().order_by('?')[0:6]
+    users = User.objects.all()
     #import pdb; pdb.set_trace()
     return render(request, 'home.html', {
         'page_in_template': page, 
         'categories': categories,
-        'announcements': announcements
+        'announcements': announcements,
+        'users': users
         })
 
 class PageObj():

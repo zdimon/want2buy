@@ -80,7 +80,6 @@ export class AnnouncementDetailComponent {
         this.uploader.setOptions({url: 'api/announcement/file/upload/'+id});
         this.uploader.onCompleteItem = (item, response, status, header) => {
           if (status === 200) {
-            console.log(response);
             let res_json = JSON.parse(response);
             let obj_message = {
               'user': {

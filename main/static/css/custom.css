@@ -450,3 +450,7 @@ table th[class*="col-"] {
   overflow: scroll;
   margin-top: 10px;
 }
+
+.progress-bar {
+  background: #107FC9;
+}

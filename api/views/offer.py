@@ -59,10 +59,15 @@ def offer_detail(request,id):
     offer = Offer.objects.get(pk=id)
     messages = []
     for m in offer.offermessage_set.all().order_by('id'):
+        try:
+            file = m.file.url
+        except:
+            file = ''
         messages.append(
             {
                 'id': m.id,
                 'message': m.message,
+                'file': file,
                 'user': {'name': m.user.profile.full_name,
                          'thumbnail': m.user.profile.get_thumbnail_url(),
                          'id': m.user.id
@@ -92,7 +97,7 @@ class OfferListViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     def get_queryset(self):
         user = self.request.user
-        return Offer.objects.filter(buyer=user).order_by('-is_current')
+        return Offer.objects.filter(seller=user).order_by('-is_current')
 
 
 @json_auth

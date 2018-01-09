@@ -4,6 +4,7 @@ import { AnnouncementService } from './service.module'
 import {Subscription} from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { FileUploader, FileSelectDirective  } from 'ng2-file-upload';
 
 @Component({
   selector: 'announcement',
@@ -17,6 +18,9 @@ export class OfferDetailComponent {
   offers: any = {};
   busy: Subscription;
   id: number;
+  public uploader:FileUploader = new FileUploader({
+    url: 'api/announcement/file/upload/'
+  });
  
   public messageForm = this.fb.group({
     message: ["", Validators.required],
@@ -57,6 +61,27 @@ export class OfferDetailComponent {
         this._service.setCurrentOffer(id).subscribe();  
         this._route.navigate(['offer/detail/'+id]);
         this.messageForm.controls.offer_id.setValue(id);
+
+        this.uploader.setOptions({url: 'api/announcement/file/upload/'+id});
+        this.uploader.onCompleteItem = (item, response, status, header) => {
+          if (status === 200) {
+            let res_json = JSON.parse(response);
+            console.log(res_json);
+            let obj_message = {
+              'user': {
+                'name': res_json.name,
+                'thumbnail': res_json.thumbnail,
+              },
+              'offer_id': res_json.offer_id,
+              'file': res_json.file,
+              'created_at': '2018-01-01'
+            };
+            this.offer.messages.push(obj_message);
+
+          }  
+        }
+
+
       }
     );    
     
@@ -95,20 +120,8 @@ export class OfferDetailComponent {
 
   ngOnInit() {
 
-
-      this.busy = this._service.getOffer(this.route.snapshot.params['offer_id']).subscribe(
-        (data) => {
-          this.offer = data;
-          this.messageForm.controls.offer_id.setValue(this.route.snapshot.params['offer_id']);
-        }
-      );    
-      
-
-      this._service.setCurrentOffer(this.route.snapshot.params['offer_id']).subscribe(
-        (data) => {
-          //console.log(data);
-        }
-      );      
+      this.selectOffer(this.route.snapshot.params['offer_id']);
+     
       
       this.busy = this._service.getOfferPage(10, 0).subscribe(
         (data) => {
