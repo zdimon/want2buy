@@ -51,6 +51,7 @@
                             <td  [class.current-row]="o.id == current_offer.id"><a (click)="selectOffer(o.id)" class="pointer"> {{ o.user.name }} </a></td> 
                              <td>{{ o.price }} грн.</td> 
                              <td>сообщений {{ o.cnt_messages }}</td>
+                             <td><img src="/static/images/icons/{{ o.status }}.png" /></td>
                           </tr>
                          
                         </table>
@@ -68,9 +69,9 @@
 
                     <div *ngIf="announcement.cnt_offers>0">
 
-                    <a href="" class="btn btn-success" >Принять предложение</a>
-                    <a href="" class="btn btn-danger" >Отклонить предложение</a>
-                    <a href="" class="btn btn-danger" >Заблокировать пользователя</a>
+                    <a  class="btn btn-success" (click)="acceptOffer(current_offer.id)">Принять предложение</a>
+                    <!-- <a  class="btn btn-danger" (click)="deniteOffer(current_offer.id)">Отклонить предложение</a> -->
+                    <a  class="btn btn-danger" >Заблокировать пользователя</a>
 
                     <div id="comments" class="comments-area" #scrollMe>
                         <h2 class="comments-title"></h2>
@@ -84,7 +85,7 @@
                                         <div class="comment-wrapper">
                                             <div class="comment-meta">
                                                 <div class="comment-author vcard">
-                                                        <h4 class="fn">{{ m.user.name }}</h4>
+                                                        <h4 class="fn">{{m.id}}  {{ m.user.name }}</h4>
                                                     
                                                 </div>
                                                 <div class="comment-content">
@@ -93,6 +94,11 @@
                                                     </p>
                                                     <p *ngIf="m.new_price > 0">
                                                         Новая цена: {{ m.new_price }} грн.
+                                                    </p>
+                                                    
+                                                    <p *ngIf="m.file?.length > 0">
+                                                       <img class="img-responsive" src="{{ m.file }}" />
+                                                       
                                                     </p>
                                                 </div>
                                                 <span class="comment-metadata">{{ m.created_at }}</span>
@@ -122,7 +128,14 @@
                                         <label for="comment">Файл</label>
                                     </div>
                                     <div class="col-lg-3">
-                                        <input formControlName="file" type="file" />
+                                            <input type="file" ng2FileSelect [uploader]="uploader" />
+                                            <button type="button" class="btn btn-success btn-s"
+                                            (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                                             Загрузить
+                                            </button>
+                                            <div class="progress" style="">
+                                                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                                            </div>
                                     </div>
                             </div>
 
@@ -147,7 +160,7 @@
                                 </div>
                             </div>
                         </form>
-                        <input type="file" ng2FileSelect [uploader]="uploader" multiple />
+
                     </div>
     
                 </div>

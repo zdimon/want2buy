@@ -13,7 +13,10 @@ from archive.models import Announcement, NewAnnouncement, Offer
 from rest_framework import viewsets
 from api.serializers import NewAnnoncementSerializer, AnnoncementSerializer
 from api.json_auth import json_auth
-
+from django.views.decorators.csrf import csrf_exempt
+from want2buy.settings import BASE_DIR
+from django.core.files import File
+import os
 
 class NewAnnouncementViewSet(viewsets.ModelViewSet):
     queryset = NewAnnouncement.objects.all()
@@ -137,6 +140,10 @@ def announcement_detail(request, id):
                 messages = i.offermessage_set.all().order_by('id')
                 mesobj = []
                 for m in messages:
+                    try:
+                        file = m.file.url
+                    except:
+                        file = ''
                     muser_obj = {
                         'name': m.user.profile.full_name,
                         'id': m.user.profile.user_id,
@@ -147,6 +154,8 @@ def announcement_detail(request, id):
                         'user': muser_obj,
                         'message': m.message,
                         'new_price': m.new_price,
+                        'id': m.id,
+                        'file': file,
                         'created_at': m.created_at.strftime('%d %b %Y %H:%M')
                     })
                 _offers.append({'user': user_obj,
@@ -159,8 +168,42 @@ def announcement_detail(request, id):
                                 'file': file,
                                 'price': i.price,
                                 'status': i.status,
+                                'icon': i.getIcon(),
                                 'created_at': i.created_at.strftime('%d %b %Y %H:%M')})
         out.update({'offers': _offers})
     else:
         out = {'message': 'No such element'}
     return out
+
+
+def handle_uploaded_file(f,o):
+    tmp = '%s/media/%s.jpg' % (BASE_DIR,o.id)
+    name = '%s.jpg' % o.id
+    with open(tmp, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+            o.file.save(
+                name,
+                File(open(tmp))
+                )  
+            os.remove(tmp)
+    return o
+        
+
+@json_auth
+@json_view
+@csrf_exempt
+def announcement_upload_file(request,id):
+    print request.FILES
+    o = Offer.objects.get(pk=id)
+    m = OfferMessage()
+    m.offer = o
+    m.user = request.user
+    m.save()
+    m = handle_uploaded_file(request.FILES['file'],m)
+    return {'status': 0, 'message': 'Ok', 
+            'name': request.user.profile.full_name,
+            'thumbnail': request.user.profile.get_thumbnail_url(),
+            'offer_id': o.id,
+            'file': m.file.url
+            }

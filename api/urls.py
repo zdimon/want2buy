@@ -18,8 +18,10 @@ urlpatterns = [
     url(r'^announcement/detail/(?P<id>[0-9]+)$', announcement_detail),
     url(r'^offer/detail/(?P<id>[0-9]+)$', offer_detail),
     url(r'^offer/(?P<id>[0-9]+)/set/current/$', set_current_offer),
+    url(r'^offer/(?P<id>[0-9]+)/accept/$',accept_offer),
     url(r'^announcement/(?P<announcement_id>[0-9]+)/offer/(?P<offer_id>[0-9]+)/set/current/$', set_current_offer_in_announcement),
     url(r'^offer/save/message/$', offer_save_message),
+    url(r'^announcement/file/upload/(?P<id>[0-9]+)$', announcement_upload_file),
 
     
 ]

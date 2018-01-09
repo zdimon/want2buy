@@ -13,8 +13,11 @@ import { AnnouncementDetailComponent } from './announcement.detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OfferListComponent } from './offer.list.component'; 
 import { OfferDetailComponent } from './offer.detail.component';
-import { UserDetailComponent } from './user.detail.component'
+import { UserDetailComponent } from './user.detail.component';
 import { FileUploadModule } from 'ng2-file-upload';
+//import { FileUploadModule } from 'test';
+
+//console.log(FileUploadModule);
 
 @NgModule({
 declarations: [
@@ -45,7 +48,7 @@ imports: [
           //wrapperClass: 'my-class'
       })
   ),
-  BrowserAnimationsModule 
+  BrowserAnimationsModule
 ],
 providers: [ AnnouncementService ],
 bootstrap: [AppComponent]

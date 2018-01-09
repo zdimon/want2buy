@@ -37,6 +37,7 @@ def set_current_offer(request,id):
     offer = Offer.objects.get(pk=id)
     Offer.objects.filter(buyer=offer.buyer).update(is_current=False)
     offer.is_current = True
+    offer.status = 'active'
     offer.save()
     return {'status': 0, 'message': 'Ok'}
 
@@ -46,6 +47,9 @@ def set_current_offer_in_announcement(request,announcement_id, offer_id):
     an = Announcement.objects.get(pk=announcement_id)
     an.current_offer = offer_id
     an.save()
+    offer = Offer.objects.get(pk=offer_id)
+    offer.status = 'active'
+    offer.save()    
     return {'status': 0, 'message': offer_id} 
 
 
@@ -89,3 +93,10 @@ class OfferListViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         return Offer.objects.filter(buyer=user).order_by('-is_current')
+
+
+@json_auth
+@json_view
+def accept_offer(request,id):
+    offer = Offer.objects.get(pk=id)
+    return {'status': 0, 'message': 'OKEY'}

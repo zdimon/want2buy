@@ -5,8 +5,9 @@ import {Subscription} from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
-import { FileUploader  } from 'ng2-file-upload';
+import { FileUploader, FileSelectDirective  } from 'ng2-file-upload';
 
+//console.log(FileUploader);
 
 declare var $: any;
 
@@ -23,8 +24,12 @@ export class AnnouncementDetailComponent {
   busy: Subscription;
   id: number;
   test: Test = new Test();
-  public uploader:FileUploader = new FileUploader({url: 'announcement/file/upload'});
+  public uploader:FileUploader = new FileUploader({
+    url: 'api/announcement/file/upload/'
+  });
 
+
+ 
   
 
   public messageForm = this.fb.group({
@@ -49,12 +54,47 @@ export class AnnouncementDetailComponent {
     } catch(err) { }
   }
 
+  acceptOffer(offer_id) {
+    if(confirm("Вы уверены что вы хотите предать ваши контактные данные продавцу?")) {
+      this.busy = this._service.acceptOffer(offer_id).subscribe(
+          (data) => {
+            console.log (data); 
+          }
+        );
+      }
+  };
+
+  deniteOffer(offer_id) {
+
+  };
+  
+
+
   setCurrentOffer(id){
 
-    this.announcement.offers.forEach( (element) => {
+    this.announcement.offers.forEach( (element,index) => {
       if(element.id==id){
+        this.announcement.offers[index].status = 'active';
         this.current_offer = element;
         this.messageForm.controls.offer_id.setValue(id);
+        this.uploader.setOptions({url: 'api/announcement/file/upload/'+id});
+        this.uploader.onCompleteItem = (item, response, status, header) => {
+          if (status === 200) {
+            console.log(response);
+            let res_json = JSON.parse(response);
+            let obj_message = {
+              'user': {
+                'name': res_json.name,
+                'thumbnail': res_json.thumbnail,
+              },
+              'offer_id': res_json.offer_id,
+              'file': res_json.file,
+              'created_at': '2018-01-01'
+            };
+            this.current_offer.messages.push(obj_message);
+
+          }  
+        }
       }
     });
 

@@ -163,11 +163,15 @@ class Offer(models.Model):
     image = models.ImageField(verbose_name=_(u'Изображение'), upload_to='offer_images/', null=True, blank=True)
     file = models.FileField(verbose_name=_(u'Аттачмент'), upload_to='offer_files/', null=True, blank=True)
     price = models.DecimalField(verbose_name=_(u'Цена'), max_digits=19, decimal_places=2)
-    status = models.CharField(verbose_name=_(u'Статус'), max_length=10, choices=status, default='message')
+    status = models.CharField(verbose_name=_(u'Статус'), max_length=10, choices=status, default='new')
     created_at = models.DateTimeField(verbose_name=_(u'Когда создано?'), auto_now_add=True)
     is_current = models.BooleanField(default=False)
     def __unicode__(self):
         return '#%s: %s' % (self.id, self.message)
+
+    def getIcon(self):
+        return '/static/images/icons/%s.png' % self.status
+
 
 
 class OfferMessage(models.Model):

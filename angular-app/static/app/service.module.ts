@@ -90,5 +90,13 @@ import { Announcement, AnnouncementPager } from './models/announcement';
         .map((res:Response) => res.json())
         
     }     
+
+    public acceptOffer(id): any { 
+        
+        return this.http
+        .get('/api/offer/'+id+'/accept')
+        .map((res:Response) => res.json())
+        
+    }     
     
  } 

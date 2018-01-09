@@ -25,6 +25,7 @@
                   '@angular/forms': '/static/node_modules/@angular/forms/bundles/forms.umd.js',
                   'ng2-file-upload': '/static/node_modules/ng2-file-upload',
                   'angular2-busy': '/static/node_modules/angular2-busy',
+                  'test': '/static/node_modules/test.js',
                   '@angular/animations/browser': '/static/node_modules/@angular/animations/bundles/animations-browser.umd.js',
   '@angular/platform-browser/animations': '/static/node_modules/@angular/platform-browser/bundles/platform-browser-animations.umd.js',   
                   'rxjs': '/static/node_modules/rxjs',
@@ -33,7 +34,12 @@
                 }, 
                 paths: {
                     "*": "*.js" // should load all libraries with .js appended
-                  },                
+                  },  
+                meta: {
+                  'ng2-file-upload': {
+                    "esModule": true
+                  }
+                },              
                 packages: {
                   rxjs: {defaultExtension: 'js'},
                   'angular2-busy': {
@@ -42,15 +48,22 @@
                     },
                   app: { defaultExtension: 'js' },
                   'ng2-file-upload': {
-                    main: 'ng2-file-upload.js',
+                    format: 'cjs',
+                    main: './index.js',
+                    defaultExtension: 'js'
+                  },
+                  'test': {
+                    format: 'cjs',
                     defaultExtension: 'js'
                   }
                 }  
               })
-              SystemJS.import('/static/dist/static/main.js').then(function(m){
-              }, function(error){
-                 console.log(error);
-              });        
+
+                  SystemJS.import('/static/dist/static/main.js').then(function(m){
+                }, function(error){
+                    console.log(error);
+                });       
+            
     </script>
 
 {% endblock %}
