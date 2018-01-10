@@ -104,4 +104,4 @@ class OfferListViewSet(viewsets.ModelViewSet):
 @json_view
 def accept_offer(request,id):
     offer = Offer.objects.get(pk=id)
-    return {'status': 0, 'message': 'OKEY'}
+    return {'status': 0, 'message': 'Ваши данные были отправлены продавцу.'}

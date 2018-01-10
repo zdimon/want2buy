@@ -6,8 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { FileUploader, FileSelectDirective  } from 'ng2-file-upload';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
-//console.log(FileUploader);
+console.log(FlashMessagesService);
 
 declare var $: any;
 
@@ -39,7 +40,12 @@ export class AnnouncementDetailComponent {
     file: [""]
   });
 
-  constructor(private _service: AnnouncementService, private route: ActivatedRoute, public fb: FormBuilder, private cdRef:ChangeDetectorRef) { 
+  constructor( private _service: AnnouncementService, 
+               private route: ActivatedRoute, 
+               public fb: FormBuilder, 
+               private cdRef:ChangeDetectorRef,
+               private _flashMessagesService: FlashMessagesService
+            ) { 
 
    
   }
@@ -56,9 +62,9 @@ export class AnnouncementDetailComponent {
 
   acceptOffer(offer_id) {
     if(confirm("Вы уверены что вы хотите предать ваши контактные данные продавцу?")) {
-      this.busy = this._service.acceptOffer(offer_id).subscribe(
-          (data) => {
-            console.log (data); 
+      this._service.acceptOffer(offer_id).subscribe(
+          (data) => { 
+            this._flashMessagesService.show(data.message, { cssClass: 'alert-success', timeout: 5000 });
           }
         );
       }
@@ -143,7 +149,7 @@ export class AnnouncementDetailComponent {
 
   ngOnInit() {
 
-    
+        
         this.busy = this._service.getAnnoncement(this.route.snapshot.params['announcement_id']).subscribe(
           (data) => {
             this.announcement = data; 

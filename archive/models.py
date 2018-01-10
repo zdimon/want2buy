@@ -152,6 +152,7 @@ class Offer(models.Model):
         ('new', _('Новое')),
         ('active', _('Активное')),
         ('inactive', _('Неактивное')),
+        ('waiting', _('Ожидает подтверждения')),
         ('closed', _('Закрытое')),
     )
 
@@ -166,6 +167,7 @@ class Offer(models.Model):
     status = models.CharField(verbose_name=_(u'Статус'), max_length=10, choices=status, default='new')
     created_at = models.DateTimeField(verbose_name=_(u'Когда создано?'), auto_now_add=True)
     is_current = models.BooleanField(default=False)
+    is_done = models.BooleanField(default=False)
     def __unicode__(self):
         return '#%s: %s' % (self.id, self.message)
 

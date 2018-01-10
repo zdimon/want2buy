@@ -15,6 +15,7 @@ import { OfferListComponent } from './offer.list.component';
 import { OfferDetailComponent } from './offer.detail.component';
 import { UserDetailComponent } from './user.detail.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 //import { FileUploadModule } from 'test';
 
 //console.log(FileUploadModule);
@@ -38,6 +39,7 @@ imports: [
   FormsModule,
   ReactiveFormsModule,
   FileUploadModule,
+  FlashMessagesModule.forRoot(),
   BusyModule.forRoot(
     new BusyConfig({
         message: 'Подождите идет загрузка...',
