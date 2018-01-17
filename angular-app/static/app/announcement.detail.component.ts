@@ -7,10 +7,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { FileUploader, FileSelectDirective  } from 'ng2-file-upload';
 import { FlashMessagesService } from 'angular2-flash-messages';
-
-console.log(FlashMessagesService);
+//import '/static/node_modules/sockjs-client/dist/sockjs.js'
+//console.log(FlashMessagesService);
 
 declare var $: any;
+//declare let SockJS: any
+//console.log(SockJS);
 
 @Component({
   selector: 'announcement',
@@ -63,16 +65,26 @@ export class AnnouncementDetailComponent {
   acceptOffer(offer_id) {
     if(confirm("Вы уверены что вы хотите предать ваши контактные данные продавцу?")) {
       this._service.acceptOffer(offer_id).subscribe(
-          (data) => { 
+          (data) => {
+            this.announcement.offers.forEach( (element,index) => {
+              if(element.id==data.offer_id){
+                this.announcement.offers[index].status = 'waiting';
+              }
+            });
             this._flashMessagesService.show(data.message, { cssClass: 'alert-success', timeout: 5000 });
           }
         );
       }
   };
 
-  deniteOffer(offer_id) {
-
-  };
+  closeAnnouncement(announcement_id) {
+    this._service.closeAnnouncement(announcement_id).subscribe(
+      (data) => {
+        this.announcement.is_done = true;
+        
+      }
+    );
+  }
   
 
 
@@ -80,7 +92,9 @@ export class AnnouncementDetailComponent {
 
     this.announcement.offers.forEach( (element,index) => {
       if(element.id==id){
-        this.announcement.offers[index].status = 'active';
+        if(this.announcement.offers[index].status == 'new'){ 
+          this.announcement.offers[index].status = 'active';
+        }
         this.current_offer = element;
         this.messageForm.controls.offer_id.setValue(id);
         this.uploader.setOptions({url: 'api/announcement/file/upload/'+id});

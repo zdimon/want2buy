@@ -98,5 +98,14 @@ import { Announcement, AnnouncementPager } from './models/announcement';
         .map((res:Response) => res.json())
         
     }     
+
+    public closeAnnouncement(id): any { 
+        
+        return this.http
+        .get('/api/announcement/'+id+'/close')
+        .map((res:Response) => res.json())
+        
+    }  
+
     
  } 

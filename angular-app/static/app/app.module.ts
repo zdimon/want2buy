@@ -16,9 +16,10 @@ import { OfferDetailComponent } from './offer.detail.component';
 import { UserDetailComponent } from './user.detail.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+//import { StompService } from 'ng2-stomp-service';
 //import { FileUploadModule } from 'test';
 
-//console.log(FileUploadModule);
+//console.log(StompService);
 
 @NgModule({
 declarations: [

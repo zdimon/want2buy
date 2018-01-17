@@ -12,6 +12,9 @@ from rest_framework.permissions import IsAuthenticated
 from api.json_auth import json_auth
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.template.loader import render_to_string
+from api.utils import _send_email
+from want2buy.settings import DOMAIN_NAME
 
 @csrf_exempt
 @json_auth
@@ -37,7 +40,8 @@ def set_current_offer(request,id):
     offer = Offer.objects.get(pk=id)
     Offer.objects.filter(buyer=offer.buyer).update(is_current=False)
     offer.is_current = True
-    offer.status = 'active'
+    if offer.status == 'new':
+        offer.status = 'active'
     offer.save()
     return {'status': 0, 'message': 'Ok'}
 
@@ -48,7 +52,8 @@ def set_current_offer_in_announcement(request,announcement_id, offer_id):
     an.current_offer = offer_id
     an.save()
     offer = Offer.objects.get(pk=offer_id)
-    offer.status = 'active'
+    if offer.status == 'new':
+        offer.status = 'active'
     offer.save()    
     return {'status': 0, 'message': offer_id} 
 
@@ -100,8 +105,34 @@ class OfferListViewSet(viewsets.ModelViewSet):
         return Offer.objects.filter(seller=user).order_by('-is_current')
 
 
+
+
 @json_auth
 @json_view
 def accept_offer(request,id):
     offer = Offer.objects.get(pk=id)
-    return {'status': 0, 'message': 'Ваши данные были отправлены продавцу.'}
+    offer.status = 'waiting'
+    offer.save()
+    contact = ''
+    if len(offer.buyer.profile.phone) > 0:
+        contact = contact + '<p>Телефон: %s</p>' % offer.buyer.profile.phone
+    if offer.buyer.profile.region:
+        contact = contact + '<p>Область: %s</p>' % offer.buyer.profile.region
+    if offer.buyer.profile.city:
+        contact = contact + '<p>Область: %s</p>' % offer.buyer.profile.city
+    if len(offer.buyer.profile.address) > 0:
+        contact = contact + 'Адресс: %s' % offer.buyer.profile.address
+
+
+    mes = 'Я согласен на сделку. <br /> Мои контактные данные: <br /> %s' % contact
+
+    m = OfferMessage()
+    m.message = mes
+    m.offer = offer
+    m.user = offer.buyer
+    m.save()
+
+    #import pdb; pdb.set_trace()
+    msg_html = render_to_string('email_tpl/accept_offer.html', {'offer_id': offer.id, 'domain_name': DOMAIN_NAME})
+    _send_email([offer.seller.username], subject='Ваша заявка принята', message=msg_html)
+    return { 'status': 0, 'message': 'Ваши данные были отправлены продавцу.', 'offer_id': offer.id }

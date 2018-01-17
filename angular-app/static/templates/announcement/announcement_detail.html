@@ -27,14 +27,15 @@
                     </ul>
                 </section>
 
-                <div class="row">
-                    <a href="" class="btn btn-danger" >Закрыть сделку</a>
+
+                <div class="row"  *ngIf="!announcement.is_done">
+                    <a (click)="closeAnnouncement(announcement.id)" class="btn btn-danger" >Закрыть сделку</a>
                     <a href="" class="btn btn-success" >Оплатить рекламу</a>
                 </div>                
 
                 
 
-                <div class="table-responsive">
+                <div class="table-responsive" *ngIf="!announcement.is_done">
                         <h4 class="title table-hover">Заявки продавцов</h4>
                         <table class="table">
                         <!---
@@ -67,9 +68,13 @@
                             Предложения отсутствуют.
                     </div>
 
+                    <div class="alert alert-danger text-center" *ngIf="announcement.is_done">
+                        Сделка закрыта.
+                    </div>                    
+
                     <flash-messages></flash-messages>
 
-                    <div *ngIf="announcement.cnt_offers>0">
+                    <div *ngIf="announcement.cnt_offers>0 && !announcement.is_done">
 
                     <h4>#{{current_offer.id}} {{current_offer.user.name}}</h4>    
                     <a  class="btn btn-success" (click)="acceptOffer(current_offer.id)">Принять предложение</a>
@@ -92,9 +97,7 @@
                                                     
                                                 </div>
                                                 <div class="comment-content">
-                                                    <p>
-                                                        {{ m.message }}
-                                                    </p>
+                                                    <p [innerHTML]="m.message"></p> 
                                                     <p *ngIf="m.new_price > 0">
                                                         Новая цена: {{ m.new_price }} грн.
                                                     </p>

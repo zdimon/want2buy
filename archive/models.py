@@ -55,6 +55,7 @@ class AnnouncementBase(models.Model):
     date_expire = models.DateField(null=True, blank=True, verbose_name=_(u'Дата окончания'))
     date_paid_expire = models.DateField(null=True, blank=True, verbose_name=_(u'Дата окончания оплаты'))
     current_offer = models.IntegerField(null=True, blank=True, verbose_name=_(u'Текущее предложение'))
+    is_done = models.BooleanField(default=False, verbose_name=_(u'Завершенная сделка'))
     def get_absolute_url(self):
         return reverse('annoncement_detail', kwargs={'slug': str(self.id)})
 

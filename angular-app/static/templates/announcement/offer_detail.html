@@ -75,9 +75,7 @@
                                                     <h4 class="fn">{{ m.user.name }}</h4>
                                                 </div>
                                                 <div class="comment-content">
-                                                    <p>
-                                                            {{ m.message }} 
-                                                    </p>
+                                                    <p [innerHTML]="m.message"></p> 
                                                     <p class="strong" *ngIf="m.new_price > 0">
                                                            Предложенная цена {{ m.new_price }} грн.
                                                     </p>

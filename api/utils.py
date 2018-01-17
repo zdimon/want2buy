@@ -1,5 +1,13 @@
 from rest_framework import routers, serializers, pagination
 from rest_framework.response import Response
+from django.core.mail import send_mail, EmailMessage
+
+def _send_email(to_list, subject, message, sender='admin@example.com'):
+    msg = EmailMessage(subject, message, sender, to_list)
+    msg.content_subtype = "html"  # Main content is now text/html
+    return msg.send()
+
+
 
 class ChoicesSerializerField(serializers.SerializerMethodField):
     """

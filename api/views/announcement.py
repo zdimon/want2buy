@@ -33,7 +33,7 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        return Announcement.objects.filter(user=user)
+        return Announcement.objects.filter(user=user, is_done=False)
 
 
 @json_auth
@@ -103,6 +103,7 @@ def announcement_detail(request, id):
             'current_offer': co,
             'thumbnail': a.get_thumbnail_url(),
             'user_id': a.user_id,
+            'is_done': a.is_done,
             'cnt_offers': a.offer_set.all().count(),
             'title': a.title,
             'category': a.category.name,
@@ -194,7 +195,6 @@ def handle_uploaded_file(f,o):
 @json_view
 @csrf_exempt
 def announcement_upload_file(request,id):
-    print request.FILES
     o = Offer.objects.get(pk=id)
     m = OfferMessage()
     m.offer = o
@@ -207,3 +207,13 @@ def announcement_upload_file(request,id):
             'offer_id': o.id,
             'file': m.file.url
             }
+
+
+@json_auth
+@json_view
+@csrf_exempt
+def announcement_close(request,id):
+    a = Announcement.objects.get(pk=id)
+    a.is_done = True
+    a.save()
+    return {'status': 0, 'message': 'Ваша сделка закрыта.'}
