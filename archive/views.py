@@ -17,7 +17,8 @@ def add_announce(request):
     if request.method == 'POST':
         form = NewAnnouncementForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            a = form.save()
+            a.approve()
             messages.success(request, _('Объявление было сохранено. После модерации оно появиться на сайте.'))
             return redirect('/dashboard/index')
     else:

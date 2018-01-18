@@ -140,7 +140,13 @@ class AnnouncementBase(models.Model):
 
 
 class NewAnnouncement(AnnouncementBase):
-    pass
+    def approve(self):
+        t = NewAnnouncement.objects.filter(id=self.id).values()[0]
+        del t['id']
+        Announcement.objects.create(**t)
+        self.delete()
+
+
 
 
 class Announcement(AnnouncementBase):

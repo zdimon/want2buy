@@ -1,12 +1,20 @@
 {% extends "base.html" %}
 {% load i18n %}
-
+{% load widget_tweaks %}
 
 {% block meta_title %}  {% endblock %}
 
 
 {% block content %}
-
+<style>
+        #id_desc {
+                height: 100px;
+        }
+        #submit {
+                background: black;
+                border-radius: 5px;
+        }
+</style>
 <div class="container main-container">
 
         <div class="col-md-6">
@@ -87,14 +95,30 @@
                 <h4 class="title">{% trans 'Предложить товар' %}</h4>
                 <div class="line"></div>
 
-                <form action="#" method="post" id="orderform"  novalidate="">
+                {% if form.errors %}
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="alert alert-danger" role="alert">
+                            <span class="fa fa-exclamation" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            {% for error in form.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>   
+             {% endif %}                 
 
+                <form enctype="multipart/form-data" id="basic-information" class="profile-forms basic-information" method="post" action="">
+                        {% csrf_token %}
+                        {{ form.announcement_id }}
                         <div class="row comment-form-comment">
                                 <div class="col-lg-2">
                                 <label for="comment">{% trans 'Текст заявки' %}</label>
                                 </div>
                                 <div class="col-lg-10">
-                                <textarea id="comment" name="comment" placeholder="{% trans 'расскажите про ваш товар/услугу' %}"></textarea>
+                                        {{ form.desc|add_class:"form-control" }}
+                                <span class="error-block">{{ form.decs.errors }}</span>
                                 </div>
                         </div>
 
@@ -103,13 +127,14 @@
                                 <label for="author">{% trans 'Имя' %}:</label>
                                 </div>
                                 <div class="col-lg-4">
-                                <input id="author" name="author" type="text" value="" >
+                                
+                                        {{ form.username|add_class:"form-control" }}
                                 </div>
                                 <div class="col-lg-2">
                                 <label for="author">{% trans 'Цена' %}:</label>
                                 </div>
                                 <div class="col-lg-4">
-                                <input id="author" name="author" type="text" value="" >
+                                        {{ form.price|add_class:"form-control" }}
                                 </div>
                         </div>
 
@@ -118,13 +143,13 @@
                                         <label for="email">{% trans 'URL ресурс' %}</label>
                                         </div>
                                         <div class="col-lg-4">
-                                        <input id="email" name="email" type="email" value="" >
+                                                {{ form.url|add_class:"form-control" }}
                                         </div>
                                         <div class="col-lg-2">
                                         <label for="email">{% trans 'Файл' %}</label>
                                         </div>
                                         <div class="col-lg-4">
-                                        <input id="email" name="email" type="file" value="" >
+                                                {{ form.file|add_class:"form-control" }}
                                         </div>
                                 </div>
 
@@ -133,13 +158,13 @@
                                 <label for="email">Email</label>
                                 </div>
                                 <div class="col-lg-4">
-                                <input id="email" name="email" type="email" value="" >
+                                        {{ form.email|add_class:"form-control" }}
                                 </div>
                                 <div class="col-lg-2">
                                 <label for="email">{% trans 'Телефон' %}</label>
                                 </div>
                                 <div class="col-lg-4">
-                                <input id="email" name="email" type="email" value="" >
+                                        {{ form.phone|add_class:"form-control" }}
                                 </div>
                         </div>
 
@@ -148,7 +173,7 @@
                                         <label for="email">{% trans 'Зарегистрировать' %}</label>
                                 </div>
                                 <div class="col-lg-2">        
-                                        <input type="checkbox" value="" >
+                                        {{ form.register|add_class:"form-control" }}
                                 </div>
                                 <div class="col-lg-6 text-right">
                                 <input name="submit" type="submit" id="submit" value="{% trans ' Отправить заявку' %}">

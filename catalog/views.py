@@ -5,11 +5,14 @@ from django.shortcuts import render
 from catalog.models import *
 from archive.models import Announcement
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .form import *
+from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
 # Create your views here.
 
 def catalog_main(request,slug):
     current = Category.objects.get(name_slug=slug)
-    items = Announcement.objects.filter(category=current)
+    items = Announcement.objects.filter(category=current).order_by('-id')
     paginator = Paginator(items, 20)
     page = request.GET.get('page',1)
     try:
@@ -26,7 +29,7 @@ def catalog_main(request,slug):
 
 def catalog_sub(request,slug):
     current = SubCategory.objects.get(name_slug=slug)
-    items = Announcement.objects.filter(sub_category=current)
+    items = Announcement.objects.filter(sub_category=current).order_by('-id')
     paginator = Paginator(items, 20)
     page = request.GET.get('page',1)
     try:
@@ -43,7 +46,7 @@ def catalog_sub(request,slug):
 
 def catalog_sub_sub(request,slug):
     current = SubSubCategory.objects.get(name_slug=slug)
-    items = Announcement.objects.filter(sub_sub_category=current)
+    items = Announcement.objects.filter(sub_sub_category=current).order_by('-id')
     paginator = Paginator(items, 20)
     page = request.GET.get('page',1)
     try:
@@ -60,8 +63,27 @@ def catalog_sub_sub(request,slug):
 
 def annoncement_detail(request,slug):
     item = Announcement.objects.get(pk=slug)
+
+    if request.method == 'POST':
+        form = OfferForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            form = OfferForm(initial={'announcement_id': item.id })
+            messages.success(request, _('Заявка сохранена. После модерации оно появиться на сайте.'))
+    else:
+        if request.user.is_authenticated():
+            form = OfferForm(initial={
+                'username': request.user.profile.first_name,
+                'email': request.user.username,
+                'phone': request.user.profile.phone,
+                'announcement_id': item.id
+                })
+        else:
+            form = OfferForm(initial={'announcement_id': item.id })
+
     
     ctx = {
-        'item': item
+        'item': item,
+        'form': form
     }    
     return render(request, 'catalog/annoncement_detail.html', ctx)    
