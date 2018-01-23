@@ -128,13 +128,13 @@
                                 </div>
                                 <div class="col-lg-4">
                                 
-                                        {{ form.username|add_class:"form-control" }}
+                                        {{ form.username }}
                                 </div>
                                 <div class="col-lg-2">
                                 <label for="author">{% trans 'Цена' %}:</label>
                                 </div>
                                 <div class="col-lg-4">
-                                        {{ form.price|add_class:"form-control" }}
+                                        {{ form.price }}
                                 </div>
                         </div>
 
@@ -143,13 +143,13 @@
                                         <label for="email">{% trans 'URL ресурс' %}</label>
                                         </div>
                                         <div class="col-lg-4">
-                                                {{ form.url|add_class:"form-control" }}
+                                                {{ form.url }}
                                         </div>
                                         <div class="col-lg-2">
                                         <label for="email">{% trans 'Файл' %}</label>
                                         </div>
                                         <div class="col-lg-4">
-                                                {{ form.file|add_class:"form-control" }}
+                                                {{ form.file }}
                                         </div>
                                 </div>
 
@@ -158,23 +158,21 @@
                                 <label for="email">Email</label>
                                 </div>
                                 <div class="col-lg-4">
-                                        {{ form.email|add_class:"form-control" }}
+                                        {{ form.email }}
                                 </div>
                                 <div class="col-lg-2">
                                 <label for="email">{% trans 'Телефон' %}</label>
                                 </div>
                                 <div class="col-lg-4">
-                                        {{ form.phone|add_class:"form-control" }}
+                                        {{ form.phone }}
                                 </div>
                         </div>
 
                         <div class="row">
                                 <div class="col-lg-4">
-                                        <label for="email">{% trans 'Зарегистрировать' %}</label>
+                                       
                                 </div>
-                                <div class="col-lg-2">        
-                                        {{ form.register|add_class:"form-control" }}
-                                </div>
+                               
                                 <div class="col-lg-6 text-right">
                                 <input name="submit" type="submit" id="submit" value="{% trans ' Отправить заявку' %}">
                                 </div>

@@ -8,6 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .form import *
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
+
 # Create your views here.
 
 def catalog_main(request,slug):
@@ -67,7 +68,7 @@ def annoncement_detail(request,slug):
     if request.method == 'POST':
         form = OfferForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            form.save(request)
             form = OfferForm(initial={'announcement_id': item.id })
             messages.success(request, _('Заявка сохранена. После модерации оно появиться на сайте.'))
     else:
