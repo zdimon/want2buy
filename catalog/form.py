@@ -120,12 +120,14 @@ class OfferForm(forms.Form):
         else:
             data['user_id'] = request.user.id
         m = save_offer(data)
-        if request.FILES['file']:
-            name = '%s.jpg' % (m.id,)
-            path = self.handle_uploaded_file(request.FILES['file'], m)
-            m.file.save(
-                name,
-                File(open(path))
-                )  
-
+        try:
+            if request.FILES['file']:
+                name = '%s.jpg' % (m.id,)
+                path = self.handle_uploaded_file(request.FILES['file'], m)
+                m.file.save(
+                    name,
+                    File(open(path))
+                    )  
+        except:
+            pass
         return data
