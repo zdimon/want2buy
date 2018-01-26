@@ -17,7 +17,10 @@ from django.core.files import File
 def save_offer(data):
     an = Announcement.objects.get(pk=data['announcement_id'])
     seller = User.objects.get(pk=data['user_id'])
-    o = Offer()
+    try:
+        o = Offer.objects.get(announcement=an,seller=seller)
+    except:
+        o = Offer()
     o.price = data['price']
     o.announcement = an
     o.seller = seller
