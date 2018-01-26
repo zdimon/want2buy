@@ -101,22 +101,15 @@
                             <form [formGroup]="messageForm" (ngSubmit)="doSaveMessage($event)" method="post" class="comment-form" >
                                 <input type="hidden" formControlName="offer_id" />
                                 <div class="row comment-form-comment">
+                                    <!--
                                     <div class="col-lg-3">
                                         <label for="comment">Цена</label>
                                     </div>
                                     <div class="col-lg-3">
                                         <input type="text" formControlName="new_price" />
                                     </div>
-                                    <div class="col-lg-3">
-                                        <input type="file" ng2FileSelect [uploader]="uploader" />
-                                        <button type="button" class="btn btn-success btn-s"
-                                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                                         Загрузить
-                                        </button>
-                                        <div class="progress" style="">
-                                                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
-                                        </div>
-                                    </div>
+                                -->
+
 
                                 </div>
         
@@ -135,9 +128,18 @@
         
         
                                 <div class="row">
-                                    <div class="col-lg-2"></div>
+                                        <div class="col-lg-2">
+                                                <input type="file" ng2FileSelect [uploader]="uploader" />
+                                                <button type="button" class="btn btn-success btn-s"
+                                                (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                                                 Загрузить
+                                                </button>
+                                                <div class="progress" style="">
+                                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                                                </div>
+                                            </div>
                                     <div class="col-lg-10 text-right">
-                                        <input name="submit" [disabled]="!messageForm.valid" type="submit" id="submit" value="Сохранить">
+                                        <input name="submit" [disabled]="!messageForm.valid" type="submit" id="submit" value="Отправить">
                                     </div>
                                 </div>
                             </form>
