@@ -44,13 +44,6 @@
                 </div>
             </div>             
 
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="title">{% trans 'Заголовок' %}</span>
-                    {{ form.title }}
-                    <label class="error">{{ form.title.errors }}</label>
-                </div>
-            </div> 
 
             <div class="row">
                     
@@ -77,7 +70,7 @@
                     </div>
             </div>  
 
-
+            <!--
             <div class="row">
                 
                 <div class="col-md-12">
@@ -85,6 +78,7 @@
                     {{ form.new_category }}
                 </div>
             </div> 
+            -->
 
             
             <div class="row">
@@ -163,11 +157,20 @@
                  </div>
                 
              </div>
+
+
+             <div class="row">
+                <div class="col-md-12">
+                    <span class="title">{% trans 'Заголовок' %}</span>
+                    {{ form.title }}
+                    <label class="error">{{ form.title.errors }}</label>
+                </div>
+            </div>              
              
              <div class="row">
                     
                     <div class="col-md-12">
-                            <span class="title">{% trans 'Дополнительная информация.' %}</span>
+                            <span class="title">{% trans 'Текст объявления.' %}</span>
                         {{ form.info|add_class:"form-control" }}
                     </div>
                 </div>              
