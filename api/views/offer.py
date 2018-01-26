@@ -102,7 +102,7 @@ class OfferListViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     def get_queryset(self):
         user = self.request.user
-        return Offer.objects.filter(seller=user).order_by('-is_current')
+        return Offer.objects.filter(seller=user).order_by('-id')
 
 
 
