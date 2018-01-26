@@ -69,7 +69,15 @@ def annoncement_detail(request,slug):
         form = OfferForm(request.POST, request.FILES)
         if form.is_valid():
             form.save(request)
-            form = OfferForm(initial={'announcement_id': item.id })
+            if request.user.is_authenticated():
+                form = OfferForm(initial={
+                    'username': request.user.profile.first_name,
+                    'email': request.user.username,
+                    'phone': request.user.profile.phone,
+                    'announcement_id': item.id
+                    })    
+            else:            
+                form = OfferForm(initial={'announcement_id': item.id })
             messages.success(request, _('Ваше предложение отправлено покупателю.'))
     else:
         if request.user.is_authenticated():
