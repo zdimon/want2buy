@@ -70,7 +70,7 @@ def annoncement_detail(request,slug):
         if form.is_valid():
             form.save(request)
             form = OfferForm(initial={'announcement_id': item.id })
-            messages.success(request, _('Заявка сохранена. После модерации оно появиться на сайте.'))
+            messages.success(request, _('Ваше предложение отправлено покупателю.'))
     else:
         if request.user.is_authenticated():
             form = OfferForm(initial={
