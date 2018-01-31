@@ -3,38 +3,61 @@
     <div class="col-md-12">
 
 
-            <div class="alert alert-danger text-center" *ngIf="offers.count == 0">
-                    Заявки отсутствуют.
-            </div>
-            
 
-            <div class="table-responsive">
-                <h4 class="title table-hover">Заявки продавцов</h4>
-                <table class="table">
-                <!---
-                  <th>
-                      <tr>
-                        <td>Автор</td>
-                        <td>Цена</td>
-                        <td>Сообщений</td>
-                    </tr>                                                                           
-                  </th>
-                -->
-                  <tr *ngFor="let o of offers.results">
-                    <td><a routerLink="/offer/detail/{{o.id}}" class="pointer"> {{ o.announcement }} </a></td> 
-                    <td> <a href="#"> {{ o.seller.profile.full_name }} </a></td>
-                    <td>{{ o.price }} грн.</td> 
-                    <td>{{ o.created_at }}</td>
-                  </tr>
-                 
-                </table>
-                </div>            
 
-                  
-               
+
+    <div class="alert alert-danger text-center" *ngIf="pager.count == 0">
+            Записи отсутствуют
     </div>
+    
+    <nav *ngIf="pager.count > pager.limit" class="page-pagination float-right" >
+        
+        <span class="tabel-label">Текущая страница: {{ pager.current }}. Всего объявлений: {{ pager.count }}</span>
+        <ul class="pagination">
+            <li class="pager-item"><a *ngIf="pager.has_prev" class="previous" (click)="goPage(pager.current-1, pager.limit)" >
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>    
+            </a></li>
+            
+            <li  class="pager-item" ><a *ngIf="pager.has_next" class="previous" (click)="goPage(pager.current+1, pager.limit)">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>    
+            </a></li>
+        </ul>
+    </nav>
+    <div class="clear"></div>
+    <article class="job-item clearfix" *ngFor="let o of offers.results" >
+        <figure class="job-figure">
+            <a routerLink="/offer/detail/{{o.id}}" href="#"><div innerHTML="{{ o.image }}"></div></a>
+        </figure>
+        <header class="job-header">
+            <h4 class="job-title"><a routerLink="/offer/detail/{{o.id}}" href="#">{{ o.title }}</a></h4>
+            <address class="job-address">{{ o.region }} {{ o.city }}</address>
+            <p class="job-time"><span>Добавлено: {{ o.created_at }}</span></p>
+        </header>
+        <div class="job-meta">
+            <span class="job-price">{{ o.price }} грн.</span>
+            <p class="job-skills">
+                <span>{{ o.new_bu }}</span>
+                <a href="#">{{ o.opt_roznica }}</a>
+                {{ o.seller.profile.full_name }}
+            </p>
+        </div>
+    </article>                
+       
+</div>
 </div>
 
+<div class="clear"></div>
+<nav  *ngIf="pager.count > pager.limit" class="page-pagination float-right">
+<ul class="pagination">
 
+<li *ngIf="pager.has_prev" ><a class="previous" (click)="goPage(pager.current-1, pager.limit)" >
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>    
+</a></li>
+
+<li *ngIf="pager.has_next"><a class="previous" (click)="goPage(pager.current+1, pager.limit)">
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>    
+</a></li>
+</ul>
+</nav>
 
 

@@ -36,7 +36,7 @@ def save_offer(data):
 
 class OfferForm(forms.Form):
     desc = forms.CharField(widget=forms.Textarea, required=True)
-    username = forms.CharField()
+    username = forms.CharField(required=False)
     price = forms.CharField(required=True)
     url = forms.CharField(required=False)
     email = forms.CharField(required=False)

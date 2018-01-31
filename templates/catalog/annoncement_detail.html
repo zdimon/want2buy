@@ -127,8 +127,11 @@
                                 <label for="author">{% trans 'Имя' %}:</label>
                                 </div>
                                 <div class="col-lg-4">
-                                
-                                        {{ form.username }}
+                                        {% if request.user.is_authenticated %}
+                                                {{ request.user.profile.full_name }}
+                                        {% else %}
+                                                {{ form.username }}
+                                        {% endif %}
                                 </div>
                                 <div class="col-lg-2">
                                 <label for="author">{% trans 'Цена' %}:</label>
@@ -158,13 +161,21 @@
                                 <label for="email">Email</label>
                                 </div>
                                 <div class="col-lg-4">
-                                        {{ form.email }}
+                                        {% if request.user.is_authenticated %}
+                                                {{ request.user.email }}
+                                        {% else %}
+                                                {{ form.email }}
+                                        {% endif %}
                                 </div>
                                 <div class="col-lg-2">
                                 <label for="email">{% trans 'Телефон' %}</label>
                                 </div>
                                 <div class="col-lg-4">
-                                        {{ form.phone }}
+                                        {% if request.user.is_authenticated %}
+                                                {{ request.user.profile.phone }}
+                                        {% else %}
+                                                {{ form.phone }}
+                                        {% endif %}
                                 </div>
                         </div>
 

@@ -175,13 +175,26 @@ class Offer(models.Model):
     created_at = models.DateTimeField(verbose_name=_(u'Когда создано?'), auto_now_add=True)
     is_current = models.BooleanField(default=False)
     is_done = models.BooleanField(default=False)
+
     def __unicode__(self):
         return '#%s: %s' % (self.id, self.message)
 
     def getIcon(self):
         return '/static/images/icons/%s.png' % self.status
 
+    def image(self):
+        return '<img class="img-responsive" src="%s"  />' % self.announcement.get_thumbnail_url()
 
+    def title(self):
+        return self.announcement
+    def region(self):
+        return self.announcement.region
+    def city(self):
+        return self.announcement.city
+    def new_bu(self):
+        return self.announcement.get_new_bu_display()
+    def opt_roznica(self):
+        return self.announcement.get_opt_roznica_display()
 
 class OfferMessage(models.Model):
     offer = models.ForeignKey(Offer, verbose_name=_(u'Предложение'))

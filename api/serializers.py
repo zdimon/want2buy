@@ -118,6 +118,12 @@ class OfferSerializer(serializers.ModelSerializer):
     buyer = UserSerializer()
     announcement = serializers.StringRelatedField()
     created_at = serializers.DateTimeField(format='iso-8601')
+    image = serializers.StringRelatedField()
+    title = serializers.StringRelatedField()
+    region = serializers.StringRelatedField()
+    city = serializers.StringRelatedField()
+    new_bu = serializers.StringRelatedField()
+    opt_roznica = serializers.StringRelatedField()
 
     class Meta:
         model = Offer
@@ -133,6 +139,11 @@ class OfferSerializer(serializers.ModelSerializer):
                 'announcement',
                 'url',
                 'image',
+                'title',
+                'region',
+                'city',
+                'new_bu',
+                'opt_roznica',
                 'file',
                 'status',
                 'announcement',
